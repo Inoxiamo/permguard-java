@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.permguard.java.sdk</groupId>
+    <groupId>com.permguard.pep</groupId>
     <artifactId>permguard-java</artifactId>
     <version>1.0.0</version>
     <properties>
@@ -32,6 +32,12 @@
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
             <version>4.29.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>protoc-gen-grpc-java</artifactId>
+            <version>1.69.0</version>
+            <type>pom</type>
         </dependency>
         <!-- JUnit for testing -->
         <dependency>

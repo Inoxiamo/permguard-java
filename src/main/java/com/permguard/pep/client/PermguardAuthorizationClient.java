@@ -1,7 +1,7 @@
-package com.github.permguard.java.sdk.client;
+package com.permguard.pep.client;
 
-import com.github.permguard.java.sdk.proto.AuthorizationCheck.*;
-import com.github.permguard.java.sdk.proto.V1PDPServiceGrpc;
+import com.permguard.pep.config.PermguardConfig;
+import com.permguard.pep.proto.V1PDPServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -46,26 +46,6 @@ public class PermguardAuthorizationClient {
             channel.shutdown();
         }
     }
-
-    // =============================================================
-    // Esempio di metodo globale di configurazione (opzionale):
-    // =============================================================
-
-    /**
-     * Se volessi cambiare configurazione "al volo" (ad es. host o porta)
-     * potresti creare un metodo di setConfig e ricreare il channel/stub.
-     */
-//    public void setConfig(PermguardConfig newConfig) {
-//        this.config = newConfig;
-//        if (channel != null) {
-//            channel.shutdown();
-//        }
-//        initChannelAndStub();
-//    }
-
-    // =============================================================
-    // Esempio di metodo per effettuare la chiamata gRPC:
-    // =============================================================
 
     /**
      * checkAuthorization usando i parametri principali.

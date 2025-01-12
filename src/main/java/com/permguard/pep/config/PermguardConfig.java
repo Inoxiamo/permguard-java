@@ -1,4 +1,4 @@
-package com.github.permguard.java.sdk.config;
+package com.permguard.pep.config;
 
 public class PermguardConfig {
     private final String host;
