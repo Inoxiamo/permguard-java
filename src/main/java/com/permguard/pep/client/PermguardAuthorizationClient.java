@@ -1,10 +1,14 @@
 package com.permguard.pep.client;
 
 import com.permguard.pep.config.PermguardConfig;
+import com.permguard.pep.proto.AuthorizationCheck.*;
 import com.permguard.pep.proto.V1PDPServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
+/**
+ * Client for interacting with the Policy Decision Point.
+ */
 public class PermguardAuthorizationClient {
 
     private final PermguardConfig config;
@@ -12,8 +16,10 @@ public class PermguardAuthorizationClient {
     private V1PDPServiceGrpc.V1PDPServiceBlockingStub blockingStub;
 
     /**
-     * Costruttore che riceve un oggetto di configurazione.
-     * All’interno istanzia il channel e lo stub.
+     * Constructs a new client with the given configuration.
+     * Initializes the channel and stub.
+     *
+     * @param config the configuration for the client
      */
     public PermguardAuthorizationClient(PermguardConfig config) {
         this.config = config;
@@ -21,7 +27,7 @@ public class PermguardAuthorizationClient {
     }
 
     /**
-     * Inizializza (o re-inizializza) il canale e lo stub sulla base della config.
+     * Initializes (or re-initializes) the channel and stub based on the configuration.
      */
     private void initChannelAndStub() {
         ManagedChannelBuilder<?> builder = ManagedChannelBuilder
@@ -29,17 +35,13 @@ public class PermguardAuthorizationClient {
 
         if (config.isUsePlaintext()) {
             builder.usePlaintext();
-        } else {
-            // Se serve TLS, configuralo qui
         }
-
         this.channel = builder.build();
         this.blockingStub = V1PDPServiceGrpc.newBlockingStub(channel);
     }
 
     /**
-     * Espone un metodo di utility per chiudere il canale
-     * quando non serve più (oppure lo chiudi a fine applicazione).
+     * Closes the channel when it is no longer needed.
      */
     public void shutdown() {
         if (channel != null && !channel.isShutdown()) {
@@ -48,7 +50,20 @@ public class PermguardAuthorizationClient {
     }
 
     /**
-     * checkAuthorization usando i parametri principali.
+     * Checks whether the given subject is authorized to perform the given action on the given resource,
+     * according to the policy defined in the given policy store.
+     *
+     * @param applicationId  the ID of the application
+     * @param policyStoreType the type of the policy store
+     * @param policyStoreId   the ID of the policy store
+     * @param principalType   the type of the principal
+     * @param principalId     the ID of the principal
+     * @param subjectType     the type of the subject
+     * @param subjectId       the ID of the subject
+     * @param resourceType    the type of the resource
+     * @param resourceId      the ID of the resource
+     * @param actionName      the name of the action
+     * @return the result of the authorization check
      */
     public AuthorizationCheckResponse checkAuthorization(
             long applicationId,
@@ -62,7 +77,7 @@ public class PermguardAuthorizationClient {
             String resourceId,
             String actionName
     ) {
-        // Costruisci la richiesta
+        // Build the request
         AuthorizationCheckRequest request = AuthorizationCheckRequest.newBuilder()
                 .setAuthorizationContext(
                         AuthorizationContextRequest.newBuilder()
@@ -100,15 +115,23 @@ public class PermguardAuthorizationClient {
                 )
                 .build();
 
-        // Invoca lo stub
+        // Call the stub
         return blockingStub.authorizationCheck(request);
     }
 
     // =============================================================
-    // Esempio di metodo che accetta già un AuthorizationCheckRequest 
-    // completo, se vuoi passare tu tutti i campi (inclusi "Context", etc.)
+    // Example of a method that accepts an AuthorizationCheckRequest 
+    // complete object, if you want to pass all the fields (including "Context", etc.)
     // =============================================================
+    /**
+     * Checks whether the given subject is authorized to perform the given action on the given resource,
+     * according to the policy defined in the given policy store.
+     *
+     * @param request the request containing all the necessary information
+     * @return the result of the authorization check
+     */
     public AuthorizationCheckResponse checkAuthorization(AuthorizationCheckRequest request) {
         return blockingStub.authorizationCheck(request);
     }
 }
+

@@ -4,9 +4,8 @@ import com.permguard.pep.config.PermguardConfig;
 import com.permguard.pep.proto.V1PDPServiceGrpc;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 public class AuthorizationClientTest {
