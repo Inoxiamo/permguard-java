@@ -18,7 +18,7 @@ syntax="proto3";
 
 import "google/protobuf/struct.proto";
 
-package com.permguard.pep;
+package policydecisionpoint;
 
 option java_package = "com.permguard.pep.proto";
 option java_outer_classname = "AuthorizationCheck";

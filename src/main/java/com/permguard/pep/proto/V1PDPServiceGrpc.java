@@ -15,7 +15,7 @@ public final class V1PDPServiceGrpc {
 
   private V1PDPServiceGrpc() {}
 
-  public static final java.lang.String SERVICE_NAME = "com.permguard.pep.V1PDPService";
+  public static final java.lang.String SERVICE_NAME = "policydecisionpoint.V1PDPService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest,

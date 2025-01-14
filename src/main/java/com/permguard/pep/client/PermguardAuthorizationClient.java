@@ -119,10 +119,6 @@ public class PermguardAuthorizationClient {
         return blockingStub.authorizationCheck(request);
     }
 
-    // =============================================================
-    // Example of a method that accepts an AuthorizationCheckRequest 
-    // complete object, if you want to pass all the fields (including "Context", etc.)
-    // =============================================================
     /**
      * Checks whether the given subject is authorized to perform the given action on the given resource,
      * according to the policy defined in the given policy store.
