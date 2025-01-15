@@ -3,8 +3,13 @@ package com.permguard.pep.client;
 import com.permguard.pep.config.PermguardConfig;
 import com.permguard.pep.proto.AuthorizationCheck.*;
 import com.permguard.pep.proto.V1PDPServiceGrpc;
+import com.permguard.pep.representation.request.AuthRequestPayload;
+import com.permguard.pep.representation.response.AuthResponsePayload;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+
+import static com.permguard.pep.mapping.MappingClass.mapAuthResponsePayload;
+import static com.permguard.pep.mapping.MappingClass.mapAuthorizationCheckRequest;
 
 /**
  * Client for interacting with the Policy Decision Point.
@@ -50,74 +55,32 @@ public class PermguardAuthorizationClient {
     }
 
     /**
-     * Checks whether the given subject is authorized to perform the given action on the given resource,
-     * according to the policy defined in the given policy store.
+     * Verifies authorization based on the provided request payload.
      *
-     * @param applicationId  the ID of the application
-     * @param policyStoreType the type of the policy store
-     * @param policyStoreId   the ID of the policy store
-     * @param principalType   the type of the principal
-     * @param principalId     the ID of the principal
-     * @param subjectType     the type of the subject
-     * @param subjectId       the ID of the subject
-     * @param resourceType    the type of the resource
-     * @param resourceId      the ID of the resource
-     * @param actionName      the name of the action
-     * @return the result of the authorization check
+     * @param authRequestPayload the request payload containing authorization details.
+     * @return {@code AuthResponsePayload} the response payload containing the result of the authorization check.
+     *
+     * This method performs the following steps:
+     * <ol>
+     *   <li>Builds the request using the {@link #mapAuthorizationCheckRequest} method.</li>
+     *   <li>Invokes the gRPC authorization check via {@code blockingStub.authorizationCheck}.</li>
+     *   <li>Maps the response into an {@code AuthResponsePayload} object using the {@link #mapAuthResponsePayload} method.</li>
+     * </ol>
      */
-    public AuthorizationCheckResponse checkAuthorization(
-            long applicationId,
-            String policyStoreType,
-            String policyStoreId,
-            String principalType,
-            String principalId,
-            String subjectType,
-            String subjectId,
-            String resourceType,
-            String resourceId,
-            String actionName
+    public AuthResponsePayload checkAuthorization(
+            AuthRequestPayload authRequestPayload
     ) {
         // Build the request
-        AuthorizationCheckRequest request = AuthorizationCheckRequest.newBuilder()
-                .setAuthorizationContext(
-                        AuthorizationContextRequest.newBuilder()
-                                .setApplicationID(applicationId)
-                                .setPolicyStore(
-                                        PolicyStore.newBuilder()
-                                                .setType(policyStoreType)
-                                                .setID(policyStoreId)
-                                                .build()
-                                )
-                                .setPrincipal(
-                                        Principal.newBuilder()
-                                                .setType(principalType)
-                                                .setID(principalId)
-                                                .build()
-                                )
-                                .build()
-                )
-                .setSubject(
-                        Subject.newBuilder()
-                                .setType(subjectType)
-                                .setID(subjectId)
-                                .build()
-                )
-                .setResource(
-                        Resource.newBuilder()
-                                .setType(resourceType)
-                                .setID(resourceId)
-                                .build()
-                )
-                .setAction(
-                        Action.newBuilder()
-                                .setName(actionName)
-                                .build()
-                )
-                .build();
-
+        AuthorizationCheckRequest request = mapAuthorizationCheckRequest(authRequestPayload);
         // Call the stub
-        return blockingStub.authorizationCheck(request);
+        AuthorizationCheckResponse response = blockingStub.authorizationCheck(request);
+        // Map the response
+        AuthResponsePayload authResponsePayload = mapAuthResponsePayload(response);
+        return authResponsePayload;
     }
+
+
+
 
     /**
      * Checks whether the given subject is authorized to perform the given action on the given resource,
