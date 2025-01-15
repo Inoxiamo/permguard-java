@@ -1,6 +1,5 @@
 package com.permguard.pep.mapping;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.permguard.pep.proto.AuthorizationCheck;

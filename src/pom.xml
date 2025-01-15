@@ -60,6 +60,17 @@
             <version>5.15.2</version>
             <scope>test</scope>
         </dependency>
+        <!-- Logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.16</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.16</version>
+        </dependency>
          <!-- Deprecated, valuate to change with update proto to jakarta -->
         <dependency>
             <groupId>javax.annotation</groupId>
