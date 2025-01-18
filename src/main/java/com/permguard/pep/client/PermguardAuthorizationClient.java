@@ -24,9 +24,10 @@ public class PermguardAuthorizationClient {
 
     private static final Logger logger = LoggerFactory.getLogger(PermguardAuthorizationClient.class);
 
+
     private final PermguardConfig config;
     private ManagedChannel channel;
-    private V1PDPServiceGrpc.V1PDPServiceBlockingStub blockingStub;
+    V1PDPServiceGrpc.V1PDPServiceBlockingStub blockingStub;
 
     /**
      * Constructs a new client with the given configuration.
@@ -36,13 +37,6 @@ public class PermguardAuthorizationClient {
      */
     public PermguardAuthorizationClient(PermguardConfig config) {
         this.config = config;
-        initChannelAndStub();
-    }
-
-    /**
-     * Initializes (or re-initializes) the channel and stub based on the configuration.
-     */
-    private void initChannelAndStub() {
         ManagedChannelBuilder<?> builder = ManagedChannelBuilder
                 .forAddress(config.getHost(), config.getPort());
         if (config.isUsePlaintext()) {
@@ -51,6 +45,8 @@ public class PermguardAuthorizationClient {
         this.channel = builder.build();
         this.blockingStub = V1PDPServiceGrpc.newBlockingStub(channel);
     }
+
+
 
     /**
      * Closes the channel when it is no longer needed.
@@ -110,18 +106,6 @@ public class PermguardAuthorizationClient {
             String error = "Missing data validation for Application/PolicyStore";
             throw new MissingPermguardDataException("Missing data", new RuntimeException("Missing data"));
         }
-    }
-
-
-    /**
-     * Checks whether the given subject is authorized to perform the given action on the given resource,
-     * according to the policy defined in the given policy store.
-     *
-     * @param request the request containing all the necessary information
-     * @return the result of the authorization check
-     */
-    public AuthorizationCheckResponse checkAuthorization(AuthorizationCheckRequest request) {
-        return blockingStub.authorizationCheck(request);
     }
 }
 

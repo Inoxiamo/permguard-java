@@ -36,8 +36,8 @@ public class Main {
 
     private static AuthRequestPayload getAuthRequestPayload() {
         AuthRequestPayload authRequestPayload = new AuthRequestPayload();
-        authRequestPayload.setApplicationId(Long.parseLong("330265061957"));
-        PolicyStoreDetail policyStore = new PolicyStoreDetail("ledger", "ef1957db283f45e5b53e54f1da8e9dda");
+        authRequestPayload.setApplicationId(Long.parseLong("266040026603"));
+        PolicyStoreDetail policyStore = new PolicyStoreDetail("ledger", "32c86b2c760f4ae5a8fd8fbd9598fdbd");
         PrincipalDetail principalDetail = new PrincipalDetail("user", "amy.smith@acmecorp.com", null, null, null);
         SubjectDetail subjectDetail = new SubjectDetail("user", "amy.smith@acmecorp.com", null, null);
         ResourceDetail resourceDetail = new ResourceDetail("Magicfarmacia::Platform::BranchInfo", "subscription", null);
