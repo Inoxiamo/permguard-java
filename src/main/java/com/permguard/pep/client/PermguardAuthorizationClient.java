@@ -71,7 +71,6 @@ public class PermguardAuthorizationClient {
             validateAuthRequestPayload(authRequestPayload);
             AuthorizationCheckRequest request = mapAuthorizationCheckRequest(authRequestPayload);
             logger.info("Authorization check request built: {}", request);
-
             // Step 2: Call the stub
             logger.debug("Sending request to authorization service.");
             AuthorizationCheckResponse response = blockingStub.authorizationCheck(request);

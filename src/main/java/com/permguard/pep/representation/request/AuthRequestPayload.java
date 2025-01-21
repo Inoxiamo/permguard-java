@@ -6,6 +6,7 @@ import java.util.Map;
 public class AuthRequestPayload {
 
     private long applicationId;
+    private EntityDetail entityDetail;
     private PolicyStoreDetail policyStore;
     private PrincipalDetail principal;
     private SubjectDetail subject;
@@ -79,6 +80,14 @@ public class AuthRequestPayload {
 
     public void setContext(Map<String, Object> context) {
         this.context = context;
+    }
+
+    public EntityDetail getEntityDetail() {
+        return entityDetail;
+    }
+
+    public void setEntityDetails(EntityDetail entityDetail) {
+        this.entityDetail = entityDetail;
     }
 }
 

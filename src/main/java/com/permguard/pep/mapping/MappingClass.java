@@ -1,5 +1,6 @@
 package com.permguard.pep.mapping;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.permguard.pep.proto.AuthorizationCheck;
@@ -9,15 +10,13 @@ import com.permguard.pep.representation.response.ContextDetail;
 import com.permguard.pep.representation.response.EvaluationResponseDetail;
 import com.permguard.pep.representation.response.ReasonDetail;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Utility class for mapping between DTOs and Protocol Buffer objects.
  */
 public class MappingClass {
+
 
     /**
      * Maps a {@link AuthorizationCheck.AuthorizationCheckResponse} to an {@link AuthResponsePayload}.
@@ -69,6 +68,7 @@ public class MappingClass {
      */
     public static AuthorizationCheck.AuthorizationCheckRequest mapAuthorizationCheckRequest(AuthRequestPayload authRequestPayload) {
 
+
         AuthorizationCheck.AuthorizationCheckRequest request = AuthorizationCheck.AuthorizationCheckRequest.newBuilder()
                 .setAuthorizationContext(
                         AuthorizationCheck.AuthorizationContextRequest.newBuilder()
@@ -78,6 +78,9 @@ public class MappingClass {
                                 )
                                 .setPrincipal(
                                         getAuthorizationCheckPrincipal(authRequestPayload.getPrincipal())
+                                )
+                                .setEntities(
+                                        getAuthorizationCheckEntities(authRequestPayload.getEntityDetail())
                                 )
                                 .build()
                 )
@@ -108,13 +111,47 @@ public class MappingClass {
             .setAction(getAuthorizationCheckAction(detail.getAction()))
             .setContext(mapToStruct(detail.getContext()))
             .build();
-}
+    }
+
+
 
     private static AuthorizationCheck.PolicyStore getAuthorizationCheckPolicyStore(PolicyStoreDetail policyStoreDetail) {
         return AuthorizationCheck.PolicyStore.newBuilder()
                 .setType(policyStoreDetail.getType())
                 .setID(policyStoreDetail.getId())
                 .build();
+    }
+
+    private static AuthorizationCheck.Entities getAuthorizationCheckEntities(EntityDetail entityDetail) {
+        return AuthorizationCheck.Entities.newBuilder()
+                .setSchema(entityDetail.getSchema())
+                .addAllItems(getAuthorizationCheckItems(entityDetail.getItems()))
+                .build();
+    }
+
+    private static List<Struct> getAuthorizationCheckItems(List<ItemDetails> itemDetails) {
+       List<Struct> structList = new ArrayList<>();
+
+        for (ItemDetails itemDetail : itemDetails) {
+            Struct itemStruct;
+            Map<String, Object> item = new HashMap<>();
+            // Creazione della mappa per ogni ItemDetails
+            Map<String, Object> itemMap = new HashMap<>();
+
+            // Creazione della mappa per l'oggetto UID
+            Map<String, Object> uidMap = new HashMap<>();
+            uidMap.put("type", itemDetail.getUid().getType());
+            uidMap.put("id", itemDetail.getUid().getId());
+
+            // Aggiunta delle proprietà alla mappa dell'item
+            itemMap.put("uid", uidMap);
+            itemMap.put("attrs", itemDetail.getAttrs());
+            itemMap.put("parents", itemDetail.getParents());
+
+            itemStruct = mapToStruct(itemMap);
+            structList.add(itemStruct);
+        }
+        return structList;
     }
 
     private static AuthorizationCheck.Principal getAuthorizationCheckPrincipal(PrincipalDetail principalDetail) {
