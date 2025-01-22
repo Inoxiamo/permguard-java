@@ -55,9 +55,10 @@ public class Main {
         PolicyStoreDetail policyStore = new PolicyStoreDetail("ledger", "8f413ab4ad754a2a92915c5d064ea0bc");
         PrincipalDetail principalDetail = new PrincipalDetail("user", "amy.smith@acmecorp.com", "keycloak", "eyJhbGciOiJI...", "eyJhbGciOiJI...");
         SubjectDetail subjectDetail = new SubjectDetail("user", "amy.smith@acmecorp.com", "keycloak", null);
-        ResourceDetail resourceDetail = new ResourceDetail("Magicfarmacia::Platform::BranchInfo", "subscription", null);
-        ActionDetail actionDetail = new ActionDetail("MagicFarmacia::Platform::Action::view", null);
-        Map<String, Object> contextDetail = null;
+        ResourceDetail resourceDetail = new ResourceDetail("MagicFarmacia::Platform::BranchInfo", "subscription", null);
+        ActionDetail actionDetail = new ActionDetail("MagicFarmacia::Platform::Action::create", null);
+        Map<String, Object> contextDetail = new HashMap<>();
+        contextDetail.put("isSuperUser", true);
         authRequestPayload.setEntityDetails(entityDetail);
         authRequestPayload.setPolicyStore(policyStore);
         authRequestPayload.setPrincipal(principalDetail);

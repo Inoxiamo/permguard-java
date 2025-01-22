@@ -157,7 +157,10 @@ public class MappingClass {
     private static AuthorizationCheck.Principal getAuthorizationCheckPrincipal(PrincipalDetail principalDetail) {
         return AuthorizationCheck.Principal.newBuilder()
                 .setType(principalDetail.getType())
+                .setSource(principalDetail.getSource())
                 .setID(principalDetail.getId())
+                .setAccessToken(principalDetail.getAccessToken())
+                .setIdentityToken(principalDetail.getIdentityToken())
                 .build();
     }
 
@@ -165,6 +168,7 @@ public class MappingClass {
         return AuthorizationCheck.Subject.newBuilder()
                 .setType(subjectDetail.getType())
                 .setID(subjectDetail.getId())
+                .setSource(subjectDetail.getSource())
                 .setProperties(mapToStruct(subjectDetail.getProperties()))
                 .build();
     }
