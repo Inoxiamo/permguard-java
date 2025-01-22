@@ -89,7 +89,6 @@ public class PermguardAuthorizationClient {
         try {
             // Step 1: Build the request
             logger.debug("Mapping authorization check request.");
-            validateAuthRequestPayload(authRequestPayload.getAuthContextDetail());
             AuthorizationCheckRequest request = mapAuthorizationCheckRequest(authRequestPayload);
             logger.info("Authorization check request built: {}", request);
             // Step 2: Call the stub
@@ -112,19 +111,6 @@ public class PermguardAuthorizationClient {
             // Handle unexpected exceptions
             logger.error("Unexpected error occurred during authorization check: {}", e.getMessage(), e);
             throw new AuthorizationException("An unexpected error occurred.", e);
-        }
-    }
-
-    private void validateAuthRequestPayload(AuthContextDetail authContextDetail) {
-        authContextDetail.setApplicationId(
-                authContextDetail.getApplicationId()==0 ? config.getApplicationId() : authContextDetail.getApplicationId()
-                );
-        authContextDetail.setPolicyStore(
-                authContextDetail.getPolicyStore()==null ? config.getPolicyStore() : authContextDetail.getPolicyStore()
-        );
-        if(authContextDetail.getApplicationId()==0 || authContextDetail.getPolicyStore()==null) {
-            String error = "Missing data validation for Application/PolicyStore";
-            throw new MissingPermguardDataException("Missing data", new RuntimeException("Missing data"));
         }
     }
 }

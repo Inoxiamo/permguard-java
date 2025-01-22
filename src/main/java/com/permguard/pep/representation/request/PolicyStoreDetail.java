@@ -18,31 +18,85 @@
 
 package com.permguard.pep.representation.request;
 
+/**
+ * Represents the details of a policy store, including its type and identifier.
+ * <p>
+ * This class uses the Builder pattern for flexible and fluent object creation.
+ * <p>
+ * Usage example:
+ * <pre>{@code
+ * PolicyStoreDetail policyStoreDetail = new PolicyStoreDetail.Builder()
+ *     .type("ledger")
+ *     .id("5740a9c648a04f7db08ac2f44a3779da")
+ *     .build();
+ * }</pre>
+ */
 public class PolicyStoreDetail {
-    private String type;
-    private String id;
 
-    public PolicyStoreDetail(String type, String id) {
-        this.type = type;
-        this.id = id;
+    private final String type;
+    private final String id;
+
+    private PolicyStoreDetail(Builder builder) {
+        this.type = builder.type;
+        this.id = builder.id;
     }
 
-    public PolicyStoreDetail() {
+    /**
+     * Builder class for {@link PolicyStoreDetail}.
+     */
+    public static class Builder {
+        private String type;
+        private String id;
+
+        /**
+         * Sets the type of the policy store.
+         *
+         * @param type the type of the policy store
+         * @return the builder instance
+         */
+        public Builder type(String type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
+         * Sets the identifier of the policy store.
+         *
+         * @param id the identifier of the policy store
+         * @return the builder instance
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        /**
+         * Builds and returns an instance of {@link PolicyStoreDetail}.
+         *
+         * @return a new instance of {@link PolicyStoreDetail}
+         */
+        public PolicyStoreDetail build() {
+            return new PolicyStoreDetail(this);
+        }
     }
 
+    // Getters with JavaDoc
+
+    /**
+     * Gets the type of the policy store.
+     *
+     * @return the type of the policy store
+     */
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
+    /**
+     * Gets the identifier of the policy store.
+     *
+     * @return the identifier of the policy store
+     */
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }

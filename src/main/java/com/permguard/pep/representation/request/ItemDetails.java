@@ -21,42 +21,110 @@ package com.permguard.pep.representation.request;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents the details of an item, including its unique identifier (UID),
+ * attributes, and parent relationships.
+ * <p>
+ * This class uses the Builder pattern for flexible and fluent object creation.
+ * <p>
+ * Usage example:
+ * <pre>{@code
+ * ItemDetails itemDetails = new ItemDetails.Builder()
+ *     .uid(new Uid("Permguard::IAM::User", "amy.smith@acmecorp.com"))
+ *     .attrs(Map.of("isSuperUser", true))
+ *     .parents(List.of(parent1, parent2))
+ *     .build();
+ * }</pre>
+ */
 public class ItemDetails {
-    private Uid uid;
-    private Map<String, Object> attrs;
-    private List<Object> parents;
 
-    public ItemDetails(Uid uid, Map<String, Object> attrs, List<Object> parents) {
-        this.uid = uid;
-        this.attrs = attrs;
-        this.parents = parents;
+    private final Uid uid;
+    private final Map<String, Object> attrs;
+    private final List<Object> parents;
+
+    private ItemDetails(Builder builder) {
+        this.uid = builder.uid;
+        this.attrs = builder.attrs;
+        this.parents = builder.parents;
     }
 
-    public ItemDetails() {
+    /**
+     * Builder class for {@link ItemDetails}.
+     */
+    public static class Builder {
+        private Uid uid;
+        private Map<String, Object> attrs;
+        private List<Object> parents;
+
+        /**
+         * Sets the UID of the item.
+         *
+         * @param uid the unique identifier for the item
+         * @return the builder instance
+         */
+        public Builder uid(Uid uid) {
+            this.uid = uid;
+            return this;
+        }
+
+        /**
+         * Sets the attributes of the item.
+         *
+         * @param attrs a key-value map of attributes
+         * @return the builder instance
+         */
+        public Builder attrs(Map<String, Object> attrs) {
+            this.attrs = attrs;
+            return this;
+        }
+
+        /**
+         * Sets the parent relationships for the item.
+         *
+         * @param parents a list of parent objects
+         * @return the builder instance
+         */
+        public Builder parents(List<Object> parents) {
+            this.parents = parents;
+            return this;
+        }
+
+        /**
+         * Builds and returns an instance of {@link ItemDetails}.
+         *
+         * @return a new instance of {@link ItemDetails}
+         */
+        public ItemDetails build() {
+            return new ItemDetails(this);
+        }
     }
 
-    // Getters e Setters
+    // Getters with JavaDoc
+
+    /**
+     * Gets the UID of the item.
+     *
+     * @return the unique identifier for the item
+     */
     public Uid getUid() {
         return uid;
     }
 
-    public void setUid(Uid uid) {
-        this.uid = uid;
-    }
-
+    /**
+     * Gets the attributes of the item.
+     *
+     * @return a key-value map of attributes
+     */
     public Map<String, Object> getAttrs() {
         return attrs;
     }
 
-    public void setAttrs(Map<String, Object> attrs) {
-        this.attrs = attrs;
-    }
-
+    /**
+     * Gets the parent relationships of the item.
+     *
+     * @return a list of parent objects
+     */
     public List<Object> getParents() {
         return parents;
-    }
-
-    public void setParents(List<Object> parents) {
-        this.parents = parents;
     }
 }

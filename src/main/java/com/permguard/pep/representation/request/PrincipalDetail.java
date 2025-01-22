@@ -18,61 +18,157 @@
 
 package com.permguard.pep.representation.request;
 
+/**
+ * Represents the details of a principal, including type, identifier, source, and associated tokens.
+ * <p>
+ * This class uses the Builder pattern for flexible and fluent object creation.
+ * <p>
+ * Usage example:
+ * <pre>{@code
+ * PrincipalDetail principalDetail = new PrincipalDetail.Builder()
+ *     .type("user")
+ *     .id("amy.smith@acmecorp.com")
+ *     .source("keycloak")
+ *     .identityToken("eyJhbGciOiJI...")
+ *     .accessToken("eyJhbGciOiJI...")
+ *     .build();
+ * }</pre>
+ */
 public class PrincipalDetail {
-    private String type;
-    private String id;
-    private String source;
-    private String identityToken;
-    private String accessToken;
 
-    public PrincipalDetail(String type, String id, String source, String identityToken, String accessToken) {
-        this.type = type;
-        this.id = id;
-        this.source = source;
-        this.identityToken = identityToken;
-        this.accessToken = accessToken;
+    private final String type;
+    private final String id;
+    private final String source;
+    private final String identityToken;
+    private final String accessToken;
+
+    private PrincipalDetail(Builder builder) {
+        this.type = builder.type;
+        this.id = builder.id;
+        this.source = builder.source;
+        this.identityToken = builder.identityToken;
+        this.accessToken = builder.accessToken;
     }
 
-    public PrincipalDetail() {
+    /**
+     * Builder class for {@link PrincipalDetail}.
+     */
+    public static class Builder {
+        private String type;
+        private String id;
+        private String source;
+        private String identityToken;
+        private String accessToken;
+
+        /**
+         * Sets the type of the principal.
+         *
+         * @param type the type of the principal
+         * @return the builder instance
+         */
+        public Builder type(String type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
+         * Sets the identifier of the principal.
+         *
+         * @param id the identifier of the principal
+         * @return the builder instance
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        /**
+         * Sets the source of the principal.
+         *
+         * @param source the source of the principal
+         * @return the builder instance
+         */
+        public Builder source(String source) {
+            this.source = source;
+            return this;
+        }
+
+        /**
+         * Sets the identity token of the principal.
+         *
+         * @param identityToken the identity token of the principal
+         * @return the builder instance
+         */
+        public Builder identityToken(String identityToken) {
+            this.identityToken = identityToken;
+            return this;
+        }
+
+        /**
+         * Sets the access token of the principal.
+         *
+         * @param accessToken the access token of the principal
+         * @return the builder instance
+         */
+        public Builder accessToken(String accessToken) {
+            this.accessToken = accessToken;
+            return this;
+        }
+
+        /**
+         * Builds and returns an instance of {@link PrincipalDetail}.
+         *
+         * @return a new instance of {@link PrincipalDetail}
+         */
+        public PrincipalDetail build() {
+            return new PrincipalDetail(this);
+        }
     }
 
+    // Getters with JavaDoc
+
+    /**
+     * Gets the type of the principal.
+     *
+     * @return the type of the principal
+     */
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
+    /**
+     * Gets the identifier of the principal.
+     *
+     * @return the identifier of the principal
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    /**
+     * Gets the source of the principal.
+     *
+     * @return the source of the principal
+     */
     public String getSource() {
         return source;
     }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
-
+    /**
+     * Gets the identity token of the principal.
+     *
+     * @return the identity token of the principal
+     */
     public String getIdentityToken() {
         return identityToken;
     }
 
-    public void setIdentityToken(String identityToken) {
-        this.identityToken = identityToken;
-    }
-
+    /**
+     * Gets the access token of the principal.
+     *
+     * @return the access token of the principal
+     */
     public String getAccessToken() {
         return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
     }
 }

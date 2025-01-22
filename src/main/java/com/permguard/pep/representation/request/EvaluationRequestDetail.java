@@ -20,41 +20,135 @@ package com.permguard.pep.representation.request;
 
 import java.util.Map;
 
+/**
+ * Represents the details of an evaluation request.
+ * <p>
+ * This class encapsulates the subject, resource, action, and additional context
+ * required for an evaluation request. It uses the Builder pattern for flexible and
+ * fluent construction.
+ * <p>
+ * Usage example:
+ * <pre>{@code
+ * EvaluationRequestDetail evaluationRequestDetail = new EvaluationRequestDetail.Builder()
+ *     .subject(subjectDetail)
+ *     .resource(resourceDetail)
+ *     .action(actionDetail)
+ *     .context(Map.of("key", "value"))
+ *     .build();
+ * }</pre>
+ */
 public class EvaluationRequestDetail {
-    private SubjectDetail subject;
-    private ResourceDetail resource;
-    private ActionDetail action;
-    private Map<String, Object> context;
 
+    private final SubjectDetail subject;
+    private final ResourceDetail resource;
+    private final ActionDetail action;
+    private final Map<String, Object> context;
+
+    private EvaluationRequestDetail(Builder builder) {
+        this.subject = builder.subject;
+        this.resource = builder.resource;
+        this.action = builder.action;
+        this.context = builder.context;
+    }
+
+    /**
+     * Builder class for {@link EvaluationRequestDetail}.
+     */
+    public static class Builder {
+        private SubjectDetail subject;
+        private ResourceDetail resource;
+        private ActionDetail action;
+        private Map<String, Object> context;
+
+        /**
+         * Sets the subject detail.
+         *
+         * @param subject the subject detail
+         * @return the builder instance
+         */
+        public Builder subject(SubjectDetail subject) {
+            this.subject = subject;
+            return this;
+        }
+
+        /**
+         * Sets the resource detail.
+         *
+         * @param resource the resource detail
+         * @return the builder instance
+         */
+        public Builder resource(ResourceDetail resource) {
+            this.resource = resource;
+            return this;
+        }
+
+        /**
+         * Sets the action detail.
+         *
+         * @param action the action detail
+         * @return the builder instance
+         */
+        public Builder action(ActionDetail action) {
+            this.action = action;
+            return this;
+        }
+
+        /**
+         * Sets the context for the evaluation request.
+         *
+         * @param context a key-value map representing the context
+         * @return the builder instance
+         */
+        public Builder context(Map<String, Object> context) {
+            this.context = context;
+            return this;
+        }
+
+        /**
+         * Builds and returns an instance of {@link EvaluationRequestDetail}.
+         *
+         * @return a new instance of {@link EvaluationRequestDetail}
+         */
+        public EvaluationRequestDetail build() {
+            return new EvaluationRequestDetail(this);
+        }
+    }
+
+    // Getters with JavaDoc
+
+    /**
+     * Gets the subject detail.
+     *
+     * @return the subject detail
+     */
     public SubjectDetail getSubject() {
         return subject;
     }
 
-    public void setSubject(SubjectDetail subject) {
-        this.subject = subject;
-    }
-
+    /**
+     * Gets the resource detail.
+     *
+     * @return the resource detail
+     */
     public ResourceDetail getResource() {
         return resource;
     }
 
-    public void setResource(ResourceDetail resource) {
-        this.resource = resource;
-    }
-
+    /**
+     * Gets the action detail.
+     *
+     * @return the action detail
+     */
     public ActionDetail getAction() {
         return action;
     }
 
-    public void setAction(ActionDetail action) {
-        this.action = action;
-    }
-
+    /**
+     * Gets the context for the evaluation request.
+     *
+     * @return a key-value map representing the context
+     */
     public Map<String, Object> getContext() {
         return context;
-    }
-
-    public void setContext(Map<String, Object> context) {
-        this.context = context;
     }
 }

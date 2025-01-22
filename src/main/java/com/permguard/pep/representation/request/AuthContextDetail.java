@@ -19,52 +19,134 @@
 package com.permguard.pep.representation.request;
 
 
+/**
+ * Represents the authentication context details used in requests.
+ * <p>
+ * This class encapsulates the application ID, entity details, policy store, and principal details,
+ * providing all necessary information for the authentication context.
+ * <p>
+ * Usage example:
+ * <pre>{@code
+ * AuthContextDetail contextDetail = new AuthContextDetail.Builder()
+ *     .applicationId(145748228796L)
+ *     .entityDetail(entityDetail)
+ *     .policyStore(policyStoreDetail)
+ *     .principal(principalDetail)
+ *     .build();
+ * }</pre>
+ */
 public class AuthContextDetail {
 
-    private long applicationId;
-    private EntityDetail entityDetail;
-    private PolicyStoreDetail policyStore;
-    private PrincipalDetail principal;
+    private final long applicationId;
+    private final EntityDetail entityDetail;
+    private final PolicyStoreDetail policyStore;
+    private final PrincipalDetail principal;
 
-    public AuthContextDetail(long applicationId, EntityDetail entityDetail, PolicyStoreDetail policyStore, PrincipalDetail principal) {
-        this.applicationId = applicationId;
-        this.entityDetail = entityDetail;
-        this.policyStore = policyStore;
-        this.principal = principal;
+    private AuthContextDetail(Builder builder) {
+        this.applicationId = builder.applicationId;
+        this.entityDetail = builder.entityDetail;
+        this.policyStore = builder.policyStore;
+        this.principal = builder.principal;
     }
 
-    public AuthContextDetail() {
+    /**
+     * Builder class for {@link AuthContextDetail}.
+     */
+    public static class Builder {
+        private long applicationId;
+        private EntityDetail entityDetail;
+        private PolicyStoreDetail policyStore;
+        private PrincipalDetail principal;
+
+        /**
+         * Sets the application ID.
+         *
+         * @param applicationId the application ID
+         * @return the builder instance
+         */
+        public Builder applicationId(long applicationId) {
+            this.applicationId = applicationId;
+            return this;
+        }
+
+        /**
+         * Sets the entity detail.
+         *
+         * @param entityDetail the entity detail
+         * @return the builder instance
+         */
+        public Builder entityDetail(EntityDetail entityDetail) {
+            this.entityDetail = entityDetail;
+            return this;
+        }
+
+        /**
+         * Sets the policy store detail.
+         *
+         * @param policyStore the policy store detail
+         * @return the builder instance
+         */
+        public Builder policyStore(PolicyStoreDetail policyStore) {
+            this.policyStore = policyStore;
+            return this;
+        }
+
+        /**
+         * Sets the principal detail.
+         *
+         * @param principal the principal detail
+         * @return the builder instance
+         */
+        public Builder principal(PrincipalDetail principal) {
+            this.principal = principal;
+            return this;
+        }
+
+        /**
+         * Builds and returns an instance of {@link AuthContextDetail}.
+         *
+         * @return a new instance of {@link AuthContextDetail}
+         */
+        public AuthContextDetail build() {
+            return new AuthContextDetail(this);
+        }
     }
 
+    // Getters with JavaDoc
+
+    /**
+     * Gets the application ID.
+     *
+     * @return the application ID
+     */
     public long getApplicationId() {
         return applicationId;
     }
 
-    public void setApplicationId(long applicationId) {
-        this.applicationId = applicationId;
-    }
-
+    /**
+     * Gets the entity detail.
+     *
+     * @return the entity detail
+     */
     public EntityDetail getEntityDetail() {
         return entityDetail;
     }
 
-    public void setEntityDetail(EntityDetail entityDetail) {
-        this.entityDetail = entityDetail;
-    }
-
+    /**
+     * Gets the policy store detail.
+     *
+     * @return the policy store detail
+     */
     public PolicyStoreDetail getPolicyStore() {
         return policyStore;
     }
 
-    public void setPolicyStore(PolicyStoreDetail policyStore) {
-        this.policyStore = policyStore;
-    }
-
+    /**
+     * Gets the principal detail.
+     *
+     * @return the principal detail
+     */
     public PrincipalDetail getPrincipal() {
         return principal;
-    }
-
-    public void setPrincipal(PrincipalDetail principal) {
-        this.principal = principal;
     }
 }

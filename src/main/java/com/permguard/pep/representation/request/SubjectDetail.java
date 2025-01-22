@@ -20,51 +20,133 @@ package com.permguard.pep.representation.request;
 
 import java.util.Map;
 
+/**
+ * Represents the details of a subject, including type, identifier, source, and additional properties.
+ * <p>
+ * This class uses the Builder pattern for flexible and fluent object creation.
+ * <p>
+ * Usage example:
+ * <pre>{@code
+ * SubjectDetail subjectDetail = new SubjectDetail.Builder()
+ *     .type("user")
+ *     .id("amy.smith@acmecorp.com")
+ *     .source("keycloak")
+ *     .properties(Map.of("department", "IT", "role", "admin"))
+ *     .build();
+ * }</pre>
+ */
 public class SubjectDetail {
-    private String type;
-    private String id;
-    private String source;
-    private Map<String, Object> properties;
 
-    public SubjectDetail(String type, String id, String source, Map<String, Object> properties) {
-        this.type = type;
-        this.id = id;
-        this.source = source;
-        this.properties = properties;
+    private final String type;
+    private final String id;
+    private final String source;
+    private final Map<String, Object> properties;
+
+    private SubjectDetail(Builder builder) {
+        this.type = builder.type;
+        this.id = builder.id;
+        this.source = builder.source;
+        this.properties = builder.properties;
     }
 
-    public SubjectDetail() {
+    /**
+     * Builder class for {@link SubjectDetail}.
+     */
+    public static class Builder {
+        private String type;
+        private String id;
+        private String source;
+        private Map<String, Object> properties;
+
+        /**
+         * Sets the type of the subject.
+         *
+         * @param type the type of the subject
+         * @return the builder instance
+         */
+        public Builder type(String type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
+         * Sets the identifier of the subject.
+         *
+         * @param id the identifier of the subject
+         * @return the builder instance
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        /**
+         * Sets the source of the subject.
+         *
+         * @param source the source of the subject
+         * @return the builder instance
+         */
+        public Builder source(String source) {
+            this.source = source;
+            return this;
+        }
+
+        /**
+         * Sets the additional properties of the subject.
+         *
+         * @param properties a key-value map of additional properties
+         * @return the builder instance
+         */
+        public Builder properties(Map<String, Object> properties) {
+            this.properties = properties;
+            return this;
+        }
+
+        /**
+         * Builds and returns an instance of {@link SubjectDetail}.
+         *
+         * @return a new instance of {@link SubjectDetail}
+         */
+        public SubjectDetail build() {
+            return new SubjectDetail(this);
+        }
     }
 
+    // Getters with JavaDoc
+
+    /**
+     * Gets the type of the subject.
+     *
+     * @return the type of the subject
+     */
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
+    /**
+     * Gets the identifier of the subject.
+     *
+     * @return the identifier of the subject
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    /**
+     * Gets the source of the subject.
+     *
+     * @return the source of the subject
+     */
     public String getSource() {
         return source;
     }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
-
+    /**
+     * Gets the additional properties of the subject.
+     *
+     * @return a key-value map of additional properties
+     */
     public Map<String, Object> getProperties() {
         return properties;
-    }
-
-    public void setProperties(Map<String, Object> properties) {
-        this.properties = properties;
     }
 }

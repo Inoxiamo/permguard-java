@@ -18,32 +18,85 @@
 
 package com.permguard.pep.representation.request;
 
+/**
+ * Represents a unique identifier (UID) with a type and an identifier string.
+ * <p>
+ * This class uses the Builder pattern for flexible and fluent object creation.
+ * <p>
+ * Usage example:
+ * <pre>{@code
+ * Uid uid = new Uid.Builder()
+ *     .type("Permguard::IAM::User")
+ *     .id("amy.smith@acmecorp.com")
+ *     .build();
+ * }</pre>
+ */
 public class Uid {
-    private String type;
-    private String id;
 
-    public Uid(String type, String id) {
-        this.type = type;
-        this.id = id;
+    private final String type;
+    private final String id;
+
+    private Uid(Builder builder) {
+        this.type = builder.type;
+        this.id = builder.id;
     }
 
-    public Uid() {
+    /**
+     * Builder class for {@link Uid}.
+     */
+    public static class Builder {
+        private String type;
+        private String id;
+
+        /**
+         * Sets the type of the UID.
+         *
+         * @param type the type of the UID
+         * @return the builder instance
+         */
+        public Builder type(String type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
+         * Sets the identifier string of the UID.
+         *
+         * @param id the identifier string of the UID
+         * @return the builder instance
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        /**
+         * Builds and returns an instance of {@link Uid}.
+         *
+         * @return a new instance of {@link Uid}
+         */
+        public Uid build() {
+            return new Uid(this);
+        }
     }
 
-    // Getters e Setters
+    // Getters with JavaDoc
+
+    /**
+     * Gets the type of the UID.
+     *
+     * @return the type of the UID
+     */
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
+    /**
+     * Gets the identifier string of the UID.
+     *
+     * @return the identifier string of the UID
+     */
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }

@@ -55,28 +55,50 @@ public class Main {
 
 
     private static AuthRequestPayload getAuthRequestPayload() {
-        EntityDetail entityDetail = new EntityDetail(
-                "cedar" ,
-                List.of(
-            new ItemDetails(new Uid("Permguard::IAM::User", "amy.smith@acmecorp.com"),
-                            Map.of("isSuperUser", true), List.of()),
-            new ItemDetails(new Uid("MagicFarmacia::Platform::Subscription", "e3a786fd07e24bfa95ba4341d3695ae8"),
-                            Map.of("active", true), List.of())
-        ));
-        AuthContextDetail authContextDetail = new AuthContextDetail(
-            145748228796L,
-            entityDetail,
-            new PolicyStoreDetail("ledger", "5740a9c648a04f7db08ac2f44a3779da"),
-            new PrincipalDetail("user", "amy.smith@acmecorp.com", "keycloak", "eyJhbGciOiJI...", "eyJhbGciOiJI...")
-        );
-        return new AuthRequestPayload(
-            authContextDetail,
-            new SubjectDetail("user", "amy.smith@acmecorp.com", "keycloak", null),
-            new ResourceDetail("MagicFarmacia::Platform::Subscription", "e3a786fd07e24bfa95ba4341d3695ae8", null),
-            new ActionDetail("MagicFarmacia::Platform::Action::create", null),
-            null,
-            Map.of("isSuperUser", true)
-        );
-    }
+    EntityDetail entityDetail = new EntityDetail.Builder()
+        .schema("cedar")
+        .items(List.of(
+            new ItemDetails.Builder()
+                .uid(new Uid.Builder()
+                    .type("Permguard::IAM::User")
+                    .id("amy.smith@acmecorp.com").build())
+                .attrs(Map.of("isSuperUser", true))
+                .parents(List.of()).build(),
+            new ItemDetails.Builder()
+                .uid(new Uid.Builder()
+                    .type("MagicFarmacia::Platform::Subscription")
+                    .id("e3a786fd07e24bfa95ba4341d3695ae8").build())
+                .attrs(Map.of("active", true))
+                .parents(List.of()).build()
+        )).build();
+
+    AuthContextDetail authContextDetail = new AuthContextDetail.Builder()
+        .applicationId(145748228796L)
+        .entityDetail(entityDetail)
+        .policyStore(new PolicyStoreDetail.Builder()
+            .type("ledger")
+            .id("5740a9c648a04f7db08ac2f44a3779da").build())
+        .principal(new PrincipalDetail.Builder()
+            .type("user")
+            .id("amy.smith@acmecorp.com")
+            .source("keycloak")
+            .identityToken("eyJhbGciOiJI...")
+            .accessToken("eyJhbGciOiJI...").build())
+        .build();
+
+    return new AuthRequestPayload.Builder()
+        .authContextDetail(authContextDetail)
+        .subject(new SubjectDetail.Builder()
+            .type("user")
+            .id("amy.smith@acmecorp.com")
+            .source("keycloak").build())
+        .resource(new ResourceDetail.Builder()
+            .type("MagicFarmacia::Platform::Subscription")
+            .id("e3a786fd07e24bfa95ba4341d3695ae8").build())
+        .action(new ActionDetail.Builder()
+            .name("MagicFarmacia::Platform::Action::create").build())
+        .context(Map.of("isSuperUser", true)).build();
+}
+
 
 }

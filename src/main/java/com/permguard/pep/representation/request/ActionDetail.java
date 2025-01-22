@@ -20,31 +20,86 @@ package com.permguard.pep.representation.request;
 
 import java.util.Map;
 
+/**
+ * Represents the details of an action to be performed.
+ * <p>
+ * This class includes the action's name and additional properties as a key-value map.
+ * It uses the Builder pattern for flexible and fluent construction.
+ * <p>
+ * Usage example:
+ * <pre>{@code
+ * ActionDetail actionDetail = new ActionDetail.Builder()
+ *     .name("MagicFarmacia::Platform::Action::create")
+ *     .properties(Map.of("key1", "value1", "key2", "value2"))
+ *     .build();
+ * }</pre>
+ */
 public class ActionDetail {
-    private String name;
-    private Map<String, Object> properties;
 
-    public ActionDetail(String name, Map<String, Object> properties) {
-        this.name = name;
-        this.properties = properties;
+    private final String name;
+    private final Map<String, Object> properties;
+
+    private ActionDetail(Builder builder) {
+        this.name = builder.name;
+        this.properties = builder.properties;
     }
 
-    public ActionDetail() {
+    /**
+     * Builder class for {@link ActionDetail}.
+     */
+    public static class Builder {
+        private String name;
+        private Map<String, Object> properties;
+
+        /**
+         * Sets the name of the action.
+         *
+         * @param name the name of the action
+         * @return the builder instance
+         */
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * Sets the properties of the action.
+         *
+         * @param properties a key-value map of properties for the action
+         * @return the builder instance
+         */
+        public Builder properties(Map<String, Object> properties) {
+            this.properties = properties;
+            return this;
+        }
+
+        /**
+         * Builds and returns an instance of {@link ActionDetail}.
+         *
+         * @return a new instance of {@link ActionDetail}
+         */
+        public ActionDetail build() {
+            return new ActionDetail(this);
+        }
     }
 
+    // Getters with JavaDoc
+
+    /**
+     * Gets the name of the action.
+     *
+     * @return the name of the action
+     */
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    /**
+     * Gets the properties of the action.
+     *
+     * @return a key-value map of properties for the action
+     */
     public Map<String, Object> getProperties() {
         return properties;
-    }
-
-    public void setProperties(Map<String, Object> properties) {
-        this.properties = properties;
     }
 }

@@ -21,76 +21,184 @@ package com.permguard.pep.representation.request;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents the payload for authentication requests.
+ * <p>
+ * This class is built using the Builder pattern, allowing for flexible and fluent construction
+ * of complex objects. It encapsulates details such as the authentication context, subject,
+ * resource, action, evaluations, and additional context parameters.
+ * <p>
+ * Usage example:
+ * <pre>{@code
+ * AuthRequestPayload payload = new AuthRequestPayload.Builder()
+ *     .authContextDetail(authContextDetail)
+ *     .subject(subjectDetail)
+ *     .resource(resourceDetail)
+ *     .action(actionDetail)
+ *     .evaluations(evaluationList)
+ *     .context(contextMap)
+ *     .build();
+ * }</pre>
+ */
 public class AuthRequestPayload {
 
-    private AuthContextDetail authContextDetail;
-    private SubjectDetail subject;
-    private ResourceDetail resource;
-    private ActionDetail action;
-    private List<EvaluationRequestDetail> evaluations;
-    private Map<String, Object> context;
+    private final AuthContextDetail authContextDetail;
+    private final SubjectDetail subject;
+    private final ResourceDetail resource;
+    private final ActionDetail action;
+    private final List<EvaluationRequestDetail> evaluations;
+    private final Map<String, Object> context;
 
-    public AuthRequestPayload() {
+    private AuthRequestPayload(Builder builder) {
+        this.authContextDetail = builder.authContextDetail;
+        this.subject = builder.subject;
+        this.resource = builder.resource;
+        this.action = builder.action;
+        this.evaluations = builder.evaluations;
+        this.context = builder.context;
     }
 
-    public AuthRequestPayload(AuthContextDetail authContextDetail, SubjectDetail subject, ResourceDetail resource, ActionDetail action, List<EvaluationRequestDetail> evaluations, Map<String, Object> context) {
-        this.authContextDetail = authContextDetail;
-        this.subject = subject;
-        this.resource = resource;
-        this.action = action;
-        this.evaluations = evaluations;
-        this.context = context;
+    /**
+     * Builder class for {@link AuthRequestPayload}.
+     */
+    public static class Builder {
+        private AuthContextDetail authContextDetail;
+        private SubjectDetail subject;
+        private ResourceDetail resource;
+        private ActionDetail action;
+        private List<EvaluationRequestDetail> evaluations;
+        private Map<String, Object> context;
+
+        /**
+         * Sets the authentication context detail.
+         *
+         * @param authContextDetail the authentication context detail
+         * @return the builder instance
+         */
+        public Builder authContextDetail(AuthContextDetail authContextDetail) {
+            this.authContextDetail = authContextDetail;
+            return this;
+        }
+
+        /**
+         * Sets the subject detail.
+         *
+         * @param subject the subject detail
+         * @return the builder instance
+         */
+        public Builder subject(SubjectDetail subject) {
+            this.subject = subject;
+            return this;
+        }
+
+        /**
+         * Sets the resource detail.
+         *
+         * @param resource the resource detail
+         * @return the builder instance
+         */
+        public Builder resource(ResourceDetail resource) {
+            this.resource = resource;
+            return this;
+        }
+
+        /**
+         * Sets the action detail.
+         *
+         * @param action the action detail
+         * @return the builder instance
+         */
+        public Builder action(ActionDetail action) {
+            this.action = action;
+            return this;
+        }
+
+        /**
+         * Sets the list of evaluation request details.
+         *
+         * @param evaluations the list of evaluation request details
+         * @return the builder instance
+         */
+        public Builder evaluations(List<EvaluationRequestDetail> evaluations) {
+            this.evaluations = evaluations;
+            return this;
+        }
+
+        /**
+         * Sets the additional context parameters.
+         *
+         * @param context the additional context parameters
+         * @return the builder instance
+         */
+        public Builder context(Map<String, Object> context) {
+            this.context = context;
+            return this;
+        }
+
+        /**
+         * Builds and returns an instance of {@link AuthRequestPayload}.
+         *
+         * @return a new instance of {@link AuthRequestPayload}
+         */
+        public AuthRequestPayload build() {
+            return new AuthRequestPayload(this);
+        }
     }
 
-    // Getters and Setters
+    // Getters with JavaDoc
 
-    public SubjectDetail getSubject() {
-        return subject;
-    }
-
-    public void setSubject(SubjectDetail subject) {
-        this.subject = subject;
-    }
-
-    public ResourceDetail getResource() {
-        return resource;
-    }
-
-    public void setResource(ResourceDetail resource) {
-        this.resource = resource;
-    }
-
-    public ActionDetail getAction() {
-        return action;
-    }
-
-    public void setAction(ActionDetail action) {
-        this.action = action;
-    }
-
-    public List<EvaluationRequestDetail> getEvaluations() {
-        return evaluations;
-    }
-
-    public void setEvaluations(List<EvaluationRequestDetail> evaluations) {
-        this.evaluations = evaluations;
-    }
-
-
-    public Map<String, Object> getContext() {
-        return context;
-    }
-
-    public void setContext(Map<String, Object> context) {
-        this.context = context;
-    }
-
+    /**
+     * Gets the authentication context detail.
+     *
+     * @return the authentication context detail
+     */
     public AuthContextDetail getAuthContextDetail() {
         return authContextDetail;
     }
 
-    public void setAuthContextDetail(AuthContextDetail authContextDetail) {
-        this.authContextDetail = authContextDetail;
+    /**
+     * Gets the subject detail.
+     *
+     * @return the subject detail
+     */
+    public SubjectDetail getSubject() {
+        return subject;
+    }
+
+    /**
+     * Gets the resource detail.
+     *
+     * @return the resource detail
+     */
+    public ResourceDetail getResource() {
+        return resource;
+    }
+
+    /**
+     * Gets the action detail.
+     *
+     * @return the action detail
+     */
+    public ActionDetail getAction() {
+        return action;
+    }
+
+    /**
+     * Gets the list of evaluation request details.
+     *
+     * @return the list of evaluation request details
+     */
+    public List<EvaluationRequestDetail> getEvaluations() {
+        return evaluations;
+    }
+
+    /**
+     * Gets the additional context parameters.
+     *
+     * @return the additional context parameters
+     */
+    public Map<String, Object> getContext() {
+        return context;
     }
 }
 
