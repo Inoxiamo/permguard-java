@@ -5,41 +5,26 @@ import java.util.Map;
 
 public class AuthRequestPayload {
 
-    private long applicationId;
-    private EntityDetail entityDetail;
-    private PolicyStoreDetail policyStore;
-    private PrincipalDetail principal;
+    private AuthContextDetail authContextDetail;
     private SubjectDetail subject;
     private ResourceDetail resource;
     private ActionDetail action;
     private List<EvaluationRequestDetail> evaluations;
     private Map<String, Object> context;
 
+    public AuthRequestPayload() {
+    }
+
+    public AuthRequestPayload(AuthContextDetail authContextDetail, SubjectDetail subject, ResourceDetail resource, ActionDetail action, List<EvaluationRequestDetail> evaluations, Map<String, Object> context) {
+        this.authContextDetail = authContextDetail;
+        this.subject = subject;
+        this.resource = resource;
+        this.action = action;
+        this.evaluations = evaluations;
+        this.context = context;
+    }
+
     // Getters and Setters
-
-    public long getApplicationId() {
-        return applicationId;
-    }
-
-    public void setApplicationId(long applicationId) {
-        this.applicationId = applicationId;
-    }
-
-    public PolicyStoreDetail getPolicyStore() {
-        return policyStore;
-    }
-
-    public void setPolicyStore(PolicyStoreDetail policyStore) {
-        this.policyStore = policyStore;
-    }
-
-    public PrincipalDetail getPrincipal() {
-        return principal;
-    }
-
-    public void setPrincipal(PrincipalDetail principal) {
-        this.principal = principal;
-    }
 
     public SubjectDetail getSubject() {
         return subject;
@@ -82,12 +67,12 @@ public class AuthRequestPayload {
         this.context = context;
     }
 
-    public EntityDetail getEntityDetail() {
-        return entityDetail;
+    public AuthContextDetail getAuthContextDetail() {
+        return authContextDetail;
     }
 
-    public void setEntityDetails(EntityDetail entityDetail) {
-        this.entityDetail = entityDetail;
+    public void setAuthContextDetail(AuthContextDetail authContextDetail) {
+        this.authContextDetail = authContextDetail;
     }
 }
 

@@ -1,6 +1,5 @@
 package com.permguard.pep.mapping;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.permguard.pep.proto.AuthorizationCheck;
@@ -72,15 +71,15 @@ public class MappingClass {
         AuthorizationCheck.AuthorizationCheckRequest request = AuthorizationCheck.AuthorizationCheckRequest.newBuilder()
                 .setAuthorizationContext(
                         AuthorizationCheck.AuthorizationContextRequest.newBuilder()
-                                .setApplicationID(authRequestPayload.getApplicationId())
+                                .setApplicationID(authRequestPayload.getAuthContextDetail().getApplicationId())
                                 .setPolicyStore(
-                                        getAuthorizationCheckPolicyStore(authRequestPayload.getPolicyStore())
+                                        getAuthorizationCheckPolicyStore(authRequestPayload.getAuthContextDetail().getPolicyStore())
                                 )
                                 .setPrincipal(
-                                        getAuthorizationCheckPrincipal(authRequestPayload.getPrincipal())
+                                        getAuthorizationCheckPrincipal(authRequestPayload.getAuthContextDetail().getPrincipal())
                                 )
                                 .setEntities(
-                                        getAuthorizationCheckEntities(authRequestPayload.getEntityDetail())
+                                        getAuthorizationCheckEntities(authRequestPayload.getAuthContextDetail().getEntityDetail())
                                 )
                                 .build()
                 )

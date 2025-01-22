@@ -6,6 +6,7 @@ import com.permguard.pep.exception.MissingPermguardDataException;
 import com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest;
 import com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse;
 import com.permguard.pep.proto.V1PDPServiceGrpc;
+import com.permguard.pep.representation.request.AuthContextDetail;
 import com.permguard.pep.representation.request.AuthRequestPayload;
 import com.permguard.pep.representation.response.AuthResponsePayload;
 import io.grpc.ManagedChannel;
@@ -68,7 +69,7 @@ public class PermguardAuthorizationClient {
         try {
             // Step 1: Build the request
             logger.debug("Mapping authorization check request.");
-            validateAuthRequestPayload(authRequestPayload);
+            validateAuthRequestPayload(authRequestPayload.getAuthContextDetail());
             AuthorizationCheckRequest request = mapAuthorizationCheckRequest(authRequestPayload);
             logger.info("Authorization check request built: {}", request);
             // Step 2: Call the stub
@@ -94,14 +95,14 @@ public class PermguardAuthorizationClient {
         }
     }
 
-    private void validateAuthRequestPayload(AuthRequestPayload authRequestPayload) {
-        authRequestPayload.setApplicationId(
-                authRequestPayload.getApplicationId()==0 ? config.getApplicationId() : authRequestPayload.getApplicationId()
+    private void validateAuthRequestPayload(AuthContextDetail authContextDetail) {
+        authContextDetail.setApplicationId(
+                authContextDetail.getApplicationId()==0 ? config.getApplicationId() : authContextDetail.getApplicationId()
                 );
-        authRequestPayload.setPolicyStore(
-                authRequestPayload.getPolicyStore()==null ? config.getPolicyStore() : authRequestPayload.getPolicyStore()
+        authContextDetail.setPolicyStore(
+                authContextDetail.getPolicyStore()==null ? config.getPolicyStore() : authContextDetail.getPolicyStore()
         );
-        if(authRequestPayload.getApplicationId()==0 || authRequestPayload.getPolicyStore()==null) {
+        if(authContextDetail.getApplicationId()==0 || authContextDetail.getPolicyStore()==null) {
             String error = "Missing data validation for Application/PolicyStore";
             throw new MissingPermguardDataException("Missing data", new RuntimeException("Missing data"));
         }
