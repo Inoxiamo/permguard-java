@@ -22,13 +22,13 @@ package com.permguard.pep.representation.request;
 /**
  * Represents the authentication context details used in requests.
  * <p>
- * This class encapsulates the application ID, entity details, policy store, and principal details,
+ * This class encapsulates the zone ID, entity details, policy store, and principal details,
  * providing all necessary information for the authentication context.
  * <p>
  * Usage example:
  * <pre>{@code
  * AuthContextDetail contextDetail = new AuthContextDetail.Builder()
- *     .applicationId(145748228796L)
+ *     .zoneId(145748228796L)
  *     .entityDetail(entityDetail)
  *     .policyStore(policyStoreDetail)
  *     .principal(principalDetail)
@@ -37,13 +37,13 @@ package com.permguard.pep.representation.request;
  */
 public class AuthContextDetail {
 
-    private final long applicationId;
+    private final long zoneId;
     private final EntityDetail entityDetail;
     private final PolicyStoreDetail policyStore;
     private final PrincipalDetail principal;
 
     private AuthContextDetail(Builder builder) {
-        this.applicationId = builder.applicationId;
+        this.zoneId = builder.zoneId;
         this.entityDetail = builder.entityDetail;
         this.policyStore = builder.policyStore;
         this.principal = builder.principal;
@@ -53,19 +53,19 @@ public class AuthContextDetail {
      * Builder class for {@link AuthContextDetail}.
      */
     public static class Builder {
-        private long applicationId;
+        private long zoneId;
         private EntityDetail entityDetail;
         private PolicyStoreDetail policyStore;
         private PrincipalDetail principal;
 
         /**
-         * Sets the application ID.
+         * Sets the zone ID.
          *
-         * @param applicationId the application ID
+         * @param zoneId the zone ID
          * @return the builder instance
          */
-        public Builder applicationId(long applicationId) {
-            this.applicationId = applicationId;
+        public Builder zoneId(long zoneId) {
+            this.zoneId = zoneId;
             return this;
         }
 
@@ -115,12 +115,12 @@ public class AuthContextDetail {
     // Getters with JavaDoc
 
     /**
-     * Gets the application ID.
+     * Gets the zone ID.
      *
-     * @return the application ID
+     * @return the zone ID
      */
-    public long getApplicationId() {
-        return applicationId;
+    public long getZoneId() {
+        return zoneId;
     }
 
     /**

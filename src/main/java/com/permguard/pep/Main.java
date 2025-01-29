@@ -73,11 +73,11 @@ public class Main {
         )).build();
 
     AuthContextDetail authContextDetail = new AuthContextDetail.Builder()
-        .applicationId(145748228796L)
+        .zoneId(220019489970L)
         .entityDetail(entityDetail)
         .policyStore(new PolicyStoreDetail.Builder()
             .type("ledger")
-            .id("5740a9c648a04f7db08ac2f44a3779da").build())
+            .id("b147a0e326b040aab2693fc0253074b6").build())
         .principal(new PrincipalDetail.Builder()
             .type("user")
             .id("amy.smith@acmecorp.com")
