@@ -87,7 +87,7 @@ public class Main {
         .build();
 
     return new AuthRequestPayload.Builder()
-        .authContextDetail(authModelDetail)
+        .authModelDetail(authModelDetail)
         .subject(new SubjectDetail.Builder()
             .type("user")
             .id("amy.smith@acmecorp.com")

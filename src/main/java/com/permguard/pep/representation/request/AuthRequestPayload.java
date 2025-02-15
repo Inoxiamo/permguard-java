@@ -31,7 +31,7 @@ import java.util.Map;
  * Usage example:
  * <pre>{@code
  * AuthRequestPayload payload = new AuthRequestPayload.Builder()
- *     .authContextDetail(authContextDetail)
+ *     .authModelDetail(authModelDetail)
  *     .subject(subjectDetail)
  *     .resource(resourceDetail)
  *     .action(actionDetail)
@@ -75,7 +75,7 @@ public class AuthRequestPayload {
          * @param authModelDetail the authentication context detail
          * @return the builder instance
          */
-        public Builder authContextDetail(AuthModelDetail authModelDetail) {
+        public Builder authModelDetail(AuthModelDetail authModelDetail) {
             this.authModelDetail = authModelDetail;
             return this;
         }
@@ -152,7 +152,7 @@ public class AuthRequestPayload {
      *
      * @return the authentication context detail
      */
-    public AuthModelDetail getAuthContextDetail() {
+    public AuthModelDetail getauthModelDetail() {
         return authModelDetail;
     }
 
