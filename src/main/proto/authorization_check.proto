@@ -23,6 +23,8 @@ package policydecisionpoint;
 option java_package = "com.permguard.pep.proto";
 option java_outer_classname = "AuthorizationCheck";
 
+option go_package = "github.com/permguard/permguard/internal/hosts/api/pdp/v1";
+
 // PolicyStore is the location where policies are maintained.
 message PolicyStore {
 	string Type = 1;
@@ -67,9 +69,9 @@ message Action {
 
 // AuthorizationCheck Request
 
-// AuthorizationContextRequest is the input context for making the authorization decision.
-message AuthorizationContextRequest {
-	int64 ApplicationID = 1;
+// AuthorizationmodelRequest is the input context for making the authorization decision.
+message AuthorizationmodelRequest {
+	int64 ZoneID = 1;
 	PolicyStore PolicyStore = 2;
 	optional Principal Principal = 3;
 	optional Entities Entities = 4;
@@ -85,7 +87,7 @@ message EvaluationRequest {
 
 // AuthorizationCheckRequest represents the request to perform an authorization decision.
 message AuthorizationCheckRequest {
-	AuthorizationContextRequest AuthorizationContext = 2;
+	AuthorizationmodelRequest Authorizationmodel = 2;
 	optional Subject Subject = 3;
 	optional Resource Resource = 4;
 	optional Action Action = 5;

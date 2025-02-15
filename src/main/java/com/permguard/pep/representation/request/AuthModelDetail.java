@@ -35,14 +35,14 @@ package com.permguard.pep.representation.request;
  *     .build();
  * }</pre>
  */
-public class AuthContextDetail {
+public class AuthModelDetail {
 
     private final long zoneId;
     private final EntityDetail entityDetail;
     private final PolicyStoreDetail policyStore;
     private final PrincipalDetail principal;
 
-    private AuthContextDetail(Builder builder) {
+    private AuthModelDetail(Builder builder) {
         this.zoneId = builder.zoneId;
         this.entityDetail = builder.entityDetail;
         this.policyStore = builder.policyStore;
@@ -50,7 +50,7 @@ public class AuthContextDetail {
     }
 
     /**
-     * Builder class for {@link AuthContextDetail}.
+     * Builder class for {@link AuthModelDetail}.
      */
     public static class Builder {
         private long zoneId;
@@ -103,12 +103,12 @@ public class AuthContextDetail {
         }
 
         /**
-         * Builds and returns an instance of {@link AuthContextDetail}.
+         * Builds and returns an instance of {@link AuthModelDetail}.
          *
-         * @return a new instance of {@link AuthContextDetail}
+         * @return a new instance of {@link AuthModelDetail}
          */
-        public AuthContextDetail build() {
-            return new AuthContextDetail(this);
+        public AuthModelDetail build() {
+            return new AuthModelDetail(this);
         }
     }
 

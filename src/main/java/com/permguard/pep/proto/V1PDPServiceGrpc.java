@@ -9,7 +9,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.69.0)",
-    comments = "Source: proto/authorization_check_new.proto")
+    comments = "Source: proto/authorization_check.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class V1PDPServiceGrpc {
 

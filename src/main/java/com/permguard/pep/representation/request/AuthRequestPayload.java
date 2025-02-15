@@ -42,7 +42,7 @@ import java.util.Map;
  */
 public class AuthRequestPayload {
 
-    private final AuthContextDetail authContextDetail;
+    private final AuthModelDetail authModelDetail;
     private final SubjectDetail subject;
     private final ResourceDetail resource;
     private final ActionDetail action;
@@ -50,7 +50,7 @@ public class AuthRequestPayload {
     private final Map<String, Object> context;
 
     private AuthRequestPayload(Builder builder) {
-        this.authContextDetail = builder.authContextDetail;
+        this.authModelDetail = builder.authModelDetail;
         this.subject = builder.subject;
         this.resource = builder.resource;
         this.action = builder.action;
@@ -62,7 +62,7 @@ public class AuthRequestPayload {
      * Builder class for {@link AuthRequestPayload}.
      */
     public static class Builder {
-        private AuthContextDetail authContextDetail;
+        private AuthModelDetail authModelDetail;
         private SubjectDetail subject;
         private ResourceDetail resource;
         private ActionDetail action;
@@ -72,11 +72,11 @@ public class AuthRequestPayload {
         /**
          * Sets the authentication context detail.
          *
-         * @param authContextDetail the authentication context detail
+         * @param authModelDetail the authentication context detail
          * @return the builder instance
          */
-        public Builder authContextDetail(AuthContextDetail authContextDetail) {
-            this.authContextDetail = authContextDetail;
+        public Builder authContextDetail(AuthModelDetail authModelDetail) {
+            this.authModelDetail = authModelDetail;
             return this;
         }
 
@@ -152,8 +152,8 @@ public class AuthRequestPayload {
      *
      * @return the authentication context detail
      */
-    public AuthContextDetail getAuthContextDetail() {
-        return authContextDetail;
+    public AuthModelDetail getAuthContextDetail() {
+        return authModelDetail;
     }
 
     /**

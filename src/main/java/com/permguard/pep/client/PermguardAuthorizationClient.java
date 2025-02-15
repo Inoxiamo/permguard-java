@@ -22,11 +22,9 @@ package com.permguard.pep.client;
 
 import com.permguard.pep.config.PermguardConfig;
 import com.permguard.pep.exception.AuthorizationException;
-import com.permguard.pep.exception.MissingPermguardDataException;
 import com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest;
 import com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse;
 import com.permguard.pep.proto.V1PDPServiceGrpc;
-import com.permguard.pep.representation.request.AuthContextDetail;
 import com.permguard.pep.representation.request.AuthRequestPayload;
 import com.permguard.pep.representation.response.AuthResponsePayload;
 import io.grpc.ManagedChannel;

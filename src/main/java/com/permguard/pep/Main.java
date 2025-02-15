@@ -72,12 +72,12 @@ public class Main {
                 .parents(List.of()).build()
         )).build();
 
-    AuthContextDetail authContextDetail = new AuthContextDetail.Builder()
-        .zoneId(220019489970L)
+    AuthModelDetail authModelDetail = new AuthModelDetail.Builder()
+        .zoneId(363310463102L)
         .entityDetail(entityDetail)
         .policyStore(new PolicyStoreDetail.Builder()
             .type("ledger")
-            .id("b147a0e326b040aab2693fc0253074b6").build())
+            .id("7c561d6a9f30497cab4e967394ec67ee").build())
         .principal(new PrincipalDetail.Builder()
             .type("user")
             .id("amy.smith@acmecorp.com")
@@ -87,7 +87,7 @@ public class Main {
         .build();
 
     return new AuthRequestPayload.Builder()
-        .authContextDetail(authContextDetail)
+        .authContextDetail(authModelDetail)
         .subject(new SubjectDetail.Builder()
             .type("user")
             .id("amy.smith@acmecorp.com")

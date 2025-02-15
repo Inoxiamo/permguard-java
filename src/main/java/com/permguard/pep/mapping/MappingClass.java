@@ -87,8 +87,8 @@ public class MappingClass {
 
 
         AuthorizationCheck.AuthorizationCheckRequest request = AuthorizationCheck.AuthorizationCheckRequest.newBuilder()
-                .setAuthorizationContext(
-                        AuthorizationCheck.AuthorizationContextRequest.newBuilder()
+                .setAuthorizationmodel(
+                        AuthorizationCheck.AuthorizationmodelRequest.newBuilder()
                                 .setZoneID(authRequestPayload.getAuthContextDetail().getZoneId())
                                 .setPolicyStore(
                                         getAuthorizationCheckPolicyStore(authRequestPayload.getAuthContextDetail().getPolicyStore())
