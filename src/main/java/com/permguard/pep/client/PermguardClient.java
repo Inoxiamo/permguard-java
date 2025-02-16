@@ -20,7 +20,6 @@
 
 package com.permguard.pep.client;
 
-import com.google.protobuf.util.JsonFormat;
 import com.permguard.pep.config.PermguardConfig;
 import com.permguard.pep.exception.AuthorizationException;
 import com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest;
