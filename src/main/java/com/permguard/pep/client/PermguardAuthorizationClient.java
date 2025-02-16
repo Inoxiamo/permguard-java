@@ -85,28 +85,20 @@ public class PermguardAuthorizationClient {
      */
     public AuthResponsePayload checkAuthorization(AuthRequestPayload authRequestPayload) {
         try {
-            // Step 1: Build the request
             logger.debug("Mapping authorization check request.");
             AuthorizationCheckRequest request = mapAuthorizationCheckRequest(authRequestPayload);
-            logger.info("Authorization check request built: {}", request);
-            // Step 2: Call the stub
+            logger.debug("Authorization check request built: {}", request);
             logger.debug("Sending request to authorization service.");
             AuthorizationCheckResponse response = blockingStub.authorizationCheck(request);
-            logger.info("Authorization service responded successfully.");
-
-            // Step 3: Map the response
             logger.debug("Mapping response to AuthResponsePayload.");
             AuthResponsePayload authResponsePayload = mapAuthResponsePayload(response);
-
             return authResponsePayload;
 
         } catch (StatusRuntimeException e) {
-            // Handle gRPC exceptions
             logger.error("gRPC error occurred during authorization check: {}", e.getMessage(), e);
             throw new AuthorizationException("Authorization check failed due to gRPC error.", e);
 
         } catch (Exception e) {
-            // Handle unexpected exceptions
             logger.error("Unexpected error occurred during authorization check: {}", e.getMessage(), e);
             throw new AuthorizationException("An unexpected error occurred.", e);
         }
