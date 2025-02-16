@@ -121,7 +121,8 @@ PermguardConfig config = new PermguardConfig.Builder("localhost", 9094)
 
 
 
-**Permguard** is an Open Source Zero-Trust Auth* Provider for cloud-native, edge, and multi-tenant apps, decoupled from application code and leveraging `Policy-as-Code` for centralized, scalable permission management.
+
+**Permguard** is an Open Source ZTAuth* Provider for cloud-native, edge, and multi-tenant apps, decoupled from application code and leveraging `Policy-as-Code` for centralized, scalable permission management.
 
 This repository implements the Permguard Java SDK (Authorization Check).
 
