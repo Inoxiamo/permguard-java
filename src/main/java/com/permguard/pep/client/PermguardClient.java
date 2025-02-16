@@ -20,12 +20,13 @@
 
 package com.permguard.pep.client;
 
+import com.google.protobuf.util.JsonFormat;
 import com.permguard.pep.config.PermguardConfig;
 import com.permguard.pep.exception.AuthorizationException;
 import com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest;
 import com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse;
 import com.permguard.pep.proto.V1PDPServiceGrpc;
-import com.permguard.pep.representation.request.AuthRequestPayload;
+import com.permguard.pep.representation.request.*;
 import com.permguard.pep.representation.response.AuthResponsePayload;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -33,15 +34,17 @@ import io.grpc.StatusRuntimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
+
 import static com.permguard.pep.mapping.MappingClass.mapAuthResponsePayload;
 import static com.permguard.pep.mapping.MappingClass.mapAuthorizationCheckRequest;
 
 /**
  * Client for interacting with the Policy Decision Point.
  */
-public class PermguardAuthorizationClient {
+public class PermguardClient {
 
-    private static final Logger logger = LoggerFactory.getLogger(PermguardAuthorizationClient.class);
+    private static final Logger logger = LoggerFactory.getLogger(PermguardClient.class);
 
 
     private final PermguardConfig config;
@@ -54,7 +57,7 @@ public class PermguardAuthorizationClient {
      *
      * @param config the configuration for the client
      */
-    public PermguardAuthorizationClient(PermguardConfig config) {
+    public PermguardClient(PermguardConfig config) {
         this.config = config;
         ManagedChannelBuilder<?> builder = ManagedChannelBuilder
                 .forAddress(config.getHost(), config.getPort());
@@ -76,17 +79,28 @@ public class PermguardAuthorizationClient {
         }
     }
 
+
     /**
-     * Verifies authorization based on the provided request payload.
+     * Performs an authorization check against the PDP.
      *
-     * @param authRequestPayload the request payload containing authorization details.
-     * @return {@code AuthResponsePayload} the response payload containing the result of the authorization check.
-     * @throws AuthorizationException if an error occurs during the authorization process.
+     * @param policyStore the policy store
+     * @param action the action being performed
+     * @param principal the principal performing the action
+     * @param resource the resource being accessed
+     * @param entity entity details
+     * @param subject the subject of the authorization check
+     * @return the authorization response
+     * @throws AuthorizationException if there is an error during the authorization check
      */
-    public AuthResponsePayload checkAuthorization(AuthRequestPayload authRequestPayload) {
+    public AuthResponsePayload check(PolicyStore policyStore, Action action, Principal principal
+            , Resource resource, Entity entity, Subject subject, Map<String, Object> context) {
         try {
+            //TODO: missing evaluation
+            AuthModel authModelDetail = new AuthModel.Builder(entity, policyStore, principal).build();
+            Request requestPayload = new Request.Builder(authModelDetail, subject, resource, action
+                , null, context).build();
             logger.debug("Mapping authorization check request.");
-            AuthorizationCheckRequest request = mapAuthorizationCheckRequest(authRequestPayload);
+            AuthorizationCheckRequest request = mapAuthorizationCheckRequest(requestPayload);
             logger.debug("Authorization check request built: {}", request);
             logger.debug("Sending request to authorization service.");
             AuthorizationCheckResponse response = blockingStub.authorizationCheck(request);

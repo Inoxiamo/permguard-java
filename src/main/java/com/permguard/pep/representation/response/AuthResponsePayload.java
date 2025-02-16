@@ -22,11 +22,13 @@ import java.util.List;
 
 public class AuthResponsePayload {
 
+    private String requestId;
     private boolean decision;
     private ContextDetail context;
     private List<EvaluationResponseDetail> evaluations;
 
-    public AuthResponsePayload(boolean decision, ContextDetail context, List<EvaluationResponseDetail> evaluations) {
+    public AuthResponsePayload(String requestId, boolean decision, ContextDetail context, List<EvaluationResponseDetail> evaluations) {
+        this.requestId = requestId;
         this.decision = decision;
         this.context = context;
         this.evaluations = evaluations;
@@ -57,6 +59,14 @@ public class AuthResponsePayload {
 
     public void setEvaluations(List<EvaluationResponseDetail> evaluations) {
         this.evaluations = evaluations;
+    }
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
 }

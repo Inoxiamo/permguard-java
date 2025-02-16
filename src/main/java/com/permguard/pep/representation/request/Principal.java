@@ -34,7 +34,7 @@ package com.permguard.pep.representation.request;
  *     .build();
  * }</pre>
  */
-public class PrincipalDetail {
+public class Principal {
 
     private final String type;
     private final String id;
@@ -42,7 +42,7 @@ public class PrincipalDetail {
     private final String identityToken;
     private final String accessToken;
 
-    private PrincipalDetail(Builder builder) {
+    private Principal(Builder builder) {
         this.type = builder.type;
         this.id = builder.id;
         this.source = builder.source;
@@ -51,7 +51,7 @@ public class PrincipalDetail {
     }
 
     /**
-     * Builder class for {@link PrincipalDetail}.
+     * Builder class for {@link Principal}.
      */
     public static class Builder {
         private String type;
@@ -59,6 +59,12 @@ public class PrincipalDetail {
         private String source;
         private String identityToken;
         private String accessToken;
+
+        public Builder(String type, String id, String source) {
+            this.type = type;
+            this.id = id;
+            this.source = source;
+        }
 
         /**
          * Sets the type of the principal.
@@ -116,12 +122,12 @@ public class PrincipalDetail {
         }
 
         /**
-         * Builds and returns an instance of {@link PrincipalDetail}.
+         * Builds and returns an instance of {@link Principal}.
          *
-         * @return a new instance of {@link PrincipalDetail}
+         * @return a new instance of {@link Principal}
          */
-        public PrincipalDetail build() {
-            return new PrincipalDetail(this);
+        public Principal build() {
+            return new Principal(this);
         }
     }
 

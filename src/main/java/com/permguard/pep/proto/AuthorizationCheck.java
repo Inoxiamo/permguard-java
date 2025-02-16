@@ -6773,62 +6773,79 @@ public final class AuthorizationCheck {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+     * <code>optional string RequestID = 1;</code>
+     * @return Whether the requestID field is set.
+     */
+    boolean hasRequestID();
+    /**
+     * <code>optional string RequestID = 1;</code>
+     * @return The requestID.
+     */
+    java.lang.String getRequestID();
+    /**
+     * <code>optional string RequestID = 1;</code>
+     * @return The bytes for requestID.
+     */
+    com.google.protobuf.ByteString
+        getRequestIDBytes();
+
+    /**
+     * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
      * @return Whether the subject field is set.
      */
     boolean hasSubject();
     /**
-     * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+     * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
      * @return The subject.
      */
     com.permguard.pep.proto.AuthorizationCheck.Subject getSubject();
     /**
-     * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+     * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
      */
     com.permguard.pep.proto.AuthorizationCheck.SubjectOrBuilder getSubjectOrBuilder();
 
     /**
-     * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+     * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
      * @return Whether the resource field is set.
      */
     boolean hasResource();
     /**
-     * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+     * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
      * @return The resource.
      */
     com.permguard.pep.proto.AuthorizationCheck.Resource getResource();
     /**
-     * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+     * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
      */
     com.permguard.pep.proto.AuthorizationCheck.ResourceOrBuilder getResourceOrBuilder();
 
     /**
-     * <code>optional .policydecisionpoint.Action Action = 3;</code>
+     * <code>optional .policydecisionpoint.Action Action = 4;</code>
      * @return Whether the action field is set.
      */
     boolean hasAction();
     /**
-     * <code>optional .policydecisionpoint.Action Action = 3;</code>
+     * <code>optional .policydecisionpoint.Action Action = 4;</code>
      * @return The action.
      */
     com.permguard.pep.proto.AuthorizationCheck.Action getAction();
     /**
-     * <code>optional .policydecisionpoint.Action Action = 3;</code>
+     * <code>optional .policydecisionpoint.Action Action = 4;</code>
      */
     com.permguard.pep.proto.AuthorizationCheck.ActionOrBuilder getActionOrBuilder();
 
     /**
-     * <code>optional .google.protobuf.Struct Context = 4;</code>
+     * <code>optional .google.protobuf.Struct Context = 5;</code>
      * @return Whether the context field is set.
      */
     boolean hasContext();
     /**
-     * <code>optional .google.protobuf.Struct Context = 4;</code>
+     * <code>optional .google.protobuf.Struct Context = 5;</code>
      * @return The context.
      */
     com.google.protobuf.Struct getContext();
     /**
-     * <code>optional .google.protobuf.Struct Context = 4;</code>
+     * <code>optional .google.protobuf.Struct Context = 5;</code>
      */
     com.google.protobuf.StructOrBuilder getContextOrBuilder();
   }
@@ -6849,6 +6866,7 @@ public final class AuthorizationCheck {
       super(builder);
     }
     private EvaluationRequest() {
+      requestID_ = "";
     }
 
     @java.lang.Override
@@ -6877,18 +6895,65 @@ public final class AuthorizationCheck {
     }
 
     private int bitField0_;
-    public static final int SUBJECT_FIELD_NUMBER = 1;
+    public static final int REQUESTID_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object requestID_ = "";
+    /**
+     * <code>optional string RequestID = 1;</code>
+     * @return Whether the requestID field is set.
+     */
+    @java.lang.Override
+    public boolean hasRequestID() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>optional string RequestID = 1;</code>
+     * @return The requestID.
+     */
+    @java.lang.Override
+    public java.lang.String getRequestID() {
+      java.lang.Object ref = requestID_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        requestID_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string RequestID = 1;</code>
+     * @return The bytes for requestID.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getRequestIDBytes() {
+      java.lang.Object ref = requestID_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        requestID_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SUBJECT_FIELD_NUMBER = 2;
     private com.permguard.pep.proto.AuthorizationCheck.Subject subject_;
     /**
-     * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+     * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
      * @return Whether the subject field is set.
      */
     @java.lang.Override
     public boolean hasSubject() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+     * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
      * @return The subject.
      */
     @java.lang.Override
@@ -6896,25 +6961,25 @@ public final class AuthorizationCheck {
       return subject_ == null ? com.permguard.pep.proto.AuthorizationCheck.Subject.getDefaultInstance() : subject_;
     }
     /**
-     * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+     * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
      */
     @java.lang.Override
     public com.permguard.pep.proto.AuthorizationCheck.SubjectOrBuilder getSubjectOrBuilder() {
       return subject_ == null ? com.permguard.pep.proto.AuthorizationCheck.Subject.getDefaultInstance() : subject_;
     }
 
-    public static final int RESOURCE_FIELD_NUMBER = 2;
+    public static final int RESOURCE_FIELD_NUMBER = 3;
     private com.permguard.pep.proto.AuthorizationCheck.Resource resource_;
     /**
-     * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+     * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
      * @return Whether the resource field is set.
      */
     @java.lang.Override
     public boolean hasResource() {
-      return ((bitField0_ & 0x00000002) != 0);
+      return ((bitField0_ & 0x00000004) != 0);
     }
     /**
-     * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+     * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
      * @return The resource.
      */
     @java.lang.Override
@@ -6922,25 +6987,25 @@ public final class AuthorizationCheck {
       return resource_ == null ? com.permguard.pep.proto.AuthorizationCheck.Resource.getDefaultInstance() : resource_;
     }
     /**
-     * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+     * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
      */
     @java.lang.Override
     public com.permguard.pep.proto.AuthorizationCheck.ResourceOrBuilder getResourceOrBuilder() {
       return resource_ == null ? com.permguard.pep.proto.AuthorizationCheck.Resource.getDefaultInstance() : resource_;
     }
 
-    public static final int ACTION_FIELD_NUMBER = 3;
+    public static final int ACTION_FIELD_NUMBER = 4;
     private com.permguard.pep.proto.AuthorizationCheck.Action action_;
     /**
-     * <code>optional .policydecisionpoint.Action Action = 3;</code>
+     * <code>optional .policydecisionpoint.Action Action = 4;</code>
      * @return Whether the action field is set.
      */
     @java.lang.Override
     public boolean hasAction() {
-      return ((bitField0_ & 0x00000004) != 0);
+      return ((bitField0_ & 0x00000008) != 0);
     }
     /**
-     * <code>optional .policydecisionpoint.Action Action = 3;</code>
+     * <code>optional .policydecisionpoint.Action Action = 4;</code>
      * @return The action.
      */
     @java.lang.Override
@@ -6948,25 +7013,25 @@ public final class AuthorizationCheck {
       return action_ == null ? com.permguard.pep.proto.AuthorizationCheck.Action.getDefaultInstance() : action_;
     }
     /**
-     * <code>optional .policydecisionpoint.Action Action = 3;</code>
+     * <code>optional .policydecisionpoint.Action Action = 4;</code>
      */
     @java.lang.Override
     public com.permguard.pep.proto.AuthorizationCheck.ActionOrBuilder getActionOrBuilder() {
       return action_ == null ? com.permguard.pep.proto.AuthorizationCheck.Action.getDefaultInstance() : action_;
     }
 
-    public static final int CONTEXT_FIELD_NUMBER = 4;
+    public static final int CONTEXT_FIELD_NUMBER = 5;
     private com.google.protobuf.Struct context_;
     /**
-     * <code>optional .google.protobuf.Struct Context = 4;</code>
+     * <code>optional .google.protobuf.Struct Context = 5;</code>
      * @return Whether the context field is set.
      */
     @java.lang.Override
     public boolean hasContext() {
-      return ((bitField0_ & 0x00000008) != 0);
+      return ((bitField0_ & 0x00000010) != 0);
     }
     /**
-     * <code>optional .google.protobuf.Struct Context = 4;</code>
+     * <code>optional .google.protobuf.Struct Context = 5;</code>
      * @return The context.
      */
     @java.lang.Override
@@ -6974,7 +7039,7 @@ public final class AuthorizationCheck {
       return context_ == null ? com.google.protobuf.Struct.getDefaultInstance() : context_;
     }
     /**
-     * <code>optional .google.protobuf.Struct Context = 4;</code>
+     * <code>optional .google.protobuf.Struct Context = 5;</code>
      */
     @java.lang.Override
     public com.google.protobuf.StructOrBuilder getContextOrBuilder() {
@@ -6996,16 +7061,19 @@ public final class AuthorizationCheck {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(1, getSubject());
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, requestID_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
-        output.writeMessage(2, getResource());
+        output.writeMessage(2, getSubject());
       }
       if (((bitField0_ & 0x00000004) != 0)) {
-        output.writeMessage(3, getAction());
+        output.writeMessage(3, getResource());
       }
       if (((bitField0_ & 0x00000008) != 0)) {
-        output.writeMessage(4, getContext());
+        output.writeMessage(4, getAction());
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
+        output.writeMessage(5, getContext());
       }
       getUnknownFields().writeTo(output);
     }
@@ -7017,20 +7085,23 @@ public final class AuthorizationCheck {
 
       size = 0;
       if (((bitField0_ & 0x00000001) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getSubject());
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, requestID_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getResource());
+          .computeMessageSize(2, getSubject());
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getAction());
+          .computeMessageSize(3, getResource());
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getContext());
+          .computeMessageSize(4, getAction());
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getContext());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -7047,6 +7118,11 @@ public final class AuthorizationCheck {
       }
       com.permguard.pep.proto.AuthorizationCheck.EvaluationRequest other = (com.permguard.pep.proto.AuthorizationCheck.EvaluationRequest) obj;
 
+      if (hasRequestID() != other.hasRequestID()) return false;
+      if (hasRequestID()) {
+        if (!getRequestID()
+            .equals(other.getRequestID())) return false;
+      }
       if (hasSubject() != other.hasSubject()) return false;
       if (hasSubject()) {
         if (!getSubject()
@@ -7078,6 +7154,10 @@ public final class AuthorizationCheck {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasRequestID()) {
+        hash = (37 * hash) + REQUESTID_FIELD_NUMBER;
+        hash = (53 * hash) + getRequestID().hashCode();
+      }
       if (hasSubject()) {
         hash = (37 * hash) + SUBJECT_FIELD_NUMBER;
         hash = (53 * hash) + getSubject().hashCode();
@@ -7236,6 +7316,7 @@ public final class AuthorizationCheck {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
+        requestID_ = "";
         subject_ = null;
         if (subjectBuilder_ != null) {
           subjectBuilder_.dispose();
@@ -7291,28 +7372,32 @@ public final class AuthorizationCheck {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.subject_ = subjectBuilder_ == null
-              ? subject_
-              : subjectBuilder_.build();
+          result.requestID_ = requestID_;
           to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.resource_ = resourceBuilder_ == null
-              ? resource_
-              : resourceBuilder_.build();
+          result.subject_ = subjectBuilder_ == null
+              ? subject_
+              : subjectBuilder_.build();
           to_bitField0_ |= 0x00000002;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.action_ = actionBuilder_ == null
-              ? action_
-              : actionBuilder_.build();
+          result.resource_ = resourceBuilder_ == null
+              ? resource_
+              : resourceBuilder_.build();
           to_bitField0_ |= 0x00000004;
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.action_ = actionBuilder_ == null
+              ? action_
+              : actionBuilder_.build();
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
           result.context_ = contextBuilder_ == null
               ? context_
               : contextBuilder_.build();
-          to_bitField0_ |= 0x00000008;
+          to_bitField0_ |= 0x00000010;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -7361,6 +7446,11 @@ public final class AuthorizationCheck {
 
       public Builder mergeFrom(com.permguard.pep.proto.AuthorizationCheck.EvaluationRequest other) {
         if (other == com.permguard.pep.proto.AuthorizationCheck.EvaluationRequest.getDefaultInstance()) return this;
+        if (other.hasRequestID()) {
+          requestID_ = other.requestID_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
         if (other.hasSubject()) {
           mergeSubject(other.getSubject());
         }
@@ -7400,33 +7490,38 @@ public final class AuthorizationCheck {
                 done = true;
                 break;
               case 10: {
-                input.readMessage(
-                    getSubjectFieldBuilder().getBuilder(),
-                    extensionRegistry);
+                requestID_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
               case 18: {
                 input.readMessage(
-                    getResourceFieldBuilder().getBuilder(),
+                    getSubjectFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
               case 26: {
                 input.readMessage(
-                    getActionFieldBuilder().getBuilder(),
+                    getResourceFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000004;
                 break;
               } // case 26
               case 34: {
                 input.readMessage(
-                    getContextFieldBuilder().getBuilder(),
+                    getActionFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000008;
                 break;
               } // case 34
+              case 42: {
+                input.readMessage(
+                    getContextFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -7444,18 +7539,97 @@ public final class AuthorizationCheck {
       }
       private int bitField0_;
 
+      private java.lang.Object requestID_ = "";
+      /**
+       * <code>optional string RequestID = 1;</code>
+       * @return Whether the requestID field is set.
+       */
+      public boolean hasRequestID() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <code>optional string RequestID = 1;</code>
+       * @return The requestID.
+       */
+      public java.lang.String getRequestID() {
+        java.lang.Object ref = requestID_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          requestID_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string RequestID = 1;</code>
+       * @return The bytes for requestID.
+       */
+      public com.google.protobuf.ByteString
+          getRequestIDBytes() {
+        java.lang.Object ref = requestID_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          requestID_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string RequestID = 1;</code>
+       * @param value The requestID to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRequestID(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        requestID_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string RequestID = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRequestID() {
+        requestID_ = getDefaultInstance().getRequestID();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string RequestID = 1;</code>
+       * @param value The bytes for requestID to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRequestIDBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        requestID_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
       private com.permguard.pep.proto.AuthorizationCheck.Subject subject_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.Subject, com.permguard.pep.proto.AuthorizationCheck.Subject.Builder, com.permguard.pep.proto.AuthorizationCheck.SubjectOrBuilder> subjectBuilder_;
       /**
-       * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+       * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
        * @return Whether the subject field is set.
        */
       public boolean hasSubject() {
-        return ((bitField0_ & 0x00000001) != 0);
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
-       * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+       * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
        * @return The subject.
        */
       public com.permguard.pep.proto.AuthorizationCheck.Subject getSubject() {
@@ -7466,7 +7640,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+       * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
        */
       public Builder setSubject(com.permguard.pep.proto.AuthorizationCheck.Subject value) {
         if (subjectBuilder_ == null) {
@@ -7477,12 +7651,12 @@ public final class AuthorizationCheck {
         } else {
           subjectBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+       * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
        */
       public Builder setSubject(
           com.permguard.pep.proto.AuthorizationCheck.Subject.Builder builderForValue) {
@@ -7491,16 +7665,16 @@ public final class AuthorizationCheck {
         } else {
           subjectBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+       * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
        */
       public Builder mergeSubject(com.permguard.pep.proto.AuthorizationCheck.Subject value) {
         if (subjectBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0) &&
+          if (((bitField0_ & 0x00000002) != 0) &&
             subject_ != null &&
             subject_ != com.permguard.pep.proto.AuthorizationCheck.Subject.getDefaultInstance()) {
             getSubjectBuilder().mergeFrom(value);
@@ -7510,15 +7684,15 @@ public final class AuthorizationCheck {
         } else {
           subjectBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+       * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
        */
       public Builder clearSubject() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         subject_ = null;
         if (subjectBuilder_ != null) {
           subjectBuilder_.dispose();
@@ -7528,15 +7702,15 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+       * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.Subject.Builder getSubjectBuilder() {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         onChanged();
         return getSubjectFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+       * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.SubjectOrBuilder getSubjectOrBuilder() {
         if (subjectBuilder_ != null) {
@@ -7547,7 +7721,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>optional .policydecisionpoint.Subject Subject = 1;</code>
+       * <code>optional .policydecisionpoint.Subject Subject = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.Subject, com.permguard.pep.proto.AuthorizationCheck.Subject.Builder, com.permguard.pep.proto.AuthorizationCheck.SubjectOrBuilder> 
@@ -7567,14 +7741,14 @@ public final class AuthorizationCheck {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.Resource, com.permguard.pep.proto.AuthorizationCheck.Resource.Builder, com.permguard.pep.proto.AuthorizationCheck.ResourceOrBuilder> resourceBuilder_;
       /**
-       * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+       * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
        * @return Whether the resource field is set.
        */
       public boolean hasResource() {
-        return ((bitField0_ & 0x00000002) != 0);
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
-       * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+       * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
        * @return The resource.
        */
       public com.permguard.pep.proto.AuthorizationCheck.Resource getResource() {
@@ -7585,7 +7759,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+       * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
        */
       public Builder setResource(com.permguard.pep.proto.AuthorizationCheck.Resource value) {
         if (resourceBuilder_ == null) {
@@ -7596,12 +7770,12 @@ public final class AuthorizationCheck {
         } else {
           resourceBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+       * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
        */
       public Builder setResource(
           com.permguard.pep.proto.AuthorizationCheck.Resource.Builder builderForValue) {
@@ -7610,16 +7784,16 @@ public final class AuthorizationCheck {
         } else {
           resourceBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+       * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
        */
       public Builder mergeResource(com.permguard.pep.proto.AuthorizationCheck.Resource value) {
         if (resourceBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0) &&
+          if (((bitField0_ & 0x00000004) != 0) &&
             resource_ != null &&
             resource_ != com.permguard.pep.proto.AuthorizationCheck.Resource.getDefaultInstance()) {
             getResourceBuilder().mergeFrom(value);
@@ -7629,15 +7803,15 @@ public final class AuthorizationCheck {
         } else {
           resourceBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+       * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
        */
       public Builder clearResource() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         resource_ = null;
         if (resourceBuilder_ != null) {
           resourceBuilder_.dispose();
@@ -7647,15 +7821,15 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+       * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.Resource.Builder getResourceBuilder() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getResourceFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+       * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.ResourceOrBuilder getResourceOrBuilder() {
         if (resourceBuilder_ != null) {
@@ -7666,7 +7840,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>optional .policydecisionpoint.Resource Resource = 2;</code>
+       * <code>optional .policydecisionpoint.Resource Resource = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.Resource, com.permguard.pep.proto.AuthorizationCheck.Resource.Builder, com.permguard.pep.proto.AuthorizationCheck.ResourceOrBuilder> 
@@ -7686,14 +7860,14 @@ public final class AuthorizationCheck {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.Action, com.permguard.pep.proto.AuthorizationCheck.Action.Builder, com.permguard.pep.proto.AuthorizationCheck.ActionOrBuilder> actionBuilder_;
       /**
-       * <code>optional .policydecisionpoint.Action Action = 3;</code>
+       * <code>optional .policydecisionpoint.Action Action = 4;</code>
        * @return Whether the action field is set.
        */
       public boolean hasAction() {
-        return ((bitField0_ & 0x00000004) != 0);
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
-       * <code>optional .policydecisionpoint.Action Action = 3;</code>
+       * <code>optional .policydecisionpoint.Action Action = 4;</code>
        * @return The action.
        */
       public com.permguard.pep.proto.AuthorizationCheck.Action getAction() {
@@ -7704,7 +7878,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>optional .policydecisionpoint.Action Action = 3;</code>
+       * <code>optional .policydecisionpoint.Action Action = 4;</code>
        */
       public Builder setAction(com.permguard.pep.proto.AuthorizationCheck.Action value) {
         if (actionBuilder_ == null) {
@@ -7715,12 +7889,12 @@ public final class AuthorizationCheck {
         } else {
           actionBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.Action Action = 3;</code>
+       * <code>optional .policydecisionpoint.Action Action = 4;</code>
        */
       public Builder setAction(
           com.permguard.pep.proto.AuthorizationCheck.Action.Builder builderForValue) {
@@ -7729,16 +7903,16 @@ public final class AuthorizationCheck {
         } else {
           actionBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.Action Action = 3;</code>
+       * <code>optional .policydecisionpoint.Action Action = 4;</code>
        */
       public Builder mergeAction(com.permguard.pep.proto.AuthorizationCheck.Action value) {
         if (actionBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) != 0) &&
+          if (((bitField0_ & 0x00000008) != 0) &&
             action_ != null &&
             action_ != com.permguard.pep.proto.AuthorizationCheck.Action.getDefaultInstance()) {
             getActionBuilder().mergeFrom(value);
@@ -7748,15 +7922,15 @@ public final class AuthorizationCheck {
         } else {
           actionBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.Action Action = 3;</code>
+       * <code>optional .policydecisionpoint.Action Action = 4;</code>
        */
       public Builder clearAction() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         action_ = null;
         if (actionBuilder_ != null) {
           actionBuilder_.dispose();
@@ -7766,15 +7940,15 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.Action Action = 3;</code>
+       * <code>optional .policydecisionpoint.Action Action = 4;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.Action.Builder getActionBuilder() {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return getActionFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .policydecisionpoint.Action Action = 3;</code>
+       * <code>optional .policydecisionpoint.Action Action = 4;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.ActionOrBuilder getActionOrBuilder() {
         if (actionBuilder_ != null) {
@@ -7785,7 +7959,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>optional .policydecisionpoint.Action Action = 3;</code>
+       * <code>optional .policydecisionpoint.Action Action = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.Action, com.permguard.pep.proto.AuthorizationCheck.Action.Builder, com.permguard.pep.proto.AuthorizationCheck.ActionOrBuilder> 
@@ -7805,14 +7979,14 @@ public final class AuthorizationCheck {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> contextBuilder_;
       /**
-       * <code>optional .google.protobuf.Struct Context = 4;</code>
+       * <code>optional .google.protobuf.Struct Context = 5;</code>
        * @return Whether the context field is set.
        */
       public boolean hasContext() {
-        return ((bitField0_ & 0x00000008) != 0);
+        return ((bitField0_ & 0x00000010) != 0);
       }
       /**
-       * <code>optional .google.protobuf.Struct Context = 4;</code>
+       * <code>optional .google.protobuf.Struct Context = 5;</code>
        * @return The context.
        */
       public com.google.protobuf.Struct getContext() {
@@ -7823,7 +7997,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>optional .google.protobuf.Struct Context = 4;</code>
+       * <code>optional .google.protobuf.Struct Context = 5;</code>
        */
       public Builder setContext(com.google.protobuf.Struct value) {
         if (contextBuilder_ == null) {
@@ -7834,12 +8008,12 @@ public final class AuthorizationCheck {
         } else {
           contextBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Struct Context = 4;</code>
+       * <code>optional .google.protobuf.Struct Context = 5;</code>
        */
       public Builder setContext(
           com.google.protobuf.Struct.Builder builderForValue) {
@@ -7848,16 +8022,16 @@ public final class AuthorizationCheck {
         } else {
           contextBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Struct Context = 4;</code>
+       * <code>optional .google.protobuf.Struct Context = 5;</code>
        */
       public Builder mergeContext(com.google.protobuf.Struct value) {
         if (contextBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) != 0) &&
+          if (((bitField0_ & 0x00000010) != 0) &&
             context_ != null &&
             context_ != com.google.protobuf.Struct.getDefaultInstance()) {
             getContextBuilder().mergeFrom(value);
@@ -7867,15 +8041,15 @@ public final class AuthorizationCheck {
         } else {
           contextBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Struct Context = 4;</code>
+       * <code>optional .google.protobuf.Struct Context = 5;</code>
        */
       public Builder clearContext() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         context_ = null;
         if (contextBuilder_ != null) {
           contextBuilder_.dispose();
@@ -7885,15 +8059,15 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>optional .google.protobuf.Struct Context = 4;</code>
+       * <code>optional .google.protobuf.Struct Context = 5;</code>
        */
       public com.google.protobuf.Struct.Builder getContextBuilder() {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return getContextFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .google.protobuf.Struct Context = 4;</code>
+       * <code>optional .google.protobuf.Struct Context = 5;</code>
        */
       public com.google.protobuf.StructOrBuilder getContextOrBuilder() {
         if (contextBuilder_ != null) {
@@ -7904,7 +8078,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>optional .google.protobuf.Struct Context = 4;</code>
+       * <code>optional .google.protobuf.Struct Context = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -7988,19 +8162,36 @@ public final class AuthorizationCheck {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+     * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
      * @return Whether the authorizationmodel field is set.
      */
     boolean hasAuthorizationmodel();
     /**
-     * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+     * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
      * @return The authorizationmodel.
      */
     com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest getAuthorizationmodel();
     /**
-     * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+     * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
      */
     com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequestOrBuilder getAuthorizationmodelOrBuilder();
+
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return Whether the requestID field is set.
+     */
+    boolean hasRequestID();
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return The requestID.
+     */
+    java.lang.String getRequestID();
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return The bytes for requestID.
+     */
+    com.google.protobuf.ByteString
+        getRequestIDBytes();
 
     /**
      * <code>optional .policydecisionpoint.Subject Subject = 3;</code>
@@ -8103,6 +8294,7 @@ public final class AuthorizationCheck {
       super(builder);
     }
     private AuthorizationCheckRequest() {
+      requestID_ = "";
       evaluations_ = java.util.Collections.emptyList();
     }
 
@@ -8132,10 +8324,10 @@ public final class AuthorizationCheck {
     }
 
     private int bitField0_;
-    public static final int AUTHORIZATIONMODEL_FIELD_NUMBER = 2;
+    public static final int AUTHORIZATIONMODEL_FIELD_NUMBER = 1;
     private com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest authorizationmodel_;
     /**
-     * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+     * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
      * @return Whether the authorizationmodel field is set.
      */
     @java.lang.Override
@@ -8143,7 +8335,7 @@ public final class AuthorizationCheck {
       return authorizationmodel_ != null;
     }
     /**
-     * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+     * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
      * @return The authorizationmodel.
      */
     @java.lang.Override
@@ -8151,11 +8343,58 @@ public final class AuthorizationCheck {
       return authorizationmodel_ == null ? com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest.getDefaultInstance() : authorizationmodel_;
     }
     /**
-     * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+     * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
      */
     @java.lang.Override
     public com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequestOrBuilder getAuthorizationmodelOrBuilder() {
       return authorizationmodel_ == null ? com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest.getDefaultInstance() : authorizationmodel_;
+    }
+
+    public static final int REQUESTID_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object requestID_ = "";
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return Whether the requestID field is set.
+     */
+    @java.lang.Override
+    public boolean hasRequestID() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return The requestID.
+     */
+    @java.lang.Override
+    public java.lang.String getRequestID() {
+      java.lang.Object ref = requestID_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        requestID_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return The bytes for requestID.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getRequestIDBytes() {
+      java.lang.Object ref = requestID_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        requestID_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int SUBJECT_FIELD_NUMBER = 3;
@@ -8166,7 +8405,7 @@ public final class AuthorizationCheck {
      */
     @java.lang.Override
     public boolean hasSubject() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
      * <code>optional .policydecisionpoint.Subject Subject = 3;</code>
@@ -8192,7 +8431,7 @@ public final class AuthorizationCheck {
      */
     @java.lang.Override
     public boolean hasResource() {
-      return ((bitField0_ & 0x00000002) != 0);
+      return ((bitField0_ & 0x00000004) != 0);
     }
     /**
      * <code>optional .policydecisionpoint.Resource Resource = 4;</code>
@@ -8218,7 +8457,7 @@ public final class AuthorizationCheck {
      */
     @java.lang.Override
     public boolean hasAction() {
-      return ((bitField0_ & 0x00000004) != 0);
+      return ((bitField0_ & 0x00000008) != 0);
     }
     /**
      * <code>optional .policydecisionpoint.Action Action = 5;</code>
@@ -8244,7 +8483,7 @@ public final class AuthorizationCheck {
      */
     @java.lang.Override
     public boolean hasContext() {
-      return ((bitField0_ & 0x00000008) != 0);
+      return ((bitField0_ & 0x00000010) != 0);
     }
     /**
      * <code>optional .google.protobuf.Struct Context = 6;</code>
@@ -8318,18 +8557,21 @@ public final class AuthorizationCheck {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (authorizationmodel_ != null) {
-        output.writeMessage(2, getAuthorizationmodel());
+        output.writeMessage(1, getAuthorizationmodel());
       }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(3, getSubject());
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, requestID_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
-        output.writeMessage(4, getResource());
+        output.writeMessage(3, getSubject());
       }
       if (((bitField0_ & 0x00000004) != 0)) {
-        output.writeMessage(5, getAction());
+        output.writeMessage(4, getResource());
       }
       if (((bitField0_ & 0x00000008) != 0)) {
+        output.writeMessage(5, getAction());
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
         output.writeMessage(6, getContext());
       }
       for (int i = 0; i < evaluations_.size(); i++) {
@@ -8346,21 +8588,24 @@ public final class AuthorizationCheck {
       size = 0;
       if (authorizationmodel_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getAuthorizationmodel());
+          .computeMessageSize(1, getAuthorizationmodel());
       }
       if (((bitField0_ & 0x00000001) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getSubject());
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, requestID_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getResource());
+          .computeMessageSize(3, getSubject());
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, getAction());
+          .computeMessageSize(4, getResource());
       }
       if (((bitField0_ & 0x00000008) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getAction());
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, getContext());
       }
@@ -8387,6 +8632,11 @@ public final class AuthorizationCheck {
       if (hasAuthorizationmodel()) {
         if (!getAuthorizationmodel()
             .equals(other.getAuthorizationmodel())) return false;
+      }
+      if (hasRequestID() != other.hasRequestID()) return false;
+      if (hasRequestID()) {
+        if (!getRequestID()
+            .equals(other.getRequestID())) return false;
       }
       if (hasSubject() != other.hasSubject()) return false;
       if (hasSubject()) {
@@ -8424,6 +8674,10 @@ public final class AuthorizationCheck {
       if (hasAuthorizationmodel()) {
         hash = (37 * hash) + AUTHORIZATIONMODEL_FIELD_NUMBER;
         hash = (53 * hash) + getAuthorizationmodel().hashCode();
+      }
+      if (hasRequestID()) {
+        hash = (37 * hash) + REQUESTID_FIELD_NUMBER;
+        hash = (53 * hash) + getRequestID().hashCode();
       }
       if (hasSubject()) {
         hash = (37 * hash) + SUBJECT_FIELD_NUMBER;
@@ -8594,6 +8848,7 @@ public final class AuthorizationCheck {
           authorizationmodelBuilder_.dispose();
           authorizationmodelBuilder_ = null;
         }
+        requestID_ = "";
         subject_ = null;
         if (subjectBuilder_ != null) {
           subjectBuilder_.dispose();
@@ -8620,7 +8875,7 @@ public final class AuthorizationCheck {
           evaluations_ = null;
           evaluationsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
 
@@ -8655,9 +8910,9 @@ public final class AuthorizationCheck {
 
       private void buildPartialRepeatedFields(com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest result) {
         if (evaluationsBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) != 0)) {
+          if (((bitField0_ & 0x00000040) != 0)) {
             evaluations_ = java.util.Collections.unmodifiableList(evaluations_);
-            bitField0_ = (bitField0_ & ~0x00000020);
+            bitField0_ = (bitField0_ & ~0x00000040);
           }
           result.evaluations_ = evaluations_;
         } else {
@@ -8674,28 +8929,32 @@ public final class AuthorizationCheck {
         }
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.subject_ = subjectBuilder_ == null
-              ? subject_
-              : subjectBuilder_.build();
+          result.requestID_ = requestID_;
           to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.resource_ = resourceBuilder_ == null
-              ? resource_
-              : resourceBuilder_.build();
+          result.subject_ = subjectBuilder_ == null
+              ? subject_
+              : subjectBuilder_.build();
           to_bitField0_ |= 0x00000002;
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
-          result.action_ = actionBuilder_ == null
-              ? action_
-              : actionBuilder_.build();
+          result.resource_ = resourceBuilder_ == null
+              ? resource_
+              : resourceBuilder_.build();
           to_bitField0_ |= 0x00000004;
         }
         if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.action_ = actionBuilder_ == null
+              ? action_
+              : actionBuilder_.build();
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
           result.context_ = contextBuilder_ == null
               ? context_
               : contextBuilder_.build();
-          to_bitField0_ |= 0x00000008;
+          to_bitField0_ |= 0x00000010;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -8747,6 +9006,11 @@ public final class AuthorizationCheck {
         if (other.hasAuthorizationmodel()) {
           mergeAuthorizationmodel(other.getAuthorizationmodel());
         }
+        if (other.hasRequestID()) {
+          requestID_ = other.requestID_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
         if (other.hasSubject()) {
           mergeSubject(other.getSubject());
         }
@@ -8763,7 +9027,7 @@ public final class AuthorizationCheck {
           if (!other.evaluations_.isEmpty()) {
             if (evaluations_.isEmpty()) {
               evaluations_ = other.evaluations_;
-              bitField0_ = (bitField0_ & ~0x00000020);
+              bitField0_ = (bitField0_ & ~0x00000040);
             } else {
               ensureEvaluationsIsMutable();
               evaluations_.addAll(other.evaluations_);
@@ -8776,7 +9040,7 @@ public final class AuthorizationCheck {
               evaluationsBuilder_.dispose();
               evaluationsBuilder_ = null;
               evaluations_ = other.evaluations_;
-              bitField0_ = (bitField0_ & ~0x00000020);
+              bitField0_ = (bitField0_ & ~0x00000040);
               evaluationsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getEvaluationsFieldBuilder() : null;
@@ -8811,39 +9075,44 @@ public final class AuthorizationCheck {
               case 0:
                 done = true;
                 break;
-              case 18: {
+              case 10: {
                 input.readMessage(
                     getAuthorizationmodelFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                requestID_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
                 break;
               } // case 18
               case 26: {
                 input.readMessage(
                     getSubjectFieldBuilder().getBuilder(),
                     extensionRegistry);
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000004;
                 break;
               } // case 26
               case 34: {
                 input.readMessage(
                     getResourceFieldBuilder().getBuilder(),
                     extensionRegistry);
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000008;
                 break;
               } // case 34
               case 42: {
                 input.readMessage(
                     getActionFieldBuilder().getBuilder(),
                     extensionRegistry);
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000010;
                 break;
               } // case 42
               case 50: {
                 input.readMessage(
                     getContextFieldBuilder().getBuilder(),
                     extensionRegistry);
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000020;
                 break;
               } // case 50
               case 58: {
@@ -8880,14 +9149,14 @@ public final class AuthorizationCheck {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest, com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest.Builder, com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequestOrBuilder> authorizationmodelBuilder_;
       /**
-       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
        * @return Whether the authorizationmodel field is set.
        */
       public boolean hasAuthorizationmodel() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
        * @return The authorizationmodel.
        */
       public com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest getAuthorizationmodel() {
@@ -8898,7 +9167,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
        */
       public Builder setAuthorizationmodel(com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest value) {
         if (authorizationmodelBuilder_ == null) {
@@ -8914,7 +9183,7 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
        */
       public Builder setAuthorizationmodel(
           com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest.Builder builderForValue) {
@@ -8928,7 +9197,7 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
        */
       public Builder mergeAuthorizationmodel(com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest value) {
         if (authorizationmodelBuilder_ == null) {
@@ -8947,7 +9216,7 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
        */
       public Builder clearAuthorizationmodel() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -8960,7 +9229,7 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest.Builder getAuthorizationmodelBuilder() {
         bitField0_ |= 0x00000001;
@@ -8968,7 +9237,7 @@ public final class AuthorizationCheck {
         return getAuthorizationmodelFieldBuilder().getBuilder();
       }
       /**
-       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequestOrBuilder getAuthorizationmodelOrBuilder() {
         if (authorizationmodelBuilder_ != null) {
@@ -8979,7 +9248,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 2;</code>
+       * <code>.policydecisionpoint.AuthorizationmodelRequest Authorizationmodel = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest, com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequest.Builder, com.permguard.pep.proto.AuthorizationCheck.AuthorizationmodelRequestOrBuilder> 
@@ -8995,6 +9264,85 @@ public final class AuthorizationCheck {
         return authorizationmodelBuilder_;
       }
 
+      private java.lang.Object requestID_ = "";
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @return Whether the requestID field is set.
+       */
+      public boolean hasRequestID() {
+        return ((bitField0_ & 0x00000002) != 0);
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @return The requestID.
+       */
+      public java.lang.String getRequestID() {
+        java.lang.Object ref = requestID_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          requestID_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @return The bytes for requestID.
+       */
+      public com.google.protobuf.ByteString
+          getRequestIDBytes() {
+        java.lang.Object ref = requestID_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          requestID_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @param value The requestID to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRequestID(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        requestID_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRequestID() {
+        requestID_ = getDefaultInstance().getRequestID();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @param value The bytes for requestID to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRequestIDBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        requestID_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
       private com.permguard.pep.proto.AuthorizationCheck.Subject subject_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.Subject, com.permguard.pep.proto.AuthorizationCheck.Subject.Builder, com.permguard.pep.proto.AuthorizationCheck.SubjectOrBuilder> subjectBuilder_;
@@ -9003,7 +9351,7 @@ public final class AuthorizationCheck {
        * @return Whether the subject field is set.
        */
       public boolean hasSubject() {
-        return ((bitField0_ & 0x00000002) != 0);
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <code>optional .policydecisionpoint.Subject Subject = 3;</code>
@@ -9028,7 +9376,7 @@ public final class AuthorizationCheck {
         } else {
           subjectBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -9042,7 +9390,7 @@ public final class AuthorizationCheck {
         } else {
           subjectBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -9051,7 +9399,7 @@ public final class AuthorizationCheck {
        */
       public Builder mergeSubject(com.permguard.pep.proto.AuthorizationCheck.Subject value) {
         if (subjectBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0) &&
+          if (((bitField0_ & 0x00000004) != 0) &&
             subject_ != null &&
             subject_ != com.permguard.pep.proto.AuthorizationCheck.Subject.getDefaultInstance()) {
             getSubjectBuilder().mergeFrom(value);
@@ -9061,7 +9409,7 @@ public final class AuthorizationCheck {
         } else {
           subjectBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -9069,7 +9417,7 @@ public final class AuthorizationCheck {
        * <code>optional .policydecisionpoint.Subject Subject = 3;</code>
        */
       public Builder clearSubject() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         subject_ = null;
         if (subjectBuilder_ != null) {
           subjectBuilder_.dispose();
@@ -9082,7 +9430,7 @@ public final class AuthorizationCheck {
        * <code>optional .policydecisionpoint.Subject Subject = 3;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.Subject.Builder getSubjectBuilder() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getSubjectFieldBuilder().getBuilder();
       }
@@ -9122,7 +9470,7 @@ public final class AuthorizationCheck {
        * @return Whether the resource field is set.
        */
       public boolean hasResource() {
-        return ((bitField0_ & 0x00000004) != 0);
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <code>optional .policydecisionpoint.Resource Resource = 4;</code>
@@ -9147,7 +9495,7 @@ public final class AuthorizationCheck {
         } else {
           resourceBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -9161,7 +9509,7 @@ public final class AuthorizationCheck {
         } else {
           resourceBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -9170,7 +9518,7 @@ public final class AuthorizationCheck {
        */
       public Builder mergeResource(com.permguard.pep.proto.AuthorizationCheck.Resource value) {
         if (resourceBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) != 0) &&
+          if (((bitField0_ & 0x00000008) != 0) &&
             resource_ != null &&
             resource_ != com.permguard.pep.proto.AuthorizationCheck.Resource.getDefaultInstance()) {
             getResourceBuilder().mergeFrom(value);
@@ -9180,7 +9528,7 @@ public final class AuthorizationCheck {
         } else {
           resourceBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -9188,7 +9536,7 @@ public final class AuthorizationCheck {
        * <code>optional .policydecisionpoint.Resource Resource = 4;</code>
        */
       public Builder clearResource() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         resource_ = null;
         if (resourceBuilder_ != null) {
           resourceBuilder_.dispose();
@@ -9201,7 +9549,7 @@ public final class AuthorizationCheck {
        * <code>optional .policydecisionpoint.Resource Resource = 4;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.Resource.Builder getResourceBuilder() {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return getResourceFieldBuilder().getBuilder();
       }
@@ -9241,7 +9589,7 @@ public final class AuthorizationCheck {
        * @return Whether the action field is set.
        */
       public boolean hasAction() {
-        return ((bitField0_ & 0x00000008) != 0);
+        return ((bitField0_ & 0x00000010) != 0);
       }
       /**
        * <code>optional .policydecisionpoint.Action Action = 5;</code>
@@ -9266,7 +9614,7 @@ public final class AuthorizationCheck {
         } else {
           actionBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -9280,7 +9628,7 @@ public final class AuthorizationCheck {
         } else {
           actionBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -9289,7 +9637,7 @@ public final class AuthorizationCheck {
        */
       public Builder mergeAction(com.permguard.pep.proto.AuthorizationCheck.Action value) {
         if (actionBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) != 0) &&
+          if (((bitField0_ & 0x00000010) != 0) &&
             action_ != null &&
             action_ != com.permguard.pep.proto.AuthorizationCheck.Action.getDefaultInstance()) {
             getActionBuilder().mergeFrom(value);
@@ -9299,7 +9647,7 @@ public final class AuthorizationCheck {
         } else {
           actionBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -9307,7 +9655,7 @@ public final class AuthorizationCheck {
        * <code>optional .policydecisionpoint.Action Action = 5;</code>
        */
       public Builder clearAction() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         action_ = null;
         if (actionBuilder_ != null) {
           actionBuilder_.dispose();
@@ -9320,7 +9668,7 @@ public final class AuthorizationCheck {
        * <code>optional .policydecisionpoint.Action Action = 5;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.Action.Builder getActionBuilder() {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return getActionFieldBuilder().getBuilder();
       }
@@ -9360,7 +9708,7 @@ public final class AuthorizationCheck {
        * @return Whether the context field is set.
        */
       public boolean hasContext() {
-        return ((bitField0_ & 0x00000010) != 0);
+        return ((bitField0_ & 0x00000020) != 0);
       }
       /**
        * <code>optional .google.protobuf.Struct Context = 6;</code>
@@ -9385,7 +9733,7 @@ public final class AuthorizationCheck {
         } else {
           contextBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -9399,7 +9747,7 @@ public final class AuthorizationCheck {
         } else {
           contextBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -9408,7 +9756,7 @@ public final class AuthorizationCheck {
        */
       public Builder mergeContext(com.google.protobuf.Struct value) {
         if (contextBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) != 0) &&
+          if (((bitField0_ & 0x00000020) != 0) &&
             context_ != null &&
             context_ != com.google.protobuf.Struct.getDefaultInstance()) {
             getContextBuilder().mergeFrom(value);
@@ -9418,7 +9766,7 @@ public final class AuthorizationCheck {
         } else {
           contextBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -9426,7 +9774,7 @@ public final class AuthorizationCheck {
        * <code>optional .google.protobuf.Struct Context = 6;</code>
        */
       public Builder clearContext() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         context_ = null;
         if (contextBuilder_ != null) {
           contextBuilder_.dispose();
@@ -9439,7 +9787,7 @@ public final class AuthorizationCheck {
        * <code>optional .google.protobuf.Struct Context = 6;</code>
        */
       public com.google.protobuf.Struct.Builder getContextBuilder() {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         onChanged();
         return getContextFieldBuilder().getBuilder();
       }
@@ -9474,9 +9822,9 @@ public final class AuthorizationCheck {
       private java.util.List<com.permguard.pep.proto.AuthorizationCheck.EvaluationRequest> evaluations_ =
         java.util.Collections.emptyList();
       private void ensureEvaluationsIsMutable() {
-        if (!((bitField0_ & 0x00000020) != 0)) {
+        if (!((bitField0_ & 0x00000040) != 0)) {
           evaluations_ = new java.util.ArrayList<com.permguard.pep.proto.AuthorizationCheck.EvaluationRequest>(evaluations_);
-          bitField0_ |= 0x00000020;
+          bitField0_ |= 0x00000040;
          }
       }
 
@@ -9626,7 +9974,7 @@ public final class AuthorizationCheck {
       public Builder clearEvaluations() {
         if (evaluationsBuilder_ == null) {
           evaluations_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000020);
+          bitField0_ = (bitField0_ & ~0x00000040);
           onChanged();
         } else {
           evaluationsBuilder_.clear();
@@ -9703,7 +10051,7 @@ public final class AuthorizationCheck {
           evaluationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               com.permguard.pep.proto.AuthorizationCheck.EvaluationRequest, com.permguard.pep.proto.AuthorizationCheck.EvaluationRequest.Builder, com.permguard.pep.proto.AuthorizationCheck.EvaluationRequestOrBuilder>(
                   evaluations_,
-                  ((bitField0_ & 0x00000020) != 0),
+                  ((bitField0_ & 0x00000040) != 0),
                   getParentForChildren(),
                   isClean());
           evaluations_ = null;
@@ -11451,17 +11799,34 @@ public final class AuthorizationCheck {
     boolean getDecision();
 
     /**
-     * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+     * <code>optional string RequestID = 2;</code>
+     * @return Whether the requestID field is set.
+     */
+    boolean hasRequestID();
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return The requestID.
+     */
+    java.lang.String getRequestID();
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return The bytes for requestID.
+     */
+    com.google.protobuf.ByteString
+        getRequestIDBytes();
+
+    /**
+     * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
      * @return Whether the context field is set.
      */
     boolean hasContext();
     /**
-     * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+     * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
      * @return The context.
      */
     com.permguard.pep.proto.AuthorizationCheck.ContextResponse getContext();
     /**
-     * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+     * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
      */
     com.permguard.pep.proto.AuthorizationCheck.ContextResponseOrBuilder getContextOrBuilder();
   }
@@ -11482,6 +11847,7 @@ public final class AuthorizationCheck {
       super(builder);
     }
     private EvaluationResponse() {
+      requestID_ = "";
     }
 
     @java.lang.Override
@@ -11521,18 +11887,65 @@ public final class AuthorizationCheck {
       return decision_;
     }
 
-    public static final int CONTEXT_FIELD_NUMBER = 2;
+    public static final int REQUESTID_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object requestID_ = "";
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return Whether the requestID field is set.
+     */
+    @java.lang.Override
+    public boolean hasRequestID() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return The requestID.
+     */
+    @java.lang.Override
+    public java.lang.String getRequestID() {
+      java.lang.Object ref = requestID_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        requestID_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return The bytes for requestID.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getRequestIDBytes() {
+      java.lang.Object ref = requestID_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        requestID_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CONTEXT_FIELD_NUMBER = 3;
     private com.permguard.pep.proto.AuthorizationCheck.ContextResponse context_;
     /**
-     * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+     * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
      * @return Whether the context field is set.
      */
     @java.lang.Override
     public boolean hasContext() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+     * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
      * @return The context.
      */
     @java.lang.Override
@@ -11540,7 +11953,7 @@ public final class AuthorizationCheck {
       return context_ == null ? com.permguard.pep.proto.AuthorizationCheck.ContextResponse.getDefaultInstance() : context_;
     }
     /**
-     * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+     * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
      */
     @java.lang.Override
     public com.permguard.pep.proto.AuthorizationCheck.ContextResponseOrBuilder getContextOrBuilder() {
@@ -11565,7 +11978,10 @@ public final class AuthorizationCheck {
         output.writeBool(1, decision_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(2, getContext());
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, requestID_);
+      }
+      if (((bitField0_ & 0x00000002) != 0)) {
+        output.writeMessage(3, getContext());
       }
       getUnknownFields().writeTo(output);
     }
@@ -11581,8 +11997,11 @@ public final class AuthorizationCheck {
           .computeBoolSize(1, decision_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, requestID_);
+      }
+      if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getContext());
+          .computeMessageSize(3, getContext());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -11601,6 +12020,11 @@ public final class AuthorizationCheck {
 
       if (getDecision()
           != other.getDecision()) return false;
+      if (hasRequestID() != other.hasRequestID()) return false;
+      if (hasRequestID()) {
+        if (!getRequestID()
+            .equals(other.getRequestID())) return false;
+      }
       if (hasContext() != other.hasContext()) return false;
       if (hasContext()) {
         if (!getContext()
@@ -11620,6 +12044,10 @@ public final class AuthorizationCheck {
       hash = (37 * hash) + DECISION_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getDecision());
+      if (hasRequestID()) {
+        hash = (37 * hash) + REQUESTID_FIELD_NUMBER;
+        hash = (53 * hash) + getRequestID().hashCode();
+      }
       if (hasContext()) {
         hash = (37 * hash) + CONTEXT_FIELD_NUMBER;
         hash = (53 * hash) + getContext().hashCode();
@@ -11764,6 +12192,7 @@ public final class AuthorizationCheck {
         super.clear();
         bitField0_ = 0;
         decision_ = false;
+        requestID_ = "";
         context_ = null;
         if (contextBuilder_ != null) {
           contextBuilder_.dispose();
@@ -11807,10 +12236,14 @@ public final class AuthorizationCheck {
         }
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.requestID_ = requestID_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
           result.context_ = contextBuilder_ == null
               ? context_
               : contextBuilder_.build();
-          to_bitField0_ |= 0x00000001;
+          to_bitField0_ |= 0x00000002;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -11862,6 +12295,11 @@ public final class AuthorizationCheck {
         if (other.getDecision() != false) {
           setDecision(other.getDecision());
         }
+        if (other.hasRequestID()) {
+          requestID_ = other.requestID_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
         if (other.hasContext()) {
           mergeContext(other.getContext());
         }
@@ -11897,12 +12335,17 @@ public final class AuthorizationCheck {
                 break;
               } // case 8
               case 18: {
-                input.readMessage(
-                    getContextFieldBuilder().getBuilder(),
-                    extensionRegistry);
+                requestID_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 26: {
+                input.readMessage(
+                    getContextFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -11952,18 +12395,97 @@ public final class AuthorizationCheck {
         return this;
       }
 
+      private java.lang.Object requestID_ = "";
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @return Whether the requestID field is set.
+       */
+      public boolean hasRequestID() {
+        return ((bitField0_ & 0x00000002) != 0);
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @return The requestID.
+       */
+      public java.lang.String getRequestID() {
+        java.lang.Object ref = requestID_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          requestID_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @return The bytes for requestID.
+       */
+      public com.google.protobuf.ByteString
+          getRequestIDBytes() {
+        java.lang.Object ref = requestID_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          requestID_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @param value The requestID to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRequestID(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        requestID_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRequestID() {
+        requestID_ = getDefaultInstance().getRequestID();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @param value The bytes for requestID to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRequestIDBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        requestID_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
       private com.permguard.pep.proto.AuthorizationCheck.ContextResponse context_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.ContextResponse, com.permguard.pep.proto.AuthorizationCheck.ContextResponse.Builder, com.permguard.pep.proto.AuthorizationCheck.ContextResponseOrBuilder> contextBuilder_;
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        * @return Whether the context field is set.
        */
       public boolean hasContext() {
-        return ((bitField0_ & 0x00000002) != 0);
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        * @return The context.
        */
       public com.permguard.pep.proto.AuthorizationCheck.ContextResponse getContext() {
@@ -11974,7 +12496,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       public Builder setContext(com.permguard.pep.proto.AuthorizationCheck.ContextResponse value) {
         if (contextBuilder_ == null) {
@@ -11985,12 +12507,12 @@ public final class AuthorizationCheck {
         } else {
           contextBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       public Builder setContext(
           com.permguard.pep.proto.AuthorizationCheck.ContextResponse.Builder builderForValue) {
@@ -11999,16 +12521,16 @@ public final class AuthorizationCheck {
         } else {
           contextBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       public Builder mergeContext(com.permguard.pep.proto.AuthorizationCheck.ContextResponse value) {
         if (contextBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0) &&
+          if (((bitField0_ & 0x00000004) != 0) &&
             context_ != null &&
             context_ != com.permguard.pep.proto.AuthorizationCheck.ContextResponse.getDefaultInstance()) {
             getContextBuilder().mergeFrom(value);
@@ -12018,15 +12540,15 @@ public final class AuthorizationCheck {
         } else {
           contextBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       public Builder clearContext() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         context_ = null;
         if (contextBuilder_ != null) {
           contextBuilder_.dispose();
@@ -12036,15 +12558,15 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.ContextResponse.Builder getContextBuilder() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getContextFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.ContextResponseOrBuilder getContextOrBuilder() {
         if (contextBuilder_ != null) {
@@ -12055,7 +12577,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.ContextResponse, com.permguard.pep.proto.AuthorizationCheck.ContextResponse.Builder, com.permguard.pep.proto.AuthorizationCheck.ContextResponseOrBuilder> 
@@ -12145,40 +12667,57 @@ public final class AuthorizationCheck {
     boolean getDecision();
 
     /**
-     * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+     * <code>optional string RequestID = 2;</code>
+     * @return Whether the requestID field is set.
+     */
+    boolean hasRequestID();
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return The requestID.
+     */
+    java.lang.String getRequestID();
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return The bytes for requestID.
+     */
+    com.google.protobuf.ByteString
+        getRequestIDBytes();
+
+    /**
+     * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
      * @return Whether the context field is set.
      */
     boolean hasContext();
     /**
-     * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+     * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
      * @return The context.
      */
     com.permguard.pep.proto.AuthorizationCheck.ContextResponse getContext();
     /**
-     * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+     * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
      */
     com.permguard.pep.proto.AuthorizationCheck.ContextResponseOrBuilder getContextOrBuilder();
 
     /**
-     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
      */
     java.util.List<com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse> 
         getEvaluationsList();
     /**
-     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
      */
     com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse getEvaluations(int index);
     /**
-     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
      */
     int getEvaluationsCount();
     /**
-     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
      */
     java.util.List<? extends com.permguard.pep.proto.AuthorizationCheck.EvaluationResponseOrBuilder> 
         getEvaluationsOrBuilderList();
     /**
-     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
      */
     com.permguard.pep.proto.AuthorizationCheck.EvaluationResponseOrBuilder getEvaluationsOrBuilder(
         int index);
@@ -12200,6 +12739,7 @@ public final class AuthorizationCheck {
       super(builder);
     }
     private AuthorizationCheckResponse() {
+      requestID_ = "";
       evaluations_ = java.util.Collections.emptyList();
     }
 
@@ -12240,18 +12780,65 @@ public final class AuthorizationCheck {
       return decision_;
     }
 
-    public static final int CONTEXT_FIELD_NUMBER = 2;
+    public static final int REQUESTID_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object requestID_ = "";
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return Whether the requestID field is set.
+     */
+    @java.lang.Override
+    public boolean hasRequestID() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return The requestID.
+     */
+    @java.lang.Override
+    public java.lang.String getRequestID() {
+      java.lang.Object ref = requestID_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        requestID_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string RequestID = 2;</code>
+     * @return The bytes for requestID.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getRequestIDBytes() {
+      java.lang.Object ref = requestID_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        requestID_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CONTEXT_FIELD_NUMBER = 3;
     private com.permguard.pep.proto.AuthorizationCheck.ContextResponse context_;
     /**
-     * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+     * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
      * @return Whether the context field is set.
      */
     @java.lang.Override
     public boolean hasContext() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+     * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
      * @return The context.
      */
     @java.lang.Override
@@ -12259,25 +12846,25 @@ public final class AuthorizationCheck {
       return context_ == null ? com.permguard.pep.proto.AuthorizationCheck.ContextResponse.getDefaultInstance() : context_;
     }
     /**
-     * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+     * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
      */
     @java.lang.Override
     public com.permguard.pep.proto.AuthorizationCheck.ContextResponseOrBuilder getContextOrBuilder() {
       return context_ == null ? com.permguard.pep.proto.AuthorizationCheck.ContextResponse.getDefaultInstance() : context_;
     }
 
-    public static final int EVALUATIONS_FIELD_NUMBER = 3;
+    public static final int EVALUATIONS_FIELD_NUMBER = 4;
     @SuppressWarnings("serial")
     private java.util.List<com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse> evaluations_;
     /**
-     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
      */
     @java.lang.Override
     public java.util.List<com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse> getEvaluationsList() {
       return evaluations_;
     }
     /**
-     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
      */
     @java.lang.Override
     public java.util.List<? extends com.permguard.pep.proto.AuthorizationCheck.EvaluationResponseOrBuilder> 
@@ -12285,21 +12872,21 @@ public final class AuthorizationCheck {
       return evaluations_;
     }
     /**
-     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
      */
     @java.lang.Override
     public int getEvaluationsCount() {
       return evaluations_.size();
     }
     /**
-     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
      */
     @java.lang.Override
     public com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse getEvaluations(int index) {
       return evaluations_.get(index);
     }
     /**
-     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+     * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
      */
     @java.lang.Override
     public com.permguard.pep.proto.AuthorizationCheck.EvaluationResponseOrBuilder getEvaluationsOrBuilder(
@@ -12325,10 +12912,13 @@ public final class AuthorizationCheck {
         output.writeBool(1, decision_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(2, getContext());
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, requestID_);
+      }
+      if (((bitField0_ & 0x00000002) != 0)) {
+        output.writeMessage(3, getContext());
       }
       for (int i = 0; i < evaluations_.size(); i++) {
-        output.writeMessage(3, evaluations_.get(i));
+        output.writeMessage(4, evaluations_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -12344,12 +12934,15 @@ public final class AuthorizationCheck {
           .computeBoolSize(1, decision_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, requestID_);
+      }
+      if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getContext());
+          .computeMessageSize(3, getContext());
       }
       for (int i = 0; i < evaluations_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, evaluations_.get(i));
+          .computeMessageSize(4, evaluations_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -12368,6 +12961,11 @@ public final class AuthorizationCheck {
 
       if (getDecision()
           != other.getDecision()) return false;
+      if (hasRequestID() != other.hasRequestID()) return false;
+      if (hasRequestID()) {
+        if (!getRequestID()
+            .equals(other.getRequestID())) return false;
+      }
       if (hasContext() != other.hasContext()) return false;
       if (hasContext()) {
         if (!getContext()
@@ -12389,6 +12987,10 @@ public final class AuthorizationCheck {
       hash = (37 * hash) + DECISION_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getDecision());
+      if (hasRequestID()) {
+        hash = (37 * hash) + REQUESTID_FIELD_NUMBER;
+        hash = (53 * hash) + getRequestID().hashCode();
+      }
       if (hasContext()) {
         hash = (37 * hash) + CONTEXT_FIELD_NUMBER;
         hash = (53 * hash) + getContext().hashCode();
@@ -12538,6 +13140,7 @@ public final class AuthorizationCheck {
         super.clear();
         bitField0_ = 0;
         decision_ = false;
+        requestID_ = "";
         context_ = null;
         if (contextBuilder_ != null) {
           contextBuilder_.dispose();
@@ -12549,7 +13152,7 @@ public final class AuthorizationCheck {
           evaluations_ = null;
           evaluationsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -12584,9 +13187,9 @@ public final class AuthorizationCheck {
 
       private void buildPartialRepeatedFields(com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse result) {
         if (evaluationsBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) != 0)) {
+          if (((bitField0_ & 0x00000008) != 0)) {
             evaluations_ = java.util.Collections.unmodifiableList(evaluations_);
-            bitField0_ = (bitField0_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000008);
           }
           result.evaluations_ = evaluations_;
         } else {
@@ -12601,10 +13204,14 @@ public final class AuthorizationCheck {
         }
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.requestID_ = requestID_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
           result.context_ = contextBuilder_ == null
               ? context_
               : contextBuilder_.build();
-          to_bitField0_ |= 0x00000001;
+          to_bitField0_ |= 0x00000002;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -12656,6 +13263,11 @@ public final class AuthorizationCheck {
         if (other.getDecision() != false) {
           setDecision(other.getDecision());
         }
+        if (other.hasRequestID()) {
+          requestID_ = other.requestID_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
         if (other.hasContext()) {
           mergeContext(other.getContext());
         }
@@ -12663,7 +13275,7 @@ public final class AuthorizationCheck {
           if (!other.evaluations_.isEmpty()) {
             if (evaluations_.isEmpty()) {
               evaluations_ = other.evaluations_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000008);
             } else {
               ensureEvaluationsIsMutable();
               evaluations_.addAll(other.evaluations_);
@@ -12676,7 +13288,7 @@ public final class AuthorizationCheck {
               evaluationsBuilder_.dispose();
               evaluationsBuilder_ = null;
               evaluations_ = other.evaluations_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000008);
               evaluationsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getEvaluationsFieldBuilder() : null;
@@ -12717,13 +13329,18 @@ public final class AuthorizationCheck {
                 break;
               } // case 8
               case 18: {
-                input.readMessage(
-                    getContextFieldBuilder().getBuilder(),
-                    extensionRegistry);
+                requestID_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
               case 26: {
+                input.readMessage(
+                    getContextFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
                 com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse m =
                     input.readMessage(
                         com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse.parser(),
@@ -12735,7 +13352,7 @@ public final class AuthorizationCheck {
                   evaluationsBuilder_.addMessage(m);
                 }
                 break;
-              } // case 26
+              } // case 34
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -12785,18 +13402,97 @@ public final class AuthorizationCheck {
         return this;
       }
 
+      private java.lang.Object requestID_ = "";
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @return Whether the requestID field is set.
+       */
+      public boolean hasRequestID() {
+        return ((bitField0_ & 0x00000002) != 0);
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @return The requestID.
+       */
+      public java.lang.String getRequestID() {
+        java.lang.Object ref = requestID_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          requestID_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @return The bytes for requestID.
+       */
+      public com.google.protobuf.ByteString
+          getRequestIDBytes() {
+        java.lang.Object ref = requestID_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          requestID_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @param value The requestID to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRequestID(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        requestID_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRequestID() {
+        requestID_ = getDefaultInstance().getRequestID();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string RequestID = 2;</code>
+       * @param value The bytes for requestID to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRequestIDBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        requestID_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
       private com.permguard.pep.proto.AuthorizationCheck.ContextResponse context_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.ContextResponse, com.permguard.pep.proto.AuthorizationCheck.ContextResponse.Builder, com.permguard.pep.proto.AuthorizationCheck.ContextResponseOrBuilder> contextBuilder_;
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        * @return Whether the context field is set.
        */
       public boolean hasContext() {
-        return ((bitField0_ & 0x00000002) != 0);
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        * @return The context.
        */
       public com.permguard.pep.proto.AuthorizationCheck.ContextResponse getContext() {
@@ -12807,7 +13503,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       public Builder setContext(com.permguard.pep.proto.AuthorizationCheck.ContextResponse value) {
         if (contextBuilder_ == null) {
@@ -12818,12 +13514,12 @@ public final class AuthorizationCheck {
         } else {
           contextBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       public Builder setContext(
           com.permguard.pep.proto.AuthorizationCheck.ContextResponse.Builder builderForValue) {
@@ -12832,16 +13528,16 @@ public final class AuthorizationCheck {
         } else {
           contextBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       public Builder mergeContext(com.permguard.pep.proto.AuthorizationCheck.ContextResponse value) {
         if (contextBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0) &&
+          if (((bitField0_ & 0x00000004) != 0) &&
             context_ != null &&
             context_ != com.permguard.pep.proto.AuthorizationCheck.ContextResponse.getDefaultInstance()) {
             getContextBuilder().mergeFrom(value);
@@ -12851,15 +13547,15 @@ public final class AuthorizationCheck {
         } else {
           contextBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       public Builder clearContext() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         context_ = null;
         if (contextBuilder_ != null) {
           contextBuilder_.dispose();
@@ -12869,15 +13565,15 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.ContextResponse.Builder getContextBuilder() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getContextFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.ContextResponseOrBuilder getContextOrBuilder() {
         if (contextBuilder_ != null) {
@@ -12888,7 +13584,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>optional .policydecisionpoint.ContextResponse Context = 2;</code>
+       * <code>optional .policydecisionpoint.ContextResponse Context = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.permguard.pep.proto.AuthorizationCheck.ContextResponse, com.permguard.pep.proto.AuthorizationCheck.ContextResponse.Builder, com.permguard.pep.proto.AuthorizationCheck.ContextResponseOrBuilder> 
@@ -12907,9 +13603,9 @@ public final class AuthorizationCheck {
       private java.util.List<com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse> evaluations_ =
         java.util.Collections.emptyList();
       private void ensureEvaluationsIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
+        if (!((bitField0_ & 0x00000008) != 0)) {
           evaluations_ = new java.util.ArrayList<com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse>(evaluations_);
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000008;
          }
       }
 
@@ -12917,7 +13613,7 @@ public final class AuthorizationCheck {
           com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse, com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse.Builder, com.permguard.pep.proto.AuthorizationCheck.EvaluationResponseOrBuilder> evaluationsBuilder_;
 
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public java.util.List<com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse> getEvaluationsList() {
         if (evaluationsBuilder_ == null) {
@@ -12927,7 +13623,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public int getEvaluationsCount() {
         if (evaluationsBuilder_ == null) {
@@ -12937,7 +13633,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse getEvaluations(int index) {
         if (evaluationsBuilder_ == null) {
@@ -12947,7 +13643,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public Builder setEvaluations(
           int index, com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse value) {
@@ -12964,7 +13660,7 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public Builder setEvaluations(
           int index, com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse.Builder builderForValue) {
@@ -12978,7 +13674,7 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public Builder addEvaluations(com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse value) {
         if (evaluationsBuilder_ == null) {
@@ -12994,7 +13690,7 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public Builder addEvaluations(
           int index, com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse value) {
@@ -13011,7 +13707,7 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public Builder addEvaluations(
           com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse.Builder builderForValue) {
@@ -13025,7 +13721,7 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public Builder addEvaluations(
           int index, com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse.Builder builderForValue) {
@@ -13039,7 +13735,7 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public Builder addAllEvaluations(
           java.lang.Iterable<? extends com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse> values) {
@@ -13054,12 +13750,12 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public Builder clearEvaluations() {
         if (evaluationsBuilder_ == null) {
           evaluations_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
           evaluationsBuilder_.clear();
@@ -13067,7 +13763,7 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public Builder removeEvaluations(int index) {
         if (evaluationsBuilder_ == null) {
@@ -13080,14 +13776,14 @@ public final class AuthorizationCheck {
         return this;
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse.Builder getEvaluationsBuilder(
           int index) {
         return getEvaluationsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.EvaluationResponseOrBuilder getEvaluationsOrBuilder(
           int index) {
@@ -13097,7 +13793,7 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public java.util.List<? extends com.permguard.pep.proto.AuthorizationCheck.EvaluationResponseOrBuilder> 
            getEvaluationsOrBuilderList() {
@@ -13108,14 +13804,14 @@ public final class AuthorizationCheck {
         }
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse.Builder addEvaluationsBuilder() {
         return getEvaluationsFieldBuilder().addBuilder(
             com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse.getDefaultInstance());
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse.Builder addEvaluationsBuilder(
           int index) {
@@ -13123,7 +13819,7 @@ public final class AuthorizationCheck {
             index, com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse.getDefaultInstance());
       }
       /**
-       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 3;</code>
+       * <code>repeated .policydecisionpoint.EvaluationResponse Evaluations = 4;</code>
        */
       public java.util.List<com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse.Builder> 
            getEvaluationsBuilderList() {
@@ -13136,7 +13832,7 @@ public final class AuthorizationCheck {
           evaluationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse, com.permguard.pep.proto.AuthorizationCheck.EvaluationResponse.Builder, com.permguard.pep.proto.AuthorizationCheck.EvaluationResponseOrBuilder>(
                   evaluations_,
-                  ((bitField0_ & 0x00000004) != 0),
+                  ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
                   isClean());
           evaluations_ = null;
@@ -13303,43 +13999,47 @@ public final class AuthorizationCheck {
       "sionpoint.PolicyStore\0226\n\tPrincipal\030\003 \001(\013" +
       "2\036.policydecisionpoint.PrincipalH\000\210\001\001\0224\n" +
       "\010Entities\030\004 \001(\0132\035.policydecisionpoint.En" +
-      "titiesH\001\210\001\001B\014\n\n_PrincipalB\013\n\t_Entities\"\216" +
-      "\002\n\021EvaluationRequest\0222\n\007Subject\030\001 \001(\0132\034." +
-      "policydecisionpoint.SubjectH\000\210\001\001\0224\n\010Reso" +
-      "urce\030\002 \001(\0132\035.policydecisionpoint.Resourc" +
-      "eH\001\210\001\001\0220\n\006Action\030\003 \001(\0132\033.policydecisionp" +
-      "oint.ActionH\002\210\001\001\022-\n\007Context\030\004 \001(\0132\027.goog" +
-      "le.protobuf.StructH\003\210\001\001B\n\n\010_SubjectB\013\n\t_" +
-      "ResourceB\t\n\007_ActionB\n\n\010_Context\"\237\003\n\031Auth" +
-      "orizationCheckRequest\022J\n\022Authorizationmo" +
-      "del\030\002 \001(\0132..policydecisionpoint.Authoriz" +
-      "ationmodelRequest\0222\n\007Subject\030\003 \001(\0132\034.pol" +
-      "icydecisionpoint.SubjectH\000\210\001\001\0224\n\010Resourc" +
-      "e\030\004 \001(\0132\035.policydecisionpoint.ResourceH\001" +
-      "\210\001\001\0220\n\006Action\030\005 \001(\0132\033.policydecisionpoin" +
-      "t.ActionH\002\210\001\001\022-\n\007Context\030\006 \001(\0132\027.google." +
-      "protobuf.StructH\003\210\001\001\022;\n\013Evaluations\030\007 \003(" +
-      "\0132&.policydecisionpoint.EvaluationReques" +
-      "tB\n\n\010_SubjectB\013\n\t_ResourceB\t\n\007_ActionB\n\n" +
-      "\010_Context\"/\n\016ReasonResponse\022\014\n\004Code\030\001 \001(" +
-      "\t\022\017\n\007Message\030\002 \001(\t\"\220\001\n\017ContextResponse\022\n" +
-      "\n\002ID\030\001 \001(\t\0228\n\013ReasonAdmin\030\002 \001(\0132#.policy" +
-      "decisionpoint.ReasonResponse\0227\n\nReasonUs" +
-      "er\030\003 \001(\0132#.policydecisionpoint.ReasonRes" +
-      "ponse\"n\n\022EvaluationResponse\022\020\n\010Decision\030" +
-      "\001 \001(\010\022:\n\007Context\030\002 \001(\0132$.policydecisionp" +
-      "oint.ContextResponseH\000\210\001\001B\n\n\010_Context\"\264\001" +
-      "\n\032AuthorizationCheckResponse\022\020\n\010Decision" +
-      "\030\001 \001(\010\022:\n\007Context\030\002 \001(\0132$.policydecision" +
-      "point.ContextResponseH\000\210\001\001\022<\n\013Evaluation" +
-      "s\030\003 \003(\0132\'.policydecisionpoint.Evaluation" +
-      "ResponseB\n\n\010_Context2\207\001\n\014V1PDPService\022w\n" +
-      "\022AuthorizationCheck\022..policydecisionpoin" +
-      "t.AuthorizationCheckRequest\032/.policydeci" +
-      "sionpoint.AuthorizationCheckResponse\"\000Bg" +
-      "\n\027com.permguard.pep.protoB\022Authorization" +
-      "CheckZ8github.com/permguard/permguard/in" +
-      "ternal/hosts/api/pdp/v1b\006proto3"
+      "titiesH\001\210\001\001B\014\n\n_PrincipalB\013\n\t_Entities\"\264" +
+      "\002\n\021EvaluationRequest\022\026\n\tRequestID\030\001 \001(\tH" +
+      "\000\210\001\001\0222\n\007Subject\030\002 \001(\0132\034.policydecisionpo" +
+      "int.SubjectH\001\210\001\001\0224\n\010Resource\030\003 \001(\0132\035.pol" +
+      "icydecisionpoint.ResourceH\002\210\001\001\0220\n\006Action" +
+      "\030\004 \001(\0132\033.policydecisionpoint.ActionH\003\210\001\001" +
+      "\022-\n\007Context\030\005 \001(\0132\027.google.protobuf.Stru" +
+      "ctH\004\210\001\001B\014\n\n_RequestIDB\n\n\010_SubjectB\013\n\t_Re" +
+      "sourceB\t\n\007_ActionB\n\n\010_Context\"\305\003\n\031Author" +
+      "izationCheckRequest\022J\n\022Authorizationmode" +
+      "l\030\001 \001(\0132..policydecisionpoint.Authorizat" +
+      "ionmodelRequest\022\026\n\tRequestID\030\002 \001(\tH\000\210\001\001\022" +
+      "2\n\007Subject\030\003 \001(\0132\034.policydecisionpoint.S" +
+      "ubjectH\001\210\001\001\0224\n\010Resource\030\004 \001(\0132\035.policyde" +
+      "cisionpoint.ResourceH\002\210\001\001\0220\n\006Action\030\005 \001(" +
+      "\0132\033.policydecisionpoint.ActionH\003\210\001\001\022-\n\007C" +
+      "ontext\030\006 \001(\0132\027.google.protobuf.StructH\004\210" +
+      "\001\001\022;\n\013Evaluations\030\007 \003(\0132&.policydecision" +
+      "point.EvaluationRequestB\014\n\n_RequestIDB\n\n" +
+      "\010_SubjectB\013\n\t_ResourceB\t\n\007_ActionB\n\n\010_Co" +
+      "ntext\"/\n\016ReasonResponse\022\014\n\004Code\030\001 \001(\t\022\017\n" +
+      "\007Message\030\002 \001(\t\"\220\001\n\017ContextResponse\022\n\n\002ID" +
+      "\030\001 \001(\t\0228\n\013ReasonAdmin\030\002 \001(\0132#.policydeci" +
+      "sionpoint.ReasonResponse\0227\n\nReasonUser\030\003" +
+      " \001(\0132#.policydecisionpoint.ReasonRespons" +
+      "e\"\224\001\n\022EvaluationResponse\022\020\n\010Decision\030\001 \001" +
+      "(\010\022\026\n\tRequestID\030\002 \001(\tH\000\210\001\001\022:\n\007Context\030\003 " +
+      "\001(\0132$.policydecisionpoint.ContextRespons" +
+      "eH\001\210\001\001B\014\n\n_RequestIDB\n\n\010_Context\"\332\001\n\032Aut" +
+      "horizationCheckResponse\022\020\n\010Decision\030\001 \001(" +
+      "\010\022\026\n\tRequestID\030\002 \001(\tH\000\210\001\001\022:\n\007Context\030\003 \001" +
+      "(\0132$.policydecisionpoint.ContextResponse" +
+      "H\001\210\001\001\022<\n\013Evaluations\030\004 \003(\0132\'.policydecis" +
+      "ionpoint.EvaluationResponseB\014\n\n_RequestI" +
+      "DB\n\n\010_Context2\207\001\n\014V1PDPService\022w\n\022Author" +
+      "izationCheck\022..policydecisionpoint.Autho" +
+      "rizationCheckRequest\032/.policydecisionpoi" +
+      "nt.AuthorizationCheckResponse\"\000Bg\n\027com.p" +
+      "ermguard.pep.protoB\022AuthorizationCheckZ8" +
+      "github.com/permguard/permguard/internal/" +
+      "hosts/api/pdp/v1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -13393,13 +14093,13 @@ public final class AuthorizationCheck {
     internal_static_policydecisionpoint_EvaluationRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_policydecisionpoint_EvaluationRequest_descriptor,
-        new java.lang.String[] { "Subject", "Resource", "Action", "Context", "Subject", "Resource", "Action", "Context", });
+        new java.lang.String[] { "RequestID", "Subject", "Resource", "Action", "Context", "RequestID", "Subject", "Resource", "Action", "Context", });
     internal_static_policydecisionpoint_AuthorizationCheckRequest_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_policydecisionpoint_AuthorizationCheckRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_policydecisionpoint_AuthorizationCheckRequest_descriptor,
-        new java.lang.String[] { "Authorizationmodel", "Subject", "Resource", "Action", "Context", "Evaluations", "Subject", "Resource", "Action", "Context", });
+        new java.lang.String[] { "Authorizationmodel", "RequestID", "Subject", "Resource", "Action", "Context", "Evaluations", "RequestID", "Subject", "Resource", "Action", "Context", });
     internal_static_policydecisionpoint_ReasonResponse_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_policydecisionpoint_ReasonResponse_fieldAccessorTable = new
@@ -13417,13 +14117,13 @@ public final class AuthorizationCheck {
     internal_static_policydecisionpoint_EvaluationResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_policydecisionpoint_EvaluationResponse_descriptor,
-        new java.lang.String[] { "Decision", "Context", "Context", });
+        new java.lang.String[] { "Decision", "RequestID", "Context", "RequestID", "Context", });
     internal_static_policydecisionpoint_AuthorizationCheckResponse_descriptor =
       getDescriptor().getMessageTypes().get(12);
     internal_static_policydecisionpoint_AuthorizationCheckResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_policydecisionpoint_AuthorizationCheckResponse_descriptor,
-        new java.lang.String[] { "Decision", "Context", "Evaluations", "Context", });
+        new java.lang.String[] { "Decision", "RequestID", "Context", "Evaluations", "RequestID", "Context", });
     com.google.protobuf.StructProto.getDescriptor();
   }
 

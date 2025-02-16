@@ -60,6 +60,7 @@ public class MappingClass {
         authResponsePayload.setDecision(decision);
         authResponsePayload.setContext(contextDetail);
         authResponsePayload.setEvaluations(evaluationResponsesDetail);
+        authResponsePayload.setRequestId(response.getRequestID());
         return authResponsePayload;
     }
 
@@ -78,50 +79,50 @@ public class MappingClass {
     }
 
     /**
-     * Maps an {@link AuthRequestPayload} to an {@link AuthorizationCheck.AuthorizationCheckRequest}.
+     * Maps an {@link Request} to an {@link AuthorizationCheck.AuthorizationCheckRequest}.
      *
-     * @param authRequestPayload The DTO request object.
+     * @param requestPayload The DTO request object.
      * @return The mapped Protocol Buffer request object.
      */
-    public static AuthorizationCheck.AuthorizationCheckRequest mapAuthorizationCheckRequest(AuthRequestPayload authRequestPayload) {
+    public static AuthorizationCheck.AuthorizationCheckRequest mapAuthorizationCheckRequest(Request requestPayload) {
 
 
-        AuthorizationCheck.AuthorizationCheckRequest request = AuthorizationCheck.AuthorizationCheckRequest.newBuilder()
+        return AuthorizationCheck.AuthorizationCheckRequest.newBuilder()
                 .setAuthorizationmodel(
                         AuthorizationCheck.AuthorizationmodelRequest.newBuilder()
-                                .setZoneID(authRequestPayload.getauthModelDetail().getZoneId())
+                                .setZoneID(Long.parseLong(requestPayload.getauthModelDetail().getPolicyStore().getZoneId()))
                                 .setPolicyStore(
-                                        getAuthorizationCheckPolicyStore(authRequestPayload.getauthModelDetail().getPolicyStore())
+                                        getAuthorizationCheckPolicyStore(requestPayload.getauthModelDetail().getPolicyStore())
                                 )
                                 .setPrincipal(
-                                        getAuthorizationCheckPrincipal(authRequestPayload.getauthModelDetail().getPrincipal())
+                                        getAuthorizationCheckPrincipal(requestPayload.getauthModelDetail().getPrincipal())
                                 )
                                 .setEntities(
-                                        getAuthorizationCheckEntities(authRequestPayload.getauthModelDetail().getEntityDetail())
+                                        getAuthorizationCheckEntities(requestPayload.getauthModelDetail().getEntityDetail())
                                 )
                                 .build()
                 )
                 .setSubject(
-                        getAuthorizationCheckSubject(authRequestPayload.getSubject())
+                        getAuthorizationCheckSubject(requestPayload.getSubject())
                 )
                 .setResource(
-                        getAuthorizationCheckResource(authRequestPayload.getResource())
+                        getAuthorizationCheckResource(requestPayload.getResource())
                 )
                 .setAction(
-                        getAuthorizationCheckAction(authRequestPayload.getAction())
+                        getAuthorizationCheckAction(requestPayload.getAction())
                 ).addAllEvaluations(
-                    Optional.ofNullable(authRequestPayload.getEvaluations())
+                    Optional.ofNullable(requestPayload.getEvaluations())
                             .orElseGet(List::of)
                             .stream()
                             .map(MappingClass::mapToEvaluationRequest)
                             .toList()
                 )
-                .setContext(mapToStruct(authRequestPayload.getContext()))
+                .setContext(mapToStruct(requestPayload.getContext()))
+                .setRequestID(String.valueOf(UUID.randomUUID()))
                 .build();
-        return request;
     }
 
-    private static AuthorizationCheck.EvaluationRequest mapToEvaluationRequest(EvaluationRequestDetail detail) {
+    private static AuthorizationCheck.EvaluationRequest mapToEvaluationRequest(Evaluation detail) {
     return AuthorizationCheck.EvaluationRequest.newBuilder()
             .setSubject(getAuthorizationCheckSubject(detail.getSubject()))
             .setResource(getAuthorizationCheckResource(detail.getResource()))
@@ -132,33 +133,32 @@ public class MappingClass {
 
 
 
-    private static AuthorizationCheck.PolicyStore getAuthorizationCheckPolicyStore(PolicyStoreDetail policyStoreDetail) {
+    private static AuthorizationCheck.PolicyStore getAuthorizationCheckPolicyStore(PolicyStore policyStore) {
         return AuthorizationCheck.PolicyStore.newBuilder()
-                .setType(policyStoreDetail.getType())
-                .setID(policyStoreDetail.getId())
+                .setType(policyStore.getType())
+                .setID(policyStore.getId())
                 .build();
     }
 
-    private static AuthorizationCheck.Entities getAuthorizationCheckEntities(EntityDetail entityDetail) {
+    private static AuthorizationCheck.Entities getAuthorizationCheckEntities(Entity entity) {
         return AuthorizationCheck.Entities.newBuilder()
-                .setSchema(entityDetail.getSchema())
-                .addAllItems(getAuthorizationCheckItems(entityDetail.getItems()))
+                .setSchema(entity.getSchema())
+                .addAllItems(getAuthorizationCheckItems(entity.getItems()))
                 .build();
     }
 
-    private static List<Struct> getAuthorizationCheckItems(List<ItemDetails> itemDetails) {
+    private static List<Struct> getAuthorizationCheckItems(List<Item> itemDetails) {
        List<Struct> structList = new ArrayList<>();
 
-        for (ItemDetails itemDetail : itemDetails) {
+        for (Item itemDetail : itemDetails) {
             Struct itemStruct;
-            Map<String, Object> item = new HashMap<>();
             // Creazione della mappa per ogni ItemDetails
             Map<String, Object> itemMap = new HashMap<>();
 
             // Creazione della mappa per l'oggetto UID
             Map<String, Object> uidMap = new HashMap<>();
-            uidMap.put("type", itemDetail.getUid().getType());
-            uidMap.put("id", itemDetail.getUid().getId());
+            uidMap.put("type", itemDetail.getType());
+            uidMap.put("id", itemDetail.getId());
 
             // Aggiunta delle proprietà alla mappa dell'item
             itemMap.put("uid", uidMap);
@@ -171,37 +171,41 @@ public class MappingClass {
         return structList;
     }
 
-    private static AuthorizationCheck.Principal getAuthorizationCheckPrincipal(PrincipalDetail principalDetail) {
-        return AuthorizationCheck.Principal.newBuilder()
-                .setType(principalDetail.getType())
-                .setSource(principalDetail.getSource())
-                .setID(principalDetail.getId())
-                .setAccessToken(principalDetail.getAccessToken())
-                .setIdentityToken(principalDetail.getIdentityToken())
-                .build();
+    private static AuthorizationCheck.Principal getAuthorizationCheckPrincipal(Principal principal) {
+        AuthorizationCheck.Principal.Builder principalBuilder = AuthorizationCheck.Principal.newBuilder()
+                .setType(principal.getType())
+                .setSource(principal.getSource())
+                .setID(principal.getId());
+        if(principal.getAccessToken() != null){
+            principalBuilder.setAccessToken(principal.getAccessToken());
+        }
+        if(principal.getIdentityToken() != null){
+            principalBuilder.setIdentityToken(principal.getIdentityToken());
+        }
+        return principalBuilder.build();
     }
 
-    private static AuthorizationCheck.Subject getAuthorizationCheckSubject(SubjectDetail subjectDetail) {
+    private static AuthorizationCheck.Subject getAuthorizationCheckSubject(Subject subject) {
         return AuthorizationCheck.Subject.newBuilder()
-                .setType(subjectDetail.getType())
-                .setID(subjectDetail.getId())
-                .setSource(subjectDetail.getSource())
-                .setProperties(mapToStruct(subjectDetail.getProperties()))
+                .setType(subject.getType())
+                .setID(subject.getId())
+                .setSource(subject.getSource())
+                .setProperties(mapToStruct(subject.getProperties()))
                 .build();
     }
 
-    private static AuthorizationCheck.Resource getAuthorizationCheckResource(ResourceDetail resourceDetail) {
+    private static AuthorizationCheck.Resource getAuthorizationCheckResource(Resource resource) {
         return AuthorizationCheck.Resource.newBuilder()
-                .setType(resourceDetail.getType())
-                .setID(resourceDetail.getId())
-                .setProperties(mapToStruct(resourceDetail.getProperties()))
+                .setType(resource.getType())
+                .setID(resource.getId())
+                .setProperties(mapToStruct(resource.getProperties()))
                 .build();
     }
 
-    private static AuthorizationCheck.Action getAuthorizationCheckAction(ActionDetail actionDetail) {
+    private static AuthorizationCheck.Action getAuthorizationCheckAction(Action action) {
         return AuthorizationCheck.Action.newBuilder()
-                .setName(actionDetail.getName())
-                .setProperties(mapToStruct(actionDetail.getProperties()))
+                .setName(action.getName())
+                .setProperties(mapToStruct(action.getProperties()))
                 .build();
     }
 

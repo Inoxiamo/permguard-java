@@ -34,25 +34,31 @@ import java.util.Map;
  *     .build();
  * }</pre>
  */
-public class ResourceDetail {
+public class Resource {
 
     private final String type;
     private final String id;
     private final Map<String, Object> properties;
 
-    private ResourceDetail(Builder builder) {
+    private Resource(Builder builder) {
         this.type = builder.type;
         this.id = builder.id;
         this.properties = builder.properties;
     }
 
     /**
-     * Builder class for {@link ResourceDetail}.
+     * Builder class for {@link Resource}.
      */
     public static class Builder {
         private String type;
         private String id;
         private Map<String, Object> properties;
+
+        public Builder(String type, String id, Map<String, Object> properties) {
+            this.type = type;
+            this.id = id;
+            this.properties = properties;
+        }
 
         /**
          * Sets the type of the resource.
@@ -88,12 +94,12 @@ public class ResourceDetail {
         }
 
         /**
-         * Builds and returns an instance of {@link ResourceDetail}.
+         * Builds and returns an instance of {@link Resource}.
          *
-         * @return a new instance of {@link ResourceDetail}
+         * @return a new instance of {@link Resource}
          */
-        public ResourceDetail build() {
-            return new ResourceDetail(this);
+        public Resource build() {
+            return new Resource(this);
         }
     }
 

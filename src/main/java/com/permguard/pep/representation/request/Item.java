@@ -29,41 +29,63 @@ import java.util.Map;
  * <p>
  * Usage example:
  * <pre>{@code
- * ItemDetails itemDetails = new ItemDetails.Builder()
- *     .uid(new Uid("Permguard::IAM::User", "amy.smith@acmecorp.com"))
+ * Item item = new Item.Builder()
+ *     .id("id", "asd"))
+ *     .type("type", "asd"))
  *     .attrs(Map.of("isSuperUser", true))
  *     .parents(List.of(parent1, parent2))
  *     .build();
  * }</pre>
  */
-public class ItemDetails {
+public class Item {
 
-    private final Uid uid;
+    private final String type;
+    private final String id;
     private final Map<String, Object> attrs;
     private final List<Object> parents;
 
-    private ItemDetails(Builder builder) {
-        this.uid = builder.uid;
+    private Item(Builder builder) {
+        this.type = builder.type;
+        this.id = builder.id;
         this.attrs = builder.attrs;
         this.parents = builder.parents;
     }
 
     /**
-     * Builder class for {@link ItemDetails}.
+     * Builder class for {@link Item}.
      */
     public static class Builder {
-        private Uid uid;
+        private String type;
+        private String id;
         private Map<String, Object> attrs;
         private List<Object> parents;
 
+        public Builder(String type, String id, Map<String, Object> attrs, List<Object> parents) {
+            this.type = type;
+            this.id = id;
+            this.attrs = attrs;
+            this.parents = parents;
+        }
+
         /**
-         * Sets the UID of the item.
+         * Sets the type of the item.
          *
-         * @param uid the unique identifier for the item
+         * @param type the type for the item
          * @return the builder instance
          */
-        public Builder uid(Uid uid) {
-            this.uid = uid;
+        public Builder type(String type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
+         * Sets the id of the item.
+         *
+         * @param id the id for the item
+         * @return the builder instance
+         */
+        public Builder id(String id) {
+            this.id = id;
             return this;
         }
 
@@ -90,24 +112,34 @@ public class ItemDetails {
         }
 
         /**
-         * Builds and returns an instance of {@link ItemDetails}.
+         * Builds and returns an instance of {@link Item}.
          *
-         * @return a new instance of {@link ItemDetails}
+         * @return a new instance of {@link Item}
          */
-        public ItemDetails build() {
-            return new ItemDetails(this);
+        public Item build() {
+            return new Item(this);
         }
     }
 
     // Getters with JavaDoc
 
     /**
-     * Gets the UID of the item.
+     * Gets the type of the item.
      *
-     * @return the unique identifier for the item
+     * @return the type  for the item
      */
-    public Uid getUid() {
-        return uid;
+    public String getType() {
+        return type;
+    }
+
+
+    /**
+     *  Get the id of the item.
+     *
+     * @return the id of the item
+     */
+    public String getId() {
+        return id;
     }
 
     /**

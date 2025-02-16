@@ -35,14 +35,14 @@ import java.util.Map;
  *     .build();
  * }</pre>
  */
-public class SubjectDetail {
+public class Subject {
 
     private final String type;
     private final String id;
     private final String source;
     private final Map<String, Object> properties;
 
-    private SubjectDetail(Builder builder) {
+    private Subject(Builder builder) {
         this.type = builder.type;
         this.id = builder.id;
         this.source = builder.source;
@@ -50,13 +50,20 @@ public class SubjectDetail {
     }
 
     /**
-     * Builder class for {@link SubjectDetail}.
+     * Builder class for {@link Subject}.
      */
     public static class Builder {
         private String type;
         private String id;
         private String source;
         private Map<String, Object> properties;
+
+        public Builder(String type, String id, String source, Map<String, Object> properties) {
+            this.type = type;
+            this.id = id;
+            this.source = source;
+            this.properties = properties;
+        }
 
         /**
          * Sets the type of the subject.
@@ -103,12 +110,12 @@ public class SubjectDetail {
         }
 
         /**
-         * Builds and returns an instance of {@link SubjectDetail}.
+         * Builds and returns an instance of {@link Subject}.
          *
-         * @return a new instance of {@link SubjectDetail}
+         * @return a new instance of {@link Subject}
          */
-        public SubjectDetail build() {
-            return new SubjectDetail(this);
+        public Subject build() {
+            return new Subject(this);
         }
     }
 

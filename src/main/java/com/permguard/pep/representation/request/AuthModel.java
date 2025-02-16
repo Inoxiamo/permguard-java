@@ -28,55 +28,47 @@ package com.permguard.pep.representation.request;
  * Usage example:
  * <pre>{@code
  * AuthContextDetail contextDetail = new AuthContextDetail.Builder()
- *     .zoneId(145748228796L)
  *     .entityDetail(entityDetail)
  *     .policyStore(policyStoreDetail)
  *     .principal(principalDetail)
  *     .build();
  * }</pre>
  */
-public class AuthModelDetail {
+public class AuthModel {
 
-    private final long zoneId;
-    private final EntityDetail entityDetail;
-    private final PolicyStoreDetail policyStore;
-    private final PrincipalDetail principal;
+    private final Entity entity;
+    private final PolicyStore policyStore;
+    private final Principal principal;
 
-    private AuthModelDetail(Builder builder) {
-        this.zoneId = builder.zoneId;
-        this.entityDetail = builder.entityDetail;
+    private AuthModel(Builder builder) {
+        this.entity = builder.entity;
         this.policyStore = builder.policyStore;
         this.principal = builder.principal;
     }
 
     /**
-     * Builder class for {@link AuthModelDetail}.
+     * Builder class for {@link AuthModel}.
      */
     public static class Builder {
-        private long zoneId;
-        private EntityDetail entityDetail;
-        private PolicyStoreDetail policyStore;
-        private PrincipalDetail principal;
+        private Entity entity;
+        private PolicyStore policyStore;
+        private Principal principal;
 
-        /**
-         * Sets the zone ID.
-         *
-         * @param zoneId the zone ID
-         * @return the builder instance
-         */
-        public Builder zoneId(long zoneId) {
-            this.zoneId = zoneId;
-            return this;
+        public Builder(Entity entity, PolicyStore policyStore, Principal principal) {
+            this.entity = entity;
+            this.policyStore = policyStore;
+            this.principal = principal;
         }
+
 
         /**
          * Sets the entity detail.
          *
-         * @param entityDetail the entity detail
+         * @param entity the entity detail
          * @return the builder instance
          */
-        public Builder entityDetail(EntityDetail entityDetail) {
-            this.entityDetail = entityDetail;
+        public Builder entityDetail(Entity entity) {
+            this.entity = entity;
             return this;
         }
 
@@ -86,7 +78,7 @@ public class AuthModelDetail {
          * @param policyStore the policy store detail
          * @return the builder instance
          */
-        public Builder policyStore(PolicyStoreDetail policyStore) {
+        public Builder policyStore(PolicyStore policyStore) {
             this.policyStore = policyStore;
             return this;
         }
@@ -97,39 +89,32 @@ public class AuthModelDetail {
          * @param principal the principal detail
          * @return the builder instance
          */
-        public Builder principal(PrincipalDetail principal) {
+        public Builder principal(Principal principal) {
             this.principal = principal;
             return this;
         }
 
         /**
-         * Builds and returns an instance of {@link AuthModelDetail}.
+         * Builds and returns an instance of {@link AuthModel}.
          *
-         * @return a new instance of {@link AuthModelDetail}
+         * @return a new instance of {@link AuthModel}
          */
-        public AuthModelDetail build() {
-            return new AuthModelDetail(this);
+        public AuthModel build() {
+            return new AuthModel(this);
         }
     }
 
     // Getters with JavaDoc
 
-    /**
-     * Gets the zone ID.
-     *
-     * @return the zone ID
-     */
-    public long getZoneId() {
-        return zoneId;
-    }
+
 
     /**
      * Gets the entity detail.
      *
      * @return the entity detail
      */
-    public EntityDetail getEntityDetail() {
-        return entityDetail;
+    public Entity getEntityDetail() {
+        return entity;
     }
 
     /**
@@ -137,7 +122,7 @@ public class AuthModelDetail {
      *
      * @return the policy store detail
      */
-    public PolicyStoreDetail getPolicyStore() {
+    public PolicyStore getPolicyStore() {
         return policyStore;
     }
 
@@ -146,7 +131,7 @@ public class AuthModelDetail {
      *
      * @return the principal detail
      */
-    public PrincipalDetail getPrincipal() {
+    public Principal getPrincipal() {
         return principal;
     }
 }

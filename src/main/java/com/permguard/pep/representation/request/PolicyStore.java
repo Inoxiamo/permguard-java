@@ -19,39 +19,48 @@
 package com.permguard.pep.representation.request;
 
 /**
- * Represents a unique identifier (UID) with a type and an identifier string.
+ * Represents the details of a policy store, including its type and identifier.
  * <p>
  * This class uses the Builder pattern for flexible and fluent object creation.
  * <p>
  * Usage example:
  * <pre>{@code
- * Uid uid = new Uid.Builder()
- *     .type("Permguard::IAM::User")
- *     .id("amy.smith@acmecorp.com")
+ * PolicyStoreDetail policyStoreDetail = new PolicyStoreDetail.Builder()
+ *     .type("ledger")
+ *     .id("5740a9c648a04f7db08ac2f44a3779da")
  *     .build();
  * }</pre>
  */
-public class Uid {
-
+public class PolicyStore {
+    private final String zoneId;
     private final String type;
     private final String id;
 
-    private Uid(Builder builder) {
+    private PolicyStore(Builder builder) {
+        this.zoneId = builder.zoneId;
         this.type = builder.type;
         this.id = builder.id;
     }
 
+
     /**
-     * Builder class for {@link Uid}.
+     * Builder class for {@link PolicyStore}.
      */
     public static class Builder {
+        private String zoneId;
         private String type;
         private String id;
 
+        public Builder(String zoneId, String type, String id) {
+            this.zoneId = zoneId;
+            this.type = type;
+            this.id = id;
+        }
+
         /**
-         * Sets the type of the UID.
+         * Sets the type of the policy store.
          *
-         * @param type the type of the UID
+         * @param type the type of the policy store
          * @return the builder instance
          */
         public Builder type(String type) {
@@ -60,9 +69,9 @@ public class Uid {
         }
 
         /**
-         * Sets the identifier string of the UID.
+         * Sets the identifier of the policy store.
          *
-         * @param id the identifier string of the UID
+         * @param id the identifier of the policy store
          * @return the builder instance
          */
         public Builder id(String id) {
@@ -70,33 +79,55 @@ public class Uid {
             return this;
         }
 
-        /**
-         * Builds and returns an instance of {@link Uid}.
+         /**
+         * Sets the zoneId of the policy store.
          *
-         * @return a new instance of {@link Uid}
+         * @param zoneId the zoneId of the policy store
+         * @return the builder instance
          */
-        public Uid build() {
-            return new Uid(this);
+        public Builder zoneId(String zoneId) {
+            this.zoneId = zoneId;
+            return this;
+        }
+
+        /**
+         * Builds and returns an instance of {@link PolicyStore}.
+         *
+         * @return a new instance of {@link PolicyStore}
+         */
+        public PolicyStore build() {
+            return new PolicyStore(this);
         }
     }
 
     // Getters with JavaDoc
 
     /**
-     * Gets the type of the UID.
+     * Gets the type of the policy store.
      *
-     * @return the type of the UID
+     * @return the type of the policy store
      */
     public String getType() {
         return type;
     }
 
     /**
-     * Gets the identifier string of the UID.
+     * Gets the identifier of the policy store.
      *
-     * @return the identifier string of the UID
+     * @return the identifier of the policy store
      */
     public String getId() {
         return id;
     }
+
+
+    /**
+     * Gets the zoneId of the policy store.
+     *
+     * @return the zoneId of the policy store
+     */
+    public String getZoneId() {
+        return zoneId;
+    }
+
 }

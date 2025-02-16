@@ -18,34 +18,52 @@
 
 package com.permguard.pep.config;
 
-import com.permguard.pep.representation.request.PolicyStoreDetail;
-
 public class PermguardConfig {
     private final String host;
     private final int port;
-    private boolean usePlaintext;
-    private PolicyStoreDetail policyStore;
-    private long applicationId;
+    private final boolean usePlaintext;
 
-    public PermguardConfig() {
-        this.host = "localhost";
-        this.port = 9094;
-        this.usePlaintext = true;
+    private PermguardConfig(Builder builder) {
+        this.host = builder.host;
+        this.port = builder.port;
+        this.usePlaintext = builder.usePlaintext;
     }
 
+    public static class Builder {
+        private String host = "localhost"; // Default host
+        private int port = 9094;        // Default port
+        private boolean usePlaintext = true; // Default usePlaintext
 
-    public PermguardConfig(String host, int port, boolean usePlaintext) {
-        this.host = host;
-        this.port = port;
-        this.usePlaintext = usePlaintext;
-    }
+        /**
+         * Creates a builder instance with the specified host and port.
+         * @param host The host address.
+         * @param port The port number.
+         */
+        public Builder(String host, int port) {
+            this.host = host;
+            this.port = port;
+            this.usePlaintext = true;
+        }
 
-    public PermguardConfig(String host, int port, boolean usePlaintext, PolicyStoreDetail policyStore, long applicationId) {
-        this.host = host;
-        this.port = port;
-        this.usePlaintext = usePlaintext;
-        this.policyStore = policyStore;
-        this.applicationId = applicationId;
+        public Builder host(String host) {
+            this.host = host;
+            return this;
+        }
+
+        public Builder port(int port) {
+            this.port = port;
+            return this;
+        }
+
+        public Builder usePlaintext(boolean usePlaintext) {
+            this.usePlaintext = usePlaintext;
+            return this;
+        }
+
+
+        public PermguardConfig build() {
+            return new PermguardConfig(this);
+        }
     }
 
     public String getHost() {
@@ -58,13 +76,5 @@ public class PermguardConfig {
 
     public boolean isUsePlaintext() {
         return usePlaintext;
-    }
-
-    public PolicyStoreDetail getPolicyStore() {
-        return policyStore;
-    }
-
-    public long getApplicationId() {
-        return applicationId;
     }
 }

@@ -34,22 +34,33 @@ import java.util.Map;
  *     .build();
  * }</pre>
  */
-public class ActionDetail {
+public class Action {
 
     private final String name;
     private final Map<String, Object> properties;
 
-    private ActionDetail(Builder builder) {
+    private Action(Builder builder) {
         this.name = builder.name;
         this.properties = builder.properties;
     }
 
     /**
-     * Builder class for {@link ActionDetail}.
+     * Builder class for {@link Action}.
      */
     public static class Builder {
         private String name;
         private Map<String, Object> properties;
+
+
+        /**
+         * Constructs a new Builder instance with the given name and properties.
+         * @param name the name of the action
+         * @param properties the properties of the action
+         */
+        public Builder(String name, Map<String, Object> properties) {
+            this.name = name;
+            this.properties = new java.util.HashMap<>(properties);
+        }
 
         /**
          * Sets the name of the action.
@@ -74,12 +85,12 @@ public class ActionDetail {
         }
 
         /**
-         * Builds and returns an instance of {@link ActionDetail}.
+         * Builds and returns an instance of {@link Action}.
          *
-         * @return a new instance of {@link ActionDetail}
+         * @return a new instance of {@link Action}
          */
-        public ActionDetail build() {
-            return new ActionDetail(this);
+        public Action build() {
+            return new Action(this);
         }
     }
 

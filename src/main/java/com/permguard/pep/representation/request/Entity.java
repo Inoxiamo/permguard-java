@@ -28,28 +28,33 @@ import java.util.List;
  * <p>
  * Usage example:
  * <pre>{@code
- * EntityDetail entityDetail = new EntityDetail.Builder()
+ * Entity entityDetail = new Entity.Builder()
  *     .schema("cedar")
  *     .items(List.of(item1, item2))
  *     .build();
  * }</pre>
  */
-public class EntityDetail {
+public class Entity {
 
     private final String schema;
-    private final List<ItemDetails> itemDetails;
+    private final List<Item> itemDetails;
 
-    private EntityDetail(Builder builder) {
+    private Entity(Builder builder) {
         this.schema = builder.schema;
         this.itemDetails = builder.itemDetails;
     }
 
     /**
-     * Builder class for {@link EntityDetail}.
+     * Builder class for {@link Entity}.
      */
     public static class Builder {
         private String schema;
-        private List<ItemDetails> itemDetails;
+        private List<Item> itemDetails;
+
+        public Builder(String schema, List<Item> itemDetails) {
+            this.schema = schema;
+            this.itemDetails = itemDetails;
+        }
 
         /**
          * Sets the schema name.
@@ -68,18 +73,18 @@ public class EntityDetail {
          * @param itemDetails the list of item details
          * @return the builder instance
          */
-        public Builder items(List<ItemDetails> itemDetails) {
+        public Builder items(List<Item> itemDetails) {
             this.itemDetails = itemDetails;
             return this;
         }
 
         /**
-         * Builds and returns an instance of {@link EntityDetail}.
+         * Builds and returns an instance of {@link Entity}.
          *
-         * @return a new instance of {@link EntityDetail}
+         * @return a new instance of {@link Entity}
          */
-        public EntityDetail build() {
-            return new EntityDetail(this);
+        public Entity build() {
+            return new Entity(this);
         }
     }
 
@@ -99,7 +104,7 @@ public class EntityDetail {
      *
      * @return the list of item details
      */
-    public List<ItemDetails> getItems() {
+    public List<Item> getItems() {
         return itemDetails;
     }
 }

@@ -37,14 +37,14 @@ import java.util.Map;
  *     .build();
  * }</pre>
  */
-public class EvaluationRequestDetail {
+public class Evaluation {
 
-    private final SubjectDetail subject;
-    private final ResourceDetail resource;
-    private final ActionDetail action;
+    private final Subject subject;
+    private final Resource resource;
+    private final Action action;
     private final Map<String, Object> context;
 
-    private EvaluationRequestDetail(Builder builder) {
+    private Evaluation(Builder builder) {
         this.subject = builder.subject;
         this.resource = builder.resource;
         this.action = builder.action;
@@ -52,13 +52,20 @@ public class EvaluationRequestDetail {
     }
 
     /**
-     * Builder class for {@link EvaluationRequestDetail}.
+     * Builder class for {@link Evaluation}.
      */
     public static class Builder {
-        private SubjectDetail subject;
-        private ResourceDetail resource;
-        private ActionDetail action;
+        private Subject subject;
+        private Resource resource;
+        private Action action;
         private Map<String, Object> context;
+
+        public Builder(Subject subject, Resource resource, Action action, Map<String, Object> context) {
+            this.subject = subject;
+            this.resource = resource;
+            this.action = action;
+            this.context = context;
+        }
 
         /**
          * Sets the subject detail.
@@ -66,7 +73,7 @@ public class EvaluationRequestDetail {
          * @param subject the subject detail
          * @return the builder instance
          */
-        public Builder subject(SubjectDetail subject) {
+        public Builder subject(Subject subject) {
             this.subject = subject;
             return this;
         }
@@ -77,7 +84,7 @@ public class EvaluationRequestDetail {
          * @param resource the resource detail
          * @return the builder instance
          */
-        public Builder resource(ResourceDetail resource) {
+        public Builder resource(Resource resource) {
             this.resource = resource;
             return this;
         }
@@ -88,7 +95,7 @@ public class EvaluationRequestDetail {
          * @param action the action detail
          * @return the builder instance
          */
-        public Builder action(ActionDetail action) {
+        public Builder action(Action action) {
             this.action = action;
             return this;
         }
@@ -105,12 +112,12 @@ public class EvaluationRequestDetail {
         }
 
         /**
-         * Builds and returns an instance of {@link EvaluationRequestDetail}.
+         * Builds and returns an instance of {@link Evaluation}.
          *
-         * @return a new instance of {@link EvaluationRequestDetail}
+         * @return a new instance of {@link Evaluation}
          */
-        public EvaluationRequestDetail build() {
-            return new EvaluationRequestDetail(this);
+        public Evaluation build() {
+            return new Evaluation(this);
         }
     }
 
@@ -121,7 +128,7 @@ public class EvaluationRequestDetail {
      *
      * @return the subject detail
      */
-    public SubjectDetail getSubject() {
+    public Subject getSubject() {
         return subject;
     }
 
@@ -130,7 +137,7 @@ public class EvaluationRequestDetail {
      *
      * @return the resource detail
      */
-    public ResourceDetail getResource() {
+    public Resource getResource() {
         return resource;
     }
 
@@ -139,7 +146,7 @@ public class EvaluationRequestDetail {
      *
      * @return the action detail
      */
-    public ActionDetail getAction() {
+    public Action getAction() {
         return action;
     }
 

@@ -40,17 +40,17 @@ import java.util.Map;
  *     .build();
  * }</pre>
  */
-public class AuthRequestPayload {
+public class Request {
 
-    private final AuthModelDetail authModelDetail;
-    private final SubjectDetail subject;
-    private final ResourceDetail resource;
-    private final ActionDetail action;
-    private final List<EvaluationRequestDetail> evaluations;
+    private final AuthModel authModel;
+    private final Subject subject;
+    private final Resource resource;
+    private final Action action;
+    private final List<Evaluation> evaluations;
     private final Map<String, Object> context;
 
-    private AuthRequestPayload(Builder builder) {
-        this.authModelDetail = builder.authModelDetail;
+    private Request(Builder builder) {
+        this.authModel = builder.authModel;
         this.subject = builder.subject;
         this.resource = builder.resource;
         this.action = builder.action;
@@ -59,24 +59,34 @@ public class AuthRequestPayload {
     }
 
     /**
-     * Builder class for {@link AuthRequestPayload}.
+     * Builder class for {@link Request}.
      */
     public static class Builder {
-        private AuthModelDetail authModelDetail;
-        private SubjectDetail subject;
-        private ResourceDetail resource;
-        private ActionDetail action;
-        private List<EvaluationRequestDetail> evaluations;
+        private AuthModel authModel;
+        private Subject subject;
+        private Resource resource;
+        private Action action;
+        private List<Evaluation> evaluations;
         private Map<String, Object> context;
+
+
+        public Builder(AuthModel authModel, Subject subject, Resource resource, Action action, List<Evaluation> evaluations, Map<String, Object> context) {
+            this.authModel = authModel;
+            this.subject = subject;
+            this.resource = resource;
+            this.action = action;
+            this.evaluations = evaluations;
+            this.context = context;
+        }
 
         /**
          * Sets the authentication context detail.
          *
-         * @param authModelDetail the authentication context detail
+         * @param authModel the authentication context detail
          * @return the builder instance
          */
-        public Builder authModelDetail(AuthModelDetail authModelDetail) {
-            this.authModelDetail = authModelDetail;
+        public Builder authModelDetail(AuthModel authModel) {
+            this.authModel = authModel;
             return this;
         }
 
@@ -86,7 +96,7 @@ public class AuthRequestPayload {
          * @param subject the subject detail
          * @return the builder instance
          */
-        public Builder subject(SubjectDetail subject) {
+        public Builder subject(Subject subject) {
             this.subject = subject;
             return this;
         }
@@ -97,7 +107,7 @@ public class AuthRequestPayload {
          * @param resource the resource detail
          * @return the builder instance
          */
-        public Builder resource(ResourceDetail resource) {
+        public Builder resource(Resource resource) {
             this.resource = resource;
             return this;
         }
@@ -108,7 +118,7 @@ public class AuthRequestPayload {
          * @param action the action detail
          * @return the builder instance
          */
-        public Builder action(ActionDetail action) {
+        public Builder action(Action action) {
             this.action = action;
             return this;
         }
@@ -119,7 +129,7 @@ public class AuthRequestPayload {
          * @param evaluations the list of evaluation request details
          * @return the builder instance
          */
-        public Builder evaluations(List<EvaluationRequestDetail> evaluations) {
+        public Builder evaluations(List<Evaluation> evaluations) {
             this.evaluations = evaluations;
             return this;
         }
@@ -136,12 +146,12 @@ public class AuthRequestPayload {
         }
 
         /**
-         * Builds and returns an instance of {@link AuthRequestPayload}.
+         * Builds and returns an instance of {@link Request}.
          *
-         * @return a new instance of {@link AuthRequestPayload}
+         * @return a new instance of {@link Request}
          */
-        public AuthRequestPayload build() {
-            return new AuthRequestPayload(this);
+        public Request build() {
+            return new Request(this);
         }
     }
 
@@ -152,8 +162,8 @@ public class AuthRequestPayload {
      *
      * @return the authentication context detail
      */
-    public AuthModelDetail getauthModelDetail() {
-        return authModelDetail;
+    public AuthModel getauthModelDetail() {
+        return authModel;
     }
 
     /**
@@ -161,7 +171,7 @@ public class AuthRequestPayload {
      *
      * @return the subject detail
      */
-    public SubjectDetail getSubject() {
+    public Subject getSubject() {
         return subject;
     }
 
@@ -170,7 +180,7 @@ public class AuthRequestPayload {
      *
      * @return the resource detail
      */
-    public ResourceDetail getResource() {
+    public Resource getResource() {
         return resource;
     }
 
@@ -179,7 +189,7 @@ public class AuthRequestPayload {
      *
      * @return the action detail
      */
-    public ActionDetail getAction() {
+    public Action getAction() {
         return action;
     }
 
@@ -188,7 +198,7 @@ public class AuthRequestPayload {
      *
      * @return the list of evaluation request details
      */
-    public List<EvaluationRequestDetail> getEvaluations() {
+    public List<Evaluation> getEvaluations() {
         return evaluations;
     }
 
