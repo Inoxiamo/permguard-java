@@ -20,7 +20,7 @@ package com.permguard.pep.mapping;
 
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
-import com.permguard.pep.proto.AuthorizationCheck;
+import com.permguard.pep.internal.proto.AuthorizationCheck;
 import com.permguard.pep.representation.request.*;
 import com.permguard.pep.representation.response.AuthResponsePayload;
 import com.permguard.pep.representation.response.ContextDetail;

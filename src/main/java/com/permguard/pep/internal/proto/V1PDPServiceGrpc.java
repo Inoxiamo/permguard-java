@@ -1,4 +1,4 @@
-package com.permguard.pep.proto;
+package com.permguard.pep.internal.proto;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
@@ -9,7 +9,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.69.0)",
-    comments = "Source: proto/authorization_check.proto")
+    comments = "Source: proto/v1/authorization_check.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class V1PDPServiceGrpc {
 
@@ -18,29 +18,29 @@ public final class V1PDPServiceGrpc {
   public static final java.lang.String SERVICE_NAME = "policydecisionpoint.V1PDPService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest,
-      com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse> getAuthorizationCheckMethod;
+  private static volatile io.grpc.MethodDescriptor<com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest,
+      com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse> getAuthorizationCheckMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "AuthorizationCheck",
-      requestType = com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest.class,
-      responseType = com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse.class,
+      requestType = com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest.class,
+      responseType = com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest,
-      com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse> getAuthorizationCheckMethod() {
-    io.grpc.MethodDescriptor<com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest, com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse> getAuthorizationCheckMethod;
+  public static io.grpc.MethodDescriptor<com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest,
+      com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse> getAuthorizationCheckMethod() {
+    io.grpc.MethodDescriptor<com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest, com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse> getAuthorizationCheckMethod;
     if ((getAuthorizationCheckMethod = V1PDPServiceGrpc.getAuthorizationCheckMethod) == null) {
       synchronized (V1PDPServiceGrpc.class) {
         if ((getAuthorizationCheckMethod = V1PDPServiceGrpc.getAuthorizationCheckMethod) == null) {
           V1PDPServiceGrpc.getAuthorizationCheckMethod = getAuthorizationCheckMethod =
-              io.grpc.MethodDescriptor.<com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest, com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse>newBuilder()
+              io.grpc.MethodDescriptor.<com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest, com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AuthorizationCheck"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest.getDefaultInstance()))
+                  com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse.getDefaultInstance()))
+                  com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse.getDefaultInstance()))
               .setSchemaDescriptor(new V1PDPServiceMethodDescriptorSupplier("AuthorizationCheck"))
               .build();
         }
@@ -102,8 +102,8 @@ public final class V1PDPServiceGrpc {
 
     /**
      */
-    default void authorizationCheck(com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest request,
-        io.grpc.stub.StreamObserver<com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse> responseObserver) {
+    default void authorizationCheck(com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest request,
+        io.grpc.stub.StreamObserver<com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAuthorizationCheckMethod(), responseObserver);
     }
   }
@@ -143,8 +143,8 @@ public final class V1PDPServiceGrpc {
 
     /**
      */
-    public void authorizationCheck(com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest request,
-        io.grpc.stub.StreamObserver<com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse> responseObserver) {
+    public void authorizationCheck(com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest request,
+        io.grpc.stub.StreamObserver<com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAuthorizationCheckMethod(), getCallOptions()), request, responseObserver);
     }
@@ -171,7 +171,7 @@ public final class V1PDPServiceGrpc {
 
     /**
      */
-    public com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse authorizationCheck(com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest request) {
+    public com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse authorizationCheck(com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAuthorizationCheckMethod(), getCallOptions(), request);
     }
@@ -198,8 +198,8 @@ public final class V1PDPServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse> authorizationCheck(
-        com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse> authorizationCheck(
+        com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAuthorizationCheckMethod(), getCallOptions()), request);
     }
@@ -225,8 +225,8 @@ public final class V1PDPServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_AUTHORIZATION_CHECK:
-          serviceImpl.authorizationCheck((com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest) request,
-              (io.grpc.stub.StreamObserver<com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse>) responseObserver);
+          serviceImpl.authorizationCheck((com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest) request,
+              (io.grpc.stub.StreamObserver<com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -250,8 +250,8 @@ public final class V1PDPServiceGrpc {
           getAuthorizationCheckMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckRequest,
-              com.permguard.pep.proto.AuthorizationCheck.AuthorizationCheckResponse>(
+              com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest,
+              com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse>(
                 service, METHODID_AUTHORIZATION_CHECK)))
         .build();
   }
@@ -262,7 +262,7 @@ public final class V1PDPServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return com.permguard.pep.proto.AuthorizationCheck.getDescriptor();
+      return com.permguard.pep.internal.proto.AuthorizationCheck.getDescriptor();
     }
 
     @java.lang.Override

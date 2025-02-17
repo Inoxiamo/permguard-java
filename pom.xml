@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.permguard.pep</groupId>
     <artifactId>permguard-java</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
     <name>Permguard-java</name>
     <packaging>jar</packaging>
     <properties>
@@ -21,6 +21,7 @@
         <slf4j-simple.version>2.0.16</slf4j-simple.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
     </properties>
     <dependencies>
         <!-- gRPC dependencies -->
@@ -93,6 +94,14 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>${maven-jar-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <excludePackageNames>com.permguard.pep.internal.*</excludePackageNames>
+                </configuration>
             </plugin>
         </plugins>
     </build>

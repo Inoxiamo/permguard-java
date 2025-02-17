@@ -18,17 +18,23 @@
 
 package com.permguard.pep.config;
 
-public class PermguardConfig {
+/**
+ * Configuration class for AuthZeroTrust Config.
+ */
+public class AZConfig {
     private final String host;
     private final int port;
     private final boolean usePlaintext;
 
-    private PermguardConfig(Builder builder) {
+    private AZConfig(Builder builder) {
         this.host = builder.host;
         this.port = builder.port;
         this.usePlaintext = builder.usePlaintext;
     }
 
+    /**
+     * Builder class for AZConfig.
+     */
     public static class Builder {
         private String host = "localhost"; // Default host
         private int port = 9094;        // Default port
@@ -45,35 +51,53 @@ public class PermguardConfig {
             this.usePlaintext = true;
         }
 
+        /**
+         * Sets the host address.
+         * @param host The host address.
+         * @return The builder instance.
+         */
         public Builder host(String host) {
             this.host = host;
             return this;
         }
 
+        /**
+         * Sets the port number.
+         * @param port The port number.
+         * @return The builder instance.
+         */
         public Builder port(int port) {
             this.port = port;
             return this;
         }
 
-        public Builder usePlaintext(boolean usePlaintext) {
-            this.usePlaintext = usePlaintext;
+        public Builder usePlaintext(boolean usePlaintext) { //NOSONAR
             return this;
         }
 
 
-        public PermguardConfig build() {
-            return new PermguardConfig(this);
+        public AZConfig build() {
+            return new AZConfig(this);
         }
     }
 
+    /**
+     * Returns the host address.
+     * @return The host address.
+     */
     public String getHost() {
         return host;
     }
 
+    /**
+     * Returns the port number.
+     * @return The port number.
+     */
     public int getPort() {
         return port;
     }
 
+    /** @return usePlaintext */
     public boolean isUsePlaintext() {
         return usePlaintext;
     }

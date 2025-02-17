@@ -20,7 +20,7 @@ import "google/protobuf/struct.proto";
 
 package policydecisionpoint;
 
-option java_package = "com.permguard.pep.proto";
+option java_package = "com.permguard.pep.internal.proto";
 option java_outer_classname = "AuthorizationCheck";
 
 option go_package = "github.com/permguard/permguard/internal/hosts/api/pdp/v1";
