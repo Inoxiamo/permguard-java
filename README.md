@@ -31,7 +31,7 @@ Add the following dependency and build configuration to your project's `pom.xml`
     <dependency>
         <groupId>com.permguard.pep</groupId>
         <artifactId>permguard-java</artifactId>
-        <version>0.0.4-SNAPSHOT</version>
+        <version>0.0.5-SNAPSHOT</version>
     </dependency>
 </dependencies>
 
@@ -65,28 +65,19 @@ public static void main(String[] args) {
 
     try {
         // Build request details using the builder pattern for clarity.
-        Item itemDetails = new Item.Builder("MagicFarmacia::Platform::BranchInfo", "subscription",
-                Map.of("active", true), List.of()).build();
-        Entity entityDetail1 = new Entity.Builder("cedar", List.of(itemDetails)).build();
-        PolicyStore policyStoreDetail = new PolicyStore.Builder("323437219436", "ledger",
-                "9b8030f0edb949c0b743bd13b8396c15").build();
-        Principal principalDetail = new Principal.Builder("user", "amy.smith@acmecorp.com", "keycloak")
-                .identityToken("eyJhbGciOiJI...").accessToken("eyJhbGciOiJI...").build();
-        Subject subjectDetail = new Subject.Builder("user", "amy.smith@acmecorp.com", "keycloak",
-                Map.of("isSuperUser", true)).build();
-        Resource resourceDetail = new Resource.Builder("MagicFarmacia::Platform::Subscription",
-                "e3a786fd07e24bfa95ba4341d3695ae8", Map.of("isEnabled", true)).build();
-        Action actionDetail = new Action.Builder("MagicFarmacia::Platform::Action::create",
-                Map.of("isEnabled", true)).build();
-        Map<String, Object> context = Map.of(
-                "isSubscriptionActive", true,
-                "time", "2025-01-23T16:17:46+00:00"
-        );
+        PolicyStore policyStoreDetail = new PolicyStore.Builder("323437219436", "ledger", "9b8030f0edb949c0b743bd13b8396c15").build();
+        Principal principalDetail = new Principal.Builder("user", "amy.smith@acmecorp.com", "keycloak").build();
+
+        Item itemDetails = new Item.Builder("MagicFarmacia::Platform::BranchInfo", "subscription", Map.of("active", true), List.of()).build();
+        Entity entityDetail = new Entity.Builder("cedar", List.of(itemDetails)).build();
+
+        Subject subjectDetail = new Subject.Builder("user", "amy.smith@acmecorp.com", "keycloak", Map.of("isSuperUser", true)).build();
+        Resource resourceDetail = new Resource.Builder("MagicFarmacia::Platform::Subscription", "e3a786fd07e24bfa95ba4341d3695ae8", Map.of("isEnabled", true)).build();
+        Action actionDetail = new Action.Builder("MagicFarmacia::Platform::Action::create", Map.of("isEnabled", true)).build();
+        Map<String, Object> context = Map.of("isSubscriptionActive", true, "time", "2025-01-23T16:17:46+00:00");
 
         // Perform the authorization check.
-        AuthResponsePayload response = client.check(policyStoreDetail, actionDetail,
-                principalDetail, resourceDetail, entityDetail1, subjectDetail, context);
-
+        AuthResponsePayload response = client.check(policyStoreDetail, actionDetail, principalDetail, resourceDetail, entityDetail, subjectDetail, context);
         // Handle the response.
         if (response.isDecision()) {
             System.out.println("✅ Request Authorized");

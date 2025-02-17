@@ -17,8 +17,6 @@
         <google-protobuf-java.version>4.29.3</google-protobuf-java.version>
         <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
         <jackson-databind.version>2.17.0</jackson-databind.version>
-        <logback-classic.version>1.5.16</logback-classic.version>
-        <slf4j-simple.version>2.0.16</slf4j-simple.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
         <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
@@ -84,14 +82,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>${maven-jar-plugin.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc-plugin.version}</version>
-                <configuration>
-                    <excludePackageNames>com.permguard.pep.internal.*</excludePackageNames>
-                </configuration>
             </plugin>
         </plugins>
     </build>
