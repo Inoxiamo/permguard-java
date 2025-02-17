@@ -30,9 +30,6 @@ import com.permguard.pep.representation.response.AuthResponsePayload;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Map;
 
 import static com.permguard.pep.mapping.MappingClass.mapAuthResponsePayload;
@@ -42,9 +39,6 @@ import static com.permguard.pep.mapping.MappingClass.mapAuthorizationCheckReques
  * Client for interacting with the Policy Decision Point.
  */
 public class AZClient {
-
-    private static final Logger logger = LoggerFactory.getLogger(AZClient.class);
-
 
     private final AZConfig config;
     private ManagedChannel channel;
@@ -98,21 +92,15 @@ public class AZClient {
             AuthModel authModelDetail = new AuthModel.Builder(entity, policyStore, principal).build();
             Request requestPayload = new Request.Builder(authModelDetail, subject, resource, action
                 , null, context).build();
-            logger.debug("Mapping authorization check request.");
             AuthorizationCheckRequest request = mapAuthorizationCheckRequest(requestPayload);
-            logger.debug("Authorization check request built: {}", request);
-            logger.debug("Sending request to authorization service.");
             AuthorizationCheckResponse response = blockingStub.authorizationCheck(request);
-            logger.debug("Mapping response to AuthResponsePayload.");
             AuthResponsePayload authResponsePayload = mapAuthResponsePayload(response);
             return authResponsePayload;
 
         } catch (StatusRuntimeException e) {
-            logger.error("gRPC error occurred during authorization check: {}", e.getMessage(), e);
             throw new AuthorizationException("Authorization check failed due to gRPC error.", e);
 
         } catch (Exception e) {
-            logger.error("Unexpected error occurred during authorization check: {}", e.getMessage(), e);
             throw new AuthorizationException("An unexpected error occurred.", e);
         }
     }
