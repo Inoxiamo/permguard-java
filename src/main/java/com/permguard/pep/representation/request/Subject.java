@@ -18,142 +18,91 @@
 
 package com.permguard.pep.representation.request;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents the details of a subject, including type, identifier, source, and additional properties.
- * <p>
- * This class uses the Builder pattern for flexible and fluent object creation.
- * <p>
- * Usage example:
+ * Rappresenta il subject della richiesta, ovvero il soggetto a cui si riferisce la richiesta.
+ * Permette di specificare dati obbligatori (ad esempio l'email) e opzionali tramite una mappa.
+ *
+ * Esempio d’uso:
  * <pre>{@code
- * SubjectDetail subjectDetail = new SubjectDetail.Builder()
- *     .type("user")
- *     .id("amy.smith@acmecorp.com")
+ * Subject subject = new Subject.Builder("amy.smith@acmecorp.com")
+ *     .kind("user")
  *     .source("keycloak")
- *     .properties(Map.of("department", "IT", "role", "admin"))
+ *     .addProperty("isSuperUser", true)
  *     .build();
  * }</pre>
  */
-public class Subject {
+@JsonDeserialize(builder = Subject.Builder.class)
+public final class Subject {
 
-    private final String type;
-    private final String id;
+    private final String email;
+    private final String kind;
     private final String source;
     private final Map<String, Object> properties;
 
     private Subject(Builder builder) {
-        this.type = builder.type;
-        this.id = builder.id;
+        this.email = builder.email;
+        this.kind = builder.kind;
         this.source = builder.source;
-        this.properties = builder.properties;
+        this.properties = builder.properties != null
+                ? Collections.unmodifiableMap(new HashMap<>(builder.properties))
+                : Collections.emptyMap();
     }
 
-    /**
-     * Builder class for {@link Subject}.
-     */
+    public String getEmail() {
+        return email;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
+    @JsonPOJOBuilder(withPrefix = "")
     public static class Builder {
-        private String type;
-        private String id;
+        private final String email;
+        private String kind;
         private String source;
-        private Map<String, Object> properties;
+        private Map<String, Object> properties = new HashMap<>();
 
-        public Builder(String type, String id, String source, Map<String, Object> properties) {
-            this.type = type;
-            this.id = id;
-            this.source = source;
-            this.properties = properties;
+        public Builder(String email) {
+            this.email = email;
         }
 
-        /**
-         * Sets the type of the subject.
-         *
-         * @param type the type of the subject
-         * @return the builder instance
-         */
-        public Builder type(String type) {
-            this.type = type;
+        public Builder kind(String kind) {
+            this.kind = kind;
             return this;
         }
 
-        /**
-         * Sets the identifier of the subject.
-         *
-         * @param id the identifier of the subject
-         * @return the builder instance
-         */
-        public Builder id(String id) {
-            this.id = id;
-            return this;
-        }
-
-        /**
-         * Sets the source of the subject.
-         *
-         * @param source the source of the subject
-         * @return the builder instance
-         */
         public Builder source(String source) {
             this.source = source;
             return this;
         }
 
-        /**
-         * Sets the additional properties of the subject.
-         *
-         * @param properties a key-value map of additional properties
-         * @return the builder instance
-         */
         public Builder properties(Map<String, Object> properties) {
-            this.properties = properties;
+            this.properties = new HashMap<>(properties);
             return this;
         }
 
-        /**
-         * Builds and returns an instance of {@link Subject}.
-         *
-         * @return a new instance of {@link Subject}
-         */
+        public Builder addProperty(String key, Object value) {
+            this.properties.put(key, value);
+            return this;
+        }
+
         public Subject build() {
             return new Subject(this);
         }
-    }
-
-    // Getters with JavaDoc
-
-    /**
-     * Gets the type of the subject.
-     *
-     * @return the type of the subject
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Gets the identifier of the subject.
-     *
-     * @return the identifier of the subject
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Gets the source of the subject.
-     *
-     * @return the source of the subject
-     */
-    public String getSource() {
-        return source;
-    }
-
-    /**
-     * Gets the additional properties of the subject.
-     *
-     * @return a key-value map of additional properties
-     */
-    public Map<String, Object> getProperties() {
-        return properties;
     }
 }

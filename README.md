@@ -31,7 +31,7 @@ Add the following dependency and build configuration to your project's `pom.xml`
     <dependency>
         <groupId>com.permguard.pep</groupId>
         <artifactId>permguard-java</artifactId>
-        <version>0.0.5-SNAPSHOT</version>
+        <version>0.0.6-SNAPSHOT</version>
     </dependency>
 </dependencies>
 
@@ -65,19 +65,36 @@ public static void main(String[] args) {
 
     try {
         // Build request details using the builder pattern for clarity.
-        PolicyStore policyStoreDetail = new PolicyStore.Builder("323437219436", "ledger", "9b8030f0edb949c0b743bd13b8396c15").build();
-        Principal principalDetail = new Principal.Builder("user", "amy.smith@acmecorp.com", "keycloak").build();
-
-        Item itemDetails = new Item.Builder("MagicFarmacia::Platform::BranchInfo", "subscription", Map.of("active", true), List.of()).build();
-        Entity entityDetail = new Entity.Builder("cedar", List.of(itemDetails)).build();
-
-        Subject subjectDetail = new Subject.Builder("user", "amy.smith@acmecorp.com", "keycloak", Map.of("isSuperUser", true)).build();
-        Resource resourceDetail = new Resource.Builder("MagicFarmacia::Platform::Subscription", "e3a786fd07e24bfa95ba4341d3695ae8", Map.of("isEnabled", true)).build();
-        Action actionDetail = new Action.Builder("MagicFarmacia::Platform::Action::create", Map.of("isEnabled", true)).build();
-        Map<String, Object> context = Map.of("isSubscriptionActive", true, "time", "2025-01-23T16:17:46+00:00");
+        long zoneId = 931390150069L;
+        String policyCodeId = "6e0f3f08a4814bb5a5ac5bf2329cc650";
+        String mail = "amy.smith@acmecorp.com";
+        AZAtomicRequest atomicRequest = new AZAtomicRequest.Builder(
+                zoneId,
+                policyCodeId,
+                mail,
+                "MagicFarmacia::Platform::Subscription",
+                "MagicFarmacia::Platform::Action::create"
+        )
+        .requestId("1234")
+        .principal(new Principal.Builder(mail).build())
+        .entitiesItems("cedar", List.of(
+                new Entity.Builder("cedar", List.of(
+                        new Item.Builder("MagicFarmacia::Platform::BranchInfo", "subscription",
+                                Map.of("active", true), List.of()).build()
+                )).build()
+        ))
+        .subjectKind("user")
+        .subjectSource("keycloack")
+        .subjectProperty("isSuperUser", true)
+        .resourceID("e3a786fd07e24bfa95ba4341d3695ae8")
+        .resourceProperty("isEnabled", true)
+        .actionProperty("isEnabled", true)
+        .contextProperty("time", "2025-01-23T16:17:46+00:00")
+        .contextProperty("isSubscriptionActive", true)
+        .build();
 
         // Perform the authorization check.
-        AuthResponsePayload response = client.check(policyStoreDetail, actionDetail, principalDetail, resourceDetail, entityDetail, subjectDetail, context);
+        AuthResponsePayload response = client.check(atomicRequest);
         // Handle the response.
         if (response.isDecision()) {
             System.out.println("✅ Request Authorized");

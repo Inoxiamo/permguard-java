@@ -18,99 +18,76 @@
 
 package com.permguard.pep.representation.request;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents the details of an action to be performed.
- * <p>
- * This class includes the action's name and additional properties as a key-value map.
- * It uses the Builder pattern for flexible and fluent construction.
- * <p>
- * Usage example:
+ * Rappresenta i dettagli di un’azione da eseguire, inclusi nome e proprietà aggiuntive.
+ *
+ * Esempio d’uso:
  * <pre>{@code
- * ActionDetail actionDetail = new ActionDetail.Builder()
- *     .name("MagicFarmacia::Platform::Action::create")
- *     .properties(Map.of("key1", "value1", "key2", "value2"))
+ * Action action = Action.builder("MagicFarmacia::Platform::Action::create")
+ *     .property("isEnabled", true)
  *     .build();
  * }</pre>
  */
-public class Action {
+@JsonDeserialize(builder = Action.Builder.class)
+public final class Action {
 
     private final String name;
     private final Map<String, Object> properties;
 
     private Action(Builder builder) {
         this.name = builder.name;
-        this.properties = builder.properties;
+        this.properties = builder.properties != null
+                ? Collections.unmodifiableMap(new HashMap<>(builder.properties))
+                : Collections.emptyMap();
     }
 
-    /**
-     * Builder class for {@link Action}.
-     */
+    public String getName() {
+        return name;
+    }
+
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
+    @JsonPOJOBuilder(withPrefix = "")
     public static class Builder {
         private String name;
-        private Map<String, Object> properties;
+        private Map<String, Object> properties = new HashMap<>();
 
+        public Builder() {}
 
-        /**
-         * Constructs a new Builder instance with the given name and properties.
-         * @param name the name of the action
-         * @param properties the properties of the action
-         */
-        public Builder(String name, Map<String, Object> properties) {
-            this.name = name;
-            this.properties = new java.util.HashMap<>(properties);
-        }
-
-        /**
-         * Sets the name of the action.
-         *
-         * @param name the name of the action
-         * @return the builder instance
-         */
         public Builder name(String name) {
             this.name = name;
             return this;
         }
 
-        /**
-         * Sets the properties of the action.
-         *
-         * @param properties a key-value map of properties for the action
-         * @return the builder instance
-         */
         public Builder properties(Map<String, Object> properties) {
-            this.properties = properties;
+            this.properties = new HashMap<>(properties);
             return this;
         }
 
-        /**
-         * Builds and returns an instance of {@link Action}.
-         *
-         * @return a new instance of {@link Action}
-         */
+        public Builder property(String key, Object value) {
+            this.properties.put(key, value);
+            return this;
+        }
+
         public Action build() {
+            if (name == null) {
+                throw new IllegalStateException("Name is required");
+            }
             return new Action(this);
         }
     }
 
-    // Getters with JavaDoc
-
-    /**
-     * Gets the name of the action.
-     *
-     * @return the name of the action
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets the properties of the action.
-     *
-     * @return a key-value map of properties for the action
-     */
-    public Map<String, Object> getProperties() {
-        return properties;
+    public static Builder builder(String name) {
+        Builder b = new Builder();
+        b.name(name);
+        return b;
     }
 }

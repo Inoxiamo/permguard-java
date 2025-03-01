@@ -18,163 +18,95 @@
 
 package com.permguard.pep.representation.request;
 
-/**
- * Represents the details of a principal, including type, identifier, source, and associated tokens.
- * <p>
- * This class uses the Builder pattern for flexible and fluent object creation.
- * <p>
- * Usage example:
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Represents the principal (the user or entity making the request).
+ *
+ * Permette di specificare dati obbligatori (ad esempio l'email) e opzionali tramite una mappa.
+ *
+ * Esempio d’uso:
  * <pre>{@code
- * PrincipalDetail principalDetail = new PrincipalDetail.Builder()
+ * Principal principal = new Principal.Builder("amy.smith@acmecorp.com")
  *     .type("user")
- *     .id("amy.smith@acmecorp.com")
  *     .source("keycloak")
- *     .identityToken("eyJhbGciOiJI...")
- *     .accessToken("eyJhbGciOiJI...")
+ *     .addData("department", "sales")
+ *     .build();
+ * }</pre>
+ * <pre>{@code
+ *     .addData("department", "sales")
  *     .build();
  * }</pre>
  */
-public class Principal {
+@JsonDeserialize(builder = Principal.Builder.class)
+public final class Principal {
 
+    private final String email;
     private final String type;
-    private final String id;
     private final String source;
-    private final String identityToken;
-    private final String accessToken;
+    private final Map<String, Object> additionalData;
 
     private Principal(Builder builder) {
+        this.email = builder.email;
         this.type = builder.type;
-        this.id = builder.id;
         this.source = builder.source;
-        this.identityToken = builder.identityToken;
-        this.accessToken = builder.accessToken;
+        this.additionalData = builder.additionalData != null
+                ? Collections.unmodifiableMap(new HashMap<>(builder.additionalData))
+                : Collections.emptyMap();
     }
 
-    /**
-     * Builder class for {@link Principal}.
-     */
-    public static class Builder {
-        private String type;
-        private String id;
-        private String source;
-        private String identityToken;
-        private String accessToken;
+    public String getEmail() {
+        return email;
+    }
 
-        public Builder(String type, String id, String source) {
-            this.type = type;
-            this.id = id;
-            this.source = source;
+    public String getType() {
+        return type;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public Map<String, Object> getAdditionalData() {
+        return additionalData;
+    }
+
+    @JsonPOJOBuilder(withPrefix = "")
+    public static class Builder {
+        private final String email;
+        private String type;
+        private String source;
+        private Map<String, Object> additionalData = new HashMap<>();
+
+        public Builder(String email) {
+            this.email = email;
         }
 
-        /**
-         * Sets the type of the principal.
-         *
-         * @param type the type of the principal
-         * @return the builder instance
-         */
         public Builder type(String type) {
             this.type = type;
             return this;
         }
 
-        /**
-         * Sets the identifier of the principal.
-         *
-         * @param id the identifier of the principal
-         * @return the builder instance
-         */
-        public Builder id(String id) {
-            this.id = id;
-            return this;
-        }
-
-        /**
-         * Sets the source of the principal.
-         *
-         * @param source the source of the principal
-         * @return the builder instance
-         */
         public Builder source(String source) {
             this.source = source;
             return this;
         }
 
-        /**
-         * Sets the identity token of the principal.
-         *
-         * @param identityToken the identity token of the principal
-         * @return the builder instance
-         */
-        public Builder identityToken(String identityToken) {
-            this.identityToken = identityToken;
+        public Builder additionalData(Map<String, Object> data) {
+            this.additionalData = new HashMap<>(data);
             return this;
         }
 
-        /**
-         * Sets the access token of the principal.
-         *
-         * @param accessToken the access token of the principal
-         * @return the builder instance
-         */
-        public Builder accessToken(String accessToken) {
-            this.accessToken = accessToken;
+        public Builder addData(String key, Object value) {
+            this.additionalData.put(key, value);
             return this;
         }
 
-        /**
-         * Builds and returns an instance of {@link Principal}.
-         *
-         * @return a new instance of {@link Principal}
-         */
         public Principal build() {
             return new Principal(this);
         }
-    }
-
-    // Getters with JavaDoc
-
-    /**
-     * Gets the type of the principal.
-     *
-     * @return the type of the principal
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Gets the identifier of the principal.
-     *
-     * @return the identifier of the principal
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Gets the source of the principal.
-     *
-     * @return the source of the principal
-     */
-    public String getSource() {
-        return source;
-    }
-
-    /**
-     * Gets the identity token of the principal.
-     *
-     * @return the identity token of the principal
-     */
-    public String getIdentityToken() {
-        return identityToken;
-    }
-
-    /**
-     * Gets the access token of the principal.
-     *
-     * @return the access token of the principal
-     */
-    public String getAccessToken() {
-        return accessToken;
     }
 }

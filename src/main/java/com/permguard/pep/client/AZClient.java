@@ -25,15 +25,12 @@ import com.permguard.pep.exception.AuthorizationException;
 import com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckRequest;
 import com.permguard.pep.internal.proto.AuthorizationCheck.AuthorizationCheckResponse;
 import com.permguard.pep.internal.proto.V1PDPServiceGrpc;
+import com.permguard.pep.mapping.AuthorizationCheckRequestMapper;
 import com.permguard.pep.representation.request.*;
 import com.permguard.pep.representation.response.AuthResponsePayload;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
-import java.util.Map;
-
-import static com.permguard.pep.mapping.MappingClass.mapAuthResponsePayload;
-import static com.permguard.pep.mapping.MappingClass.mapAuthorizationCheckRequest;
 
 /**
  * Client for interacting with the Policy Decision Point.
@@ -42,6 +39,7 @@ public class AZClient {
 
     private final AZConfig config;
     private ManagedChannel channel;
+    private AuthorizationCheckRequestMapper mapper;
     V1PDPServiceGrpc.V1PDPServiceBlockingStub blockingStub;
 
     /**
@@ -58,6 +56,7 @@ public class AZClient {
             builder.usePlaintext();
         }
         this.channel = builder.build();
+        this.mapper = mapper;
         this.blockingStub = V1PDPServiceGrpc.newBlockingStub(channel);
     }
 
@@ -73,36 +72,42 @@ public class AZClient {
     }
 
 
+
     /**
-     * Performs an authorization check against the PDP.
+     * Performs an authorization check against the PDP using a pre-built AZRequest.
      *
-     * @param policyStore the policy store
-     * @param action the action being performed
-     * @param principal the principal performing the action
-     * @param resource the resource being accessed
-     * @param entity entity details
-     * @param subject the subject of the authorization check
+     * @param azRequest the pre-built authorization request
      * @return the authorization response
      * @throws AuthorizationException if there is an error during the authorization check
      */
-    public AuthResponsePayload check(PolicyStore policyStore, Action action, Principal principal
-            , Resource resource, Entity entity, Subject subject, Map<String, Object> context) {
-        try {
-            //TODO: missing evaluation
-            AuthModel authModelDetail = new AuthModel.Builder(entity, policyStore, principal).build();
-            Request requestPayload = new Request.Builder(authModelDetail, subject, resource, action
-                , null, context).build();
-            AuthorizationCheckRequest request = mapAuthorizationCheckRequest(requestPayload);
-            AuthorizationCheckResponse response = blockingStub.authorizationCheck(request);
-            AuthResponsePayload authResponsePayload = mapAuthResponsePayload(response);
-            return authResponsePayload;
+    public AuthResponsePayload check(AZRequest azRequest) {
+            AuthorizationCheckRequest request = mapper.map(azRequest);
+            return getAuthResponsePayload(request);
+    }
 
+    /**
+     * Performs an authorization check against the PDP using a pre-built AZAtomicRequest.
+     *
+     * @param azRequest the pre-built authorization request
+     * @return the authorization response
+     * @throws AuthorizationException if there is an error during the authorization check
+     */
+    public AuthResponsePayload check(AZAtomicRequest azRequest) {
+            AuthorizationCheckRequest request = mapper.map(azRequest);
+            return getAuthResponsePayload(request);
+    }
+
+    private AuthResponsePayload getAuthResponsePayload(AuthorizationCheckRequest request) {
+        try {
+            AuthorizationCheckResponse response = blockingStub.authorizationCheck(request);
+            AuthResponsePayload authResponsePayload = mapper.mapAuthResponsePayload(response);
+            return authResponsePayload;
         } catch (StatusRuntimeException e) {
             throw new AuthorizationException("Authorization check failed due to gRPC error.", e);
-
         } catch (Exception e) {
             throw new AuthorizationException("An unexpected error occurred.", e);
         }
     }
+
 }
 

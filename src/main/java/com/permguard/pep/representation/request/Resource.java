@@ -18,23 +18,25 @@
 
 package com.permguard.pep.representation.request;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents the details of a resource, including its type, identifier, and additional properties.
- * <p>
- * This class uses the Builder pattern for flexible and fluent object creation.
- * <p>
- * Usage example:
+ * Rappresenta i dettagli di una resource, inclusi tipo, identificatore e proprietà aggiuntive.
+ *
+ * Represents the details of a resource, including type, identifier, and additional properties.
  * <pre>{@code
- * ResourceDetail resourceDetail = new ResourceDetail.Builder()
- *     .type("MagicFarmacia::Platform::Subscription")
+ * Resource resource = Resource.builder("MagicFarmacia::Platform::Subscription")
  *     .id("e3a786fd07e24bfa95ba4341d3695ae8")
- *     .properties(Map.of("key1", "value1"))
+ *     .property("isEnabled", true)
  *     .build();
  * }</pre>
  */
-public class Resource {
+@JsonDeserialize(builder = Resource.Builder.class)
+public final class Resource {
 
     private final String type;
     private final String id;
@@ -43,92 +45,64 @@ public class Resource {
     private Resource(Builder builder) {
         this.type = builder.type;
         this.id = builder.id;
-        this.properties = builder.properties;
+        this.properties = builder.properties != null
+                ? Collections.unmodifiableMap(new HashMap<>(builder.properties))
+                : Collections.emptyMap();
     }
 
-    /**
-     * Builder class for {@link Resource}.
-     */
+    public String getType() {
+        return type;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
+    @JsonPOJOBuilder(withPrefix = "")
+
     public static class Builder {
         private String type;
         private String id;
-        private Map<String, Object> properties;
+        private Map<String, Object> properties = new HashMap<>();
 
-        public Builder(String type, String id, Map<String, Object> properties) {
-            this.type = type;
-            this.id = id;
-            this.properties = properties;
-        }
+        public Builder() {}
 
-        /**
-         * Sets the type of the resource.
-         *
-         * @param type the type of the resource
-         * @return the builder instance
-         */
         public Builder type(String type) {
             this.type = type;
             return this;
         }
 
-        /**
-         * Sets the identifier of the resource.
-         *
-         * @param id the identifier of the resource
-         * @return the builder instance
-         */
         public Builder id(String id) {
             this.id = id;
             return this;
         }
 
-        /**
-         * Sets the additional properties of the resource.
-         *
-         * @param properties a key-value map of properties
-         * @return the builder instance
-         */
         public Builder properties(Map<String, Object> properties) {
-            this.properties = properties;
+            this.properties = new HashMap<>(properties);
             return this;
         }
 
-        /**
-         * Builds and returns an instance of {@link Resource}.
-         *
-         * @return a new instance of {@link Resource}
-         */
+        public Builder property(String key, Object value) {
+            this.properties.put(key, value);
+            return this;
+        }
+
         public Resource build() {
+            if (type == null || id == null) {
+                throw new IllegalStateException("Type and id are required");
+            }
             return new Resource(this);
         }
     }
 
-    // Getters with JavaDoc
-
-    /**
-     * Gets the type of the resource.
-     *
-     * @return the type of the resource
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Gets the identifier of the resource.
-     *
-     * @return the identifier of the resource
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Gets the additional properties of the resource.
-     *
-     * @return a key-value map of properties
-     */
-    public Map<String, Object> getProperties() {
-        return properties;
+    public static Builder builder(String type) {
+        Builder b = new Builder();
+        b.type(type);
+        return b;
     }
 }
+

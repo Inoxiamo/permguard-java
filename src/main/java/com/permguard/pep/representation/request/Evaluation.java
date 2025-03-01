@@ -18,144 +18,97 @@
 
 package com.permguard.pep.representation.request;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents the details of an evaluation request.
- * <p>
- * This class encapsulates the subject, resource, action, and additional context
- * required for an evaluation request. It uses the Builder pattern for flexible and
- * fluent construction.
- * <p>
- * Usage example:
+ * Represents an authorization evaluation, associating a Subject, a Resource, and an Action,
+ * with a request identifier and additional context.
+ *
+ * Example usage:
  * <pre>{@code
- * EvaluationRequestDetail evaluationRequestDetail = new EvaluationRequestDetail.Builder()
- *     .subject(subjectDetail)
- *     .resource(resourceDetail)
- *     .action(actionDetail)
- *     .context(Map.of("key", "value"))
+ * Evaluation evaluation = new Evaluation.Builder(subject, resource, action)
+ *     .requestId("request-1234")
+ *     .addContext("time", "2025-01-23T16:17:46+00:00")
  *     .build();
  * }</pre>
  */
-public class Evaluation {
+@JsonDeserialize(builder = Evaluation.Builder.class)
+public final class Evaluation {
 
     private final Subject subject;
     private final Resource resource;
     private final Action action;
+    private final String requestId;
     private final Map<String, Object> context;
 
     private Evaluation(Builder builder) {
         this.subject = builder.subject;
         this.resource = builder.resource;
         this.action = builder.action;
-        this.context = builder.context;
+        this.requestId = builder.requestId;
+        this.context = builder.context != null
+                ? Collections.unmodifiableMap(new HashMap<>(builder.context))
+                : Collections.emptyMap();
     }
 
-    /**
-     * Builder class for {@link Evaluation}.
-     */
-    public static class Builder {
-        private Subject subject;
-        private Resource resource;
-        private Action action;
-        private Map<String, Object> context;
-
-        public Builder(Subject subject, Resource resource, Action action, Map<String, Object> context) {
-            this.subject = subject;
-            this.resource = resource;
-            this.action = action;
-            this.context = context;
-        }
-
-        /**
-         * Sets the subject detail.
-         *
-         * @param subject the subject detail
-         * @return the builder instance
-         */
-        public Builder subject(Subject subject) {
-            this.subject = subject;
-            return this;
-        }
-
-        /**
-         * Sets the resource detail.
-         *
-         * @param resource the resource detail
-         * @return the builder instance
-         */
-        public Builder resource(Resource resource) {
-            this.resource = resource;
-            return this;
-        }
-
-        /**
-         * Sets the action detail.
-         *
-         * @param action the action detail
-         * @return the builder instance
-         */
-        public Builder action(Action action) {
-            this.action = action;
-            return this;
-        }
-
-        /**
-         * Sets the context for the evaluation request.
-         *
-         * @param context a key-value map representing the context
-         * @return the builder instance
-         */
-        public Builder context(Map<String, Object> context) {
-            this.context = context;
-            return this;
-        }
-
-        /**
-         * Builds and returns an instance of {@link Evaluation}.
-         *
-         * @return a new instance of {@link Evaluation}
-         */
-        public Evaluation build() {
-            return new Evaluation(this);
-        }
-    }
-
-    // Getters with JavaDoc
-
-    /**
-     * Gets the subject detail.
-     *
-     * @return the subject detail
-     */
     public Subject getSubject() {
         return subject;
     }
 
-    /**
-     * Gets the resource detail.
-     *
-     * @return the resource detail
-     */
     public Resource getResource() {
         return resource;
     }
 
-    /**
-     * Gets the action detail.
-     *
-     * @return the action detail
-     */
     public Action getAction() {
         return action;
     }
 
-    /**
-     * Gets the context for the evaluation request.
-     *
-     * @return a key-value map representing the context
-     */
+    public String getRequestId() {
+        return requestId;
+    }
+
     public Map<String, Object> getContext() {
         return context;
+    }
+
+    @JsonPOJOBuilder(withPrefix = "")
+    public static class Builder {
+        private final Subject subject;
+        private final Resource resource;
+        private final Action action;
+        private String requestId;
+        private Map<String, Object> context = new HashMap<>();
+
+        public Builder(Subject subject, Resource resource, Action action) {
+            this.subject = subject;
+            this.resource = resource;
+            this.action = action;
+        }
+
+        public Builder requestId(String requestId) {
+            this.requestId = requestId;
+            return this;
+        }
+
+        public Builder context(Map<String, Object> context) {
+            this.context = new HashMap<>(context);
+            return this;
+        }
+
+        public Builder addContext(String key, Object value) {
+            this.context.put(key, value);
+            return this;
+        }
+
+        public Evaluation build() {
+            if (this.requestId == null) {
+                throw new IllegalStateException("requestId is required");
+            }
+            return new Evaluation(this);
+        }
     }
 }
