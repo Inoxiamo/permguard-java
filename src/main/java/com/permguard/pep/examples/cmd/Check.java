@@ -18,6 +18,11 @@ import java.util.Map;
 public class Check {
 
     private static final String JSON_FILE_PATH = "requests/ok_onlyone1.json";
+    public static final long ZONE_ID = 611159836099L;
+    public static final String POLICY_STORE_ID = "f96586c317c74aaaae4ff2ba2fef0459";
+    public static final String EMAIL = "amy.smith@acmecorp.com";
+    public static final String USER = "user";
+    public static final String KEYCLOAK = "keycloak";
 
     public static void main(String[] args) {
         AZConfig config = new AZConfig("localhost", 9094, true);
@@ -67,13 +72,13 @@ public class Check {
 
     public static void checkAtomicRequest(AZClient client) {
         try {
-            long zoneId = 611159836099L;
-            String policyStoreId = "f96586c317c74aaaae4ff2ba2fef0459";
+            long zoneId = ZONE_ID;
+            String policyStoreId = POLICY_STORE_ID;
             String requestId = "abc1";
 
-            Principal principal = new PrincipalBuilder("amy.smith@acmecorp.com")
-                    .withType("user")
-                    .withSource("keycloak")
+            Principal principal = new PrincipalBuilder(EMAIL)
+                    .withType(USER)
+                    .withSource(KEYCLOAK)
                     .build();
 
             Entities entities = new Entities("cedar", List.of(
@@ -84,18 +89,18 @@ public class Check {
                     )
             ));
 
-            // ✅ Build the atomic AZRequest using the exact JSON parameters
+            // Build the atomic AZRequest using the exact JSON parameters
             AZRequest request = new AZAtomicRequestBuilder(
                     zoneId,
                     policyStoreId,
-                    "amy.smith@acmecorp.com",  // Subject type from JSON
+                    EMAIL,  // Subject type from JSON
                     "MagicFarmacia::Platform::Subscription",  // Resource type from JSON
                     "MagicFarmacia::Platform::Action::create"  // Action name from JSON
             )
                     .withRequestId(requestId)
                     .withPrincipal(principal)
                     .withEntitiesItems("cedar", entities)
-                    .withSubjectSource("keycloak")
+                    .withSubjectSource(KEYCLOAK)
                     .withSubjectProperty("isSuperUser", true)
                     .withResourceId("e3a786fd07e24bfa95ba4341d3695ae8")
                     .withResourceProperty("isEnabled", true)
@@ -119,35 +124,35 @@ public class Check {
 
     public static void checkMultipleEvaluationsRequest(AZClient client) {
         try {
-            // ✅ Extract values from JSON (matching your provided data)
-            long zoneId = 611159836099L;
-            String policyStoreId = "f96586c317c74aaaae4ff2ba2fef0459";
+            // Extract values from JSON (matching your provided data)
+            long zoneId = ZONE_ID;
+            String policyStoreId = POLICY_STORE_ID;
             String requestId = "batch-eval-001";
-            String subjectId = "amy.smith@acmecorp.com";
-            String subjectType = "user";
+            String subjectId = EMAIL;
+            String subjectType = USER;
             String resourceId = "e3a786fd07e24bfa95ba4341d3695ae8";
             String resourceType = "MagicFarmacia::Platform::Subscription";
 
-            // ✅ Create Principal
+            // Create Principal
             Principal principal = new PrincipalBuilder(subjectId)
                     .withType(subjectType)
-                    .withSource("keycloak")
+                    .withSource(KEYCLOAK)
                     .build();
 
-            // ✅ Create Subject
+            // Create Subject
             Subject subject = new SubjectBuilder(subjectId)
                     .withType(subjectType)
-                    .withSource("keycloak")
+                    .withSource(KEYCLOAK)
                     .withProperty("isSuperUser", true)
                     .build();
 
-            // ✅ Create Resource
+            // Create Resource
             Resource resource = new ResourceBuilder(resourceType)
                     .withId(resourceId)
                     .withProperty("isEnabled", true)
                     .build();
 
-            // ✅ Create Actions
+            // Create Actions
             Action actionView = new ActionBuilder("MagicFarmacia::Platform::Action::view")
                     .withProperty("isEnabled", true)
                     .build();
@@ -156,13 +161,13 @@ public class Check {
                     .withProperty("isEnabled", true)
                     .build();
 
-            // ✅ Create Context
+            // Create Context
             Map<String, Object> context = Map.of(
                     "time", "2025-01-23T16:17:46+00:00",
                     "isSubscriptionActive", true
             );
 
-            // ✅ Create Evaluations
+            // Create Evaluations
             Evaluation evaluationView = new EvaluationBuilder(subject, resource, actionView)
                     .withRequestId("1234")
                     .withContext(context)
@@ -173,7 +178,7 @@ public class Check {
                     .withContext(context)
                     .build();
 
-            // ✅ Create Entities
+            // Create Entities
             Entities entities = new Entities("cedar", List.of(
                     Map.of(
                             "uid", Map.of("type", "MagicFarmacia::Platform::BranchInfo", "id", "subscription"),
@@ -182,7 +187,7 @@ public class Check {
                     )
             ));
 
-            // ✅ Build the AZRequest with multiple evaluations
+            // Build the AZRequest with multiple evaluations
             AZRequest request = new AZRequestBuilder(zoneId, policyStoreId)
                     .withRequestId(requestId)
                     .withPrincipal(principal)

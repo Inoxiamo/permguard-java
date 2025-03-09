@@ -66,10 +66,7 @@ public class AZClient {
         try {
             // Convert to gRPC format
             AuthorizationCheck.AuthorizationCheckRequest grpcRequest = mapAuthorizationCheckRequest(requestPayload);
-            long requestStartTime = System.currentTimeMillis();
             AuthorizationCheck.AuthorizationCheckResponse grpcResponse = blockingStub.authorizationCheck(grpcRequest);
-            long requestEndTime = System.currentTimeMillis();
-            System.out.println("Request execution time (No Mapping): " + (requestEndTime - requestStartTime) + " ms");
 
             // Convert gRPC response back to AZResponse
             return mapAuthResponsePayload(grpcResponse);
