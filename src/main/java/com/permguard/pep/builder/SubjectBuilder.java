@@ -15,7 +15,7 @@ public class SubjectBuilder {
     private String type = "user"; // Default type
     private String id;
     private String source;
-    private Map<String, Value> properties = new HashMap<>();
+    private Map<String, Object> properties = new HashMap<>();
 
     /**
      * Constructor with required subject ID.
@@ -55,8 +55,8 @@ public class SubjectBuilder {
      * @param value The property value.
      * @return The current builder instance.
      */
-    public SubjectBuilder withProperty(String key, String value) {
-        properties.put(key, Value.newBuilder().setStringValue(value).build());
+    public SubjectBuilder withProperty(String key, Object value) {
+        properties.put(key, value);
         return this;
     }
 
@@ -66,7 +66,6 @@ public class SubjectBuilder {
      * @return A new Subject instance.
      */
     public Subject build() {
-        Struct struct = Struct.newBuilder().putAllFields(properties).build();
-        return new Subject(type, id, source, struct);
+        return new Subject(type, id, source, properties);
     }
 }

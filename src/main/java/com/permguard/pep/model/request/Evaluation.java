@@ -1,6 +1,6 @@
 package com.permguard.pep.model.request;
 
-import com.google.protobuf.Struct;
+import java.util.Map;
 
 /**
  * Represents an evaluation request for an authorization decision.
@@ -10,16 +10,16 @@ public class Evaluation {
     private Subject subject;
     private Resource resource;
     private Action action;
-    private Struct context;
+    private Map<String, Object> context;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public Evaluation() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param requestId The unique request ID for the evaluation.
      * @param subject   The subject associated with the evaluation.
@@ -27,7 +27,7 @@ public class Evaluation {
      * @param action    The action associated with the evaluation.
      * @param context   The additional context for the evaluation.
      */
-    public Evaluation(String requestId, Subject subject, Resource resource, Action action, Struct context) {
+    public Evaluation(String requestId, Subject subject, Resource resource, Action action, Map<String, Object> context) {
         this.requestId = requestId;
         this.subject = subject;
         this.resource = resource;
@@ -112,7 +112,7 @@ public class Evaluation {
      *
      * @return The evaluation context.
      */
-    public Struct getContext() {
+    public Map<String, Object> getContext() {
         return context;
     }
 
@@ -121,7 +121,7 @@ public class Evaluation {
      *
      * @param context The evaluation context.
      */
-    public void setContext(Struct context) {
+    public void setContext(Map<String, Object> context) {
         this.context = context;
     }
 }

@@ -12,6 +12,7 @@ import com.permguard.pep.model.response.AZResponse;
 import com.permguard.pep.model.response.ContextResponse;
 import com.permguard.pep.model.response.EvaluationResponse;
 import com.permguard.pep.model.response.ReasonResponse;
+import com.permguard.pep.utils.GrpcStructMapper;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
@@ -99,7 +100,7 @@ public class AZClient {
             requestBuilder.setAction(mapAction(request.getAction()));
         }
         if (request.getContext() != null) {
-            requestBuilder.setContext(request.getContext()); // Use Struct directly
+            requestBuilder.setContext(GrpcStructMapper.toGrpcStruct(request.getContext())); // Use Struct directly
         }
         if (request.getEvaluations() != null) {
             for (Evaluation eval : request.getEvaluations()) {
@@ -162,7 +163,7 @@ public class AZClient {
                 .setType(subject.getType())
                 .setID(subject.getId())
                 .setSource(subject.getSource())
-                .setProperties(subject.getProperties())
+                .setProperties(GrpcStructMapper.toGrpcStruct(subject.getProperties()))
                 .build();
     }
 
@@ -170,14 +171,14 @@ public class AZClient {
         return AuthorizationCheck.Resource.newBuilder()
                 .setType(resource.getType())
                 .setID(resource.getId())
-                .setProperties(resource.getProperties())
+                .setProperties(GrpcStructMapper.toGrpcStruct(resource.getProperties()))
                 .build();
     }
 
     private AuthorizationCheck.Action mapAction(Action action) {
         return AuthorizationCheck.Action.newBuilder()
                 .setName(action.getName())
-                .setProperties(action.getProperties())
+                .setProperties(GrpcStructMapper.toGrpcStruct(action.getProperties()))
                 .build();
     }
 
@@ -189,7 +190,7 @@ public class AZClient {
                 .setAction(mapAction(evaluation.getAction()));
 
         if (evaluation.getContext() != null) {
-            builder.setContext(evaluation.getContext());
+            builder.setContext(GrpcStructMapper.toGrpcStruct(evaluation.getContext()));
         }
 
         return builder.build();

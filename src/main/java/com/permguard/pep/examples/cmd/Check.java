@@ -1,18 +1,13 @@
 package com.permguard.pep.examples.cmd;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.permguard.pep.builder.AZRequestBuilderFromJson;
 import com.permguard.pep.client.AZClient;
 import com.permguard.pep.config.AZConfig;
 import com.permguard.pep.model.request.AZRequest;
 import com.permguard.pep.model.response.AZResponse;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.stream.Collectors;
 
 /**
  * Utility class for testing authorization requests, equivalent to check.py in Python.
@@ -49,7 +44,7 @@ public class Check {
         try {
             // Load JSON as InputStream from resources folder
             InputStream inputStream = Check.class.getClassLoader().getResourceAsStream(JSON_FILE_PATH);
-            AZRequest request = AZRequestBuilderFromJson.fromJson(inputStream);
+            AZRequest request = objectMapper.readValue(inputStream, AZRequest.class);
             long requestBuildTime = System.currentTimeMillis();
             System.out.println("Request build time: " + (requestBuildTime - startTime) + " ms");
 

@@ -5,6 +5,7 @@ import com.permguard.pep.model.request.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Builder for creating an AZRequest object.
@@ -15,7 +16,7 @@ public class AZRequestBuilder {
     private Subject subject;
     private Resource resource;
     private Action action;
-    private Struct context;
+    private Map<String, Object> context;
     private List<Evaluation> evaluations = new ArrayList<>();
 
     /**
@@ -89,7 +90,7 @@ public class AZRequestBuilder {
      * @param context Additional context for the request.
      * @return The current builder instance.
      */
-    public AZRequestBuilder withContext(Struct context) {
+    public AZRequestBuilder withContext(Map<String, Object> context) {
         this.context = context;
         return this;
     }

@@ -1,10 +1,12 @@
 package com.permguard.pep.builder;
 
-import com.google.protobuf.Struct;
+
 import com.permguard.pep.model.request.Action;
 import com.permguard.pep.model.request.Evaluation;
 import com.permguard.pep.model.request.Resource;
 import com.permguard.pep.model.request.Subject;
+
+import java.util.Map;
 
 /**
  * Builder for creating an Evaluation object.
@@ -14,7 +16,7 @@ public class EvaluationBuilder {
     private Subject subject;
     private Resource resource;
     private Action action;
-    private Struct context;
+    private Map<String, Object> context;
 
     /**
      * Constructor with required subject, resource, and action.
@@ -46,7 +48,7 @@ public class EvaluationBuilder {
      * @param context Additional context for the evaluation.
      * @return The current builder instance.
      */
-    public EvaluationBuilder withContext(Struct context) {
+    public EvaluationBuilder withContext(Map<String, Object> context) {
         this.context = context;
         return this;
     }

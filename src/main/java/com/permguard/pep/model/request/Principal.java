@@ -16,13 +16,13 @@ public class Principal {
     private String accessToken;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public Principal() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param type           The type of the principal.
      * @param id             The unique identifier of the principal.

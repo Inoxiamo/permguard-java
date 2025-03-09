@@ -10,13 +10,13 @@ public class EvaluationResponse {
     private ContextResponse context;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public EvaluationResponse() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param decision  The evaluation decision (true = allowed, false = denied).
      * @param requestId The unique ID of the evaluation request.

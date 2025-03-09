@@ -1,27 +1,28 @@
 package com.permguard.pep.model.request;
 
-import com.google.protobuf.Struct;
+
+import java.util.Map;
 
 /**
  * Represents the action being evaluated in an authorization decision.
  */
 public class Action {
     private String name;
-    private Struct properties;
+    private Map<String, Object> properties;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public Action() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param name       The name of the action.
      * @param properties Optional properties associated with the action.
      */
-    public Action(String name, Struct properties) {
+    public Action(String name, Map<String, Object> properties) {
         this.name = name;
         this.properties = properties;
     }
@@ -49,7 +50,7 @@ public class Action {
      *
      * @return The properties of the action.
      */
-    public Struct getProperties() {
+    public Map<String, Object> getProperties() {
         return properties;
     }
 
@@ -58,7 +59,7 @@ public class Action {
      *
      * @param properties The properties of the action.
      */
-    public void setProperties(Struct properties) {
+    public void setProperties(Map<String, Object> properties) {
         this.properties = properties;
     }
 }

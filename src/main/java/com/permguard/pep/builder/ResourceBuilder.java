@@ -14,7 +14,7 @@ import java.util.Map;
 public class ResourceBuilder {
     private String type;
     private String id;
-    private Map<String, Value> properties = new HashMap<>();
+    private Map<String, Object> properties = new HashMap<>();
 
     /**
      * Constructor with required resource type.
@@ -44,7 +44,7 @@ public class ResourceBuilder {
      * @return The current builder instance.
      */
     public ResourceBuilder withProperty(String key, String value) {
-        properties.put(key, Value.newBuilder().setStringValue(value).build());
+        properties.put(key, value);
         return this;
     }
 
@@ -54,7 +54,6 @@ public class ResourceBuilder {
      * @return A new Resource instance.
      */
     public Resource build() {
-        Struct struct = Struct.newBuilder().putAllFields(properties).build();
-        return new Resource(type, id, struct);
+        return new Resource(type, id, properties);
     }
 }

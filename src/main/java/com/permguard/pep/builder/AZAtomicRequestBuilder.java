@@ -3,6 +3,8 @@ package com.permguard.pep.builder;
 import com.google.protobuf.Struct;
 import com.permguard.pep.model.request.*;
 
+import java.util.Map;
+
 
 /**
  * Builder for creating an atomic AZRequest object.
@@ -83,7 +85,7 @@ public class AZAtomicRequestBuilder {
      * @param context The context for the request.
      * @return The current builder instance.
      */
-    public AZAtomicRequestBuilder withContext(Struct context) {
+    public AZAtomicRequestBuilder withContext(Map<String, Object> context) {
         this.requestBuilder.withContext(context);
         return this;
     }

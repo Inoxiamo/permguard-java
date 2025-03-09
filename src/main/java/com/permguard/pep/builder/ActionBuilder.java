@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class ActionBuilder {
     private String name;
-    private Map<String, Value> properties = new HashMap<>();
+    private Map<String, Object> properties = new HashMap<>();
 
     /**
      * Constructor with required action name.
@@ -41,7 +41,6 @@ public class ActionBuilder {
      * @return A new Action instance.
      */
     public Action build() {
-        Struct struct = Struct.newBuilder().putAllFields(properties).build();
-        return new Action(name, struct);
+        return new Action(name, properties);
     }
 }

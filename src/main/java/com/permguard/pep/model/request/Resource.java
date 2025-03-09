@@ -1,7 +1,7 @@
 package com.permguard.pep.model.request;
 
 
-import com.google.protobuf.Struct;
+import java.util.Map;
 
 /**
  * Represents the resource entity on which the authorization decision is made.
@@ -9,22 +9,22 @@ import com.google.protobuf.Struct;
 public class Resource {
     private String type;
     private String id;
-    private Struct properties;
+    private Map<String, Object> properties;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public Resource() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param type       The type of the resource.
      * @param id         The unique identifier of the resource.
      * @param properties Optional properties associated with the resource.
      */
-    public Resource(String type, String id, Struct properties) {
+    public Resource(String type, String id, Map<String, Object> properties) {
         this.type = type;
         this.id = id;
         this.properties = properties;
@@ -71,7 +71,7 @@ public class Resource {
      *
      * @return The properties of the resource.
      */
-    public Struct getProperties() {
+    public Map<String, Object> getProperties() {
         return properties;
     }
 
@@ -80,7 +80,7 @@ public class Resource {
      *
      * @param properties The properties of the resource.
      */
-    public void setProperties(Struct properties) {
+    public void setProperties(Map<String, Object> properties) {
         this.properties = properties;
     }
 }

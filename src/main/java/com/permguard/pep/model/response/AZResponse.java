@@ -13,13 +13,13 @@ public class AZResponse {
     private List<EvaluationResponse> evaluations;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public AZResponse() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param decision    The authorization decision (true = allowed, false = denied).
      * @param requestId   The unique ID of the request.

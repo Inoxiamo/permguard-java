@@ -1,8 +1,7 @@
 package com.permguard.pep.model.request;
 
-import com.google.protobuf.Struct;
-
 import java.util.List;
+import java.util.Map;
 
 /**
  * Represents a collection of entities that are provided in the context
@@ -10,21 +9,21 @@ import java.util.List;
  */
 public class Entities {
     private String schema;
-    private List<Struct> items;
+    private List<Map<String, Object>> items;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public Entities() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param schema The schema associated with the entities.
-     * @param items  The list of entity structures.
+     * @param items  The list of entity Map<String, Object>ures.
      */
-    public Entities(String schema, List<Struct> items) {
+    public Entities(String schema, List<Map<String, Object>> items) {
         this.schema = schema;
         this.items = items;
     }
@@ -52,7 +51,7 @@ public class Entities {
      *
      * @return The list of entity items.
      */
-    public List<Struct> getItems() {
+    public List<Map<String, Object>> getItems() {
         return items;
     }
 
@@ -61,7 +60,7 @@ public class Entities {
      *
      * @param items The list of entity items.
      */
-    public void setItems(List<Struct> items) {
+    public void setItems(List<Map<String, Object>> items) {
         this.items = items;
     }
 }

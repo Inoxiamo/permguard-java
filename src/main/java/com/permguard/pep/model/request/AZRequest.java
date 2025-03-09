@@ -2,11 +2,9 @@ package com.permguard.pep.model.request;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.protobuf.Struct;
-import com.google.protobuf.util.JsonFormat;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Represents an authorization check request.
@@ -21,17 +19,17 @@ public class AZRequest {
     private Action action;
 
     @JsonProperty("context")
-    private Struct context;
+    private Map<String, Object> context;
     private List<Evaluation> evaluations;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public AZRequest() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param requestId          The unique request ID.
      * @param authorizationModel The authorization model used for evaluation.
@@ -48,7 +46,7 @@ public class AZRequest {
             @JsonProperty("subject") Subject subject,
             @JsonProperty("resource") Resource resource,
             @JsonProperty("action") Action action,
-            @JsonProperty("context") Struct context,
+            @JsonProperty("context") Map<String, Object> context,
             @JsonProperty("evaluations") List<Evaluation> evaluations) {
         this.requestId = requestId;
         this.authorizationModel = authorizationModel;
@@ -155,7 +153,7 @@ public class AZRequest {
      *
      * @return The context.
      */
-    public Struct getContext() {
+    public Map<String, Object> getContext() {
         return context;
     }
 
@@ -164,7 +162,7 @@ public class AZRequest {
      *
      * @param context The context.
      */
-    public void setContext(Struct context) {
+    public void setContext(Map<String, Object> context) {
         this.context = context;
     }
 
@@ -184,22 +182,5 @@ public class AZRequest {
      */
     public void setEvaluations(List<Evaluation> evaluations) {
         this.evaluations = evaluations;
-    }
-
-
-     /**
-     * Parses a JSON string into a Protobuf Struct.
-     *
-     * @param json JSON representation of the context.
-     * @return Parsed Struct or empty Struct if parsing fails.
-     */
-    private Struct parseContext(String json) {
-        Struct.Builder structBuilder = Struct.newBuilder();
-        try {
-            JsonFormat.parser().merge(json, structBuilder);
-        } catch (IOException e) {
-            System.err.println("❌ Failed to parse context JSON into Struct: " + e.getMessage());
-        }
-        return structBuilder.build();
     }
 }

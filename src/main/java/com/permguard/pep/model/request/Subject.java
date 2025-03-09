@@ -1,6 +1,6 @@
 package com.permguard.pep.model.request;
 
-import com.google.protobuf.Struct;
+import java.util.Map;
 
 /**
  * Represents the subject entity on which the authorization decision is made.
@@ -9,23 +9,23 @@ public class Subject {
     private String type;
     private String id;
     private String source;
-    private Struct properties;
+    private Map<String, Object> properties;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public Subject() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param type       The type of the subject.
      * @param id         The unique identifier of the subject.
      * @param source     The source system of the subject.
      * @param properties Optional properties associated with the subject.
      */
-    public Subject(String type, String id, String source, Struct properties) {
+    public Subject(String type, String id, String source, Map<String, Object> properties) {
         this.type = type;
         this.id = id;
         this.source = source;
@@ -91,7 +91,7 @@ public class Subject {
      *
      * @return The properties of the subject.
      */
-    public Struct getProperties() {
+    public Map<String, Object> getProperties() {
         return properties;
     }
 
@@ -100,7 +100,7 @@ public class Subject {
      *
      * @param properties The properties of the subject.
      */
-    public void setProperties(Struct properties) {
+    public void setProperties(Map<String, Object> properties) {
         this.properties = properties;
     }
 }

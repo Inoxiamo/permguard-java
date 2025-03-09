@@ -16,13 +16,13 @@ public class AZModel {
     private Entities entities;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public AZModel() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param zoneId       The ID of the authorization zone.
      * @param policyStore  The policy store associated with the authorization model.

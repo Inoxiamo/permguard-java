@@ -10,13 +10,13 @@ public class ContextResponse {
     private ReasonResponse reasonUser;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public ContextResponse() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param id          The unique context ID.
      * @param reasonAdmin The reason for the decision provided to administrators.

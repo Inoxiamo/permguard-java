@@ -9,13 +9,13 @@ public class PolicyStore {
     private String id;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public PolicyStore() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param type The type of the policy store.
      * @param id   The identifier of the policy store.

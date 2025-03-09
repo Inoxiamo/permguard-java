@@ -8,13 +8,13 @@ public class ReasonResponse {
     private String message;
 
     /**
-     * Default constructor.
+     * Default conMap<String, Object>or.
      */
     public ReasonResponse() {
     }
 
     /**
-     * Constructor with parameters.
+     * ConMap<String, Object>or with parameters.
      *
      * @param code    The response code associated with the decision.
      * @param message The detailed message explaining the decision.
