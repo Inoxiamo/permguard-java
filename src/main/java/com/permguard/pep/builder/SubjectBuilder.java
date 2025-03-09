@@ -1,8 +1,6 @@
 package com.permguard.pep.builder;
 
 
-import com.google.protobuf.Struct;
-import com.google.protobuf.Value;
 import com.permguard.pep.model.request.Subject;
 
 import java.util.HashMap;

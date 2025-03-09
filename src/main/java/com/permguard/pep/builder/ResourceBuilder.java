@@ -1,8 +1,6 @@
 package com.permguard.pep.builder;
 
 
-import com.google.protobuf.Struct;
-import com.google.protobuf.Value;
 import com.permguard.pep.model.request.Resource;
 
 import java.util.HashMap;
@@ -43,7 +41,7 @@ public class ResourceBuilder {
      * @param value The property value.
      * @return The current builder instance.
      */
-    public ResourceBuilder withProperty(String key, String value) {
+    public ResourceBuilder withProperty(String key, Object value) {
         properties.put(key, value);
         return this;
     }

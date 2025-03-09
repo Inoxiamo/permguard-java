@@ -31,7 +31,7 @@ Add the following dependency and build configuration to your project's `pom.xml`
     <dependency>
         <groupId>com.permguard.pep</groupId>
         <artifactId>permguard-java</artifactId>
-        <version>0.0.5-SNAPSHOT</version>
+        <version>0.0.1</version>
     </dependency>
 </dependencies>
 
@@ -59,38 +59,57 @@ Below is a sample Java `main` method demonstrating how to create a Permguard cli
 ```java
 public static void main(String[] args) {
     // Create and configure the Permguard client.
-    AZClient client = new AZClient(
-            new AZConfig.Builder("localhost", 9094).build()
-    );
+    AZConfig config = new AZConfig("localhost", 9094, true);
+    AZClient client = new AZClient(config);
 
-    try {
-        // Build request details using the builder pattern for clarity.
-        PolicyStore policyStoreDetail = new PolicyStore.Builder("323437219436", "ledger", "9b8030f0edb949c0b743bd13b8396c15").build();
-        Principal principalDetail = new Principal.Builder("user", "amy.smith@acmecorp.com", "keycloak").build();
+    long zoneId = 611159836099L;
+            String policyStoreId = "f96586c317c74aaaae4ff2ba2fef0459";
+            String requestId = "abc1";
 
-        Item itemDetails = new Item.Builder("MagicFarmacia::Platform::BranchInfo", "subscription", Map.of("active", true), List.of()).build();
-        Entity entityDetail = new Entity.Builder("cedar", List.of(itemDetails)).build();
+            Principal principal = new PrincipalBuilder("amy.smith@acmecorp.com")
+                    .withType("user")
+                    .withSource("keycloak")
+                    .build();
 
-        Subject subjectDetail = new Subject.Builder("user", "amy.smith@acmecorp.com", "keycloak", Map.of("isSuperUser", true)).build();
-        Resource resourceDetail = new Resource.Builder("MagicFarmacia::Platform::Subscription", "e3a786fd07e24bfa95ba4341d3695ae8", Map.of("isEnabled", true)).build();
-        Action actionDetail = new Action.Builder("MagicFarmacia::Platform::Action::create", Map.of("isEnabled", true)).build();
-        Map<String, Object> context = Map.of("isSubscriptionActive", true, "time", "2025-01-23T16:17:46+00:00");
+            Entities entities = new Entities("cedar", List.of(
+                    Map.of(
+                            "uid", Map.of("type", "MagicFarmacia::Platform::BranchInfo", "id", "subscription"),
+                            "attrs", Map.of("active", true),
+                            "parents", List.of()
+                    )
+            ));
 
-        // Perform the authorization check.
-        AuthResponsePayload response = client.check(policyStoreDetail, actionDetail, principalDetail, resourceDetail, entityDetail, subjectDetail, context);
-        // Handle the response.
-        if (response.isDecision()) {
-            System.out.println("✅ Request Authorized");
-        } else {
-            System.out.println("❌ Request Not Authorized");
-        }
-    } catch (Exception e) {
-        System.err.println("Error managing request: " + e.getMessage());
-        e.printStackTrace();
-    } finally {
-        // Close the client.
-        client.shutdown();
-    }
+            // ✅ Build the atomic AZRequest using the exact JSON parameters
+            AZRequest request = new AZAtomicRequestBuilder(
+                    zoneId,
+                    policyStoreId,
+                    "amy.smith@acmecorp.com",  // Subject type from JSON
+                    "MagicFarmacia::Platform::Subscription",  // Resource type from JSON
+                    "MagicFarmacia::Platform::Action::create"  // Action name from JSON
+            )
+                    .withRequestId(requestId)
+                    .withPrincipal(principal)
+                    .withEntitiesItems("cedar", entities)
+                    .withSubjectSource("keycloak")
+                    .withSubjectProperty("isSuperUser", true)
+                    .withResourceId("e3a786fd07e24bfa95ba4341d3695ae8")
+                    .withResourceProperty("isEnabled", true)
+                    .withActionProperty("isEnabled", true)
+                    .withContextProperty("time", "2025-01-23T16:17:46+00:00")
+                    .withContextProperty("isSubscriptionActive", true)
+                    .build();
+
+            AZResponse response = client.check(request);
+            if (response == null) {
+                System.out.println("❌ Authorization request failed.");
+                return;
+            }
+    
+            if (response.isDecision()) {
+                System.out.println("✅ Authorization Permitted");
+            } else {
+                System.out.println("❌ Authorization request failed.");
+            }
 }
 ```
 
@@ -101,9 +120,8 @@ public static void main(String[] args) {
 The SDK uses the `AZConfig` class to hold connection parameters for your Permguard PDP service. For example:
 
 ```java
-AZConfig config = new AZConfig.Builder("localhost", 9094)
-    .usePlaintext(true) // set to true to use plaintext communication
-    .build();
+    AZConfig config = new AZConfig("localhost", 9094, true);
+    AZClient client = new AZClient(config);
 ```
 
 - **host**: The hostname or IP address of your PDP service.

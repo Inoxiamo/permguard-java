@@ -1,6 +1,5 @@
 package com.permguard.pep.builder;
 
-import com.google.protobuf.Struct;
 import com.permguard.pep.model.request.*;
 
 import java.util.ArrayList;

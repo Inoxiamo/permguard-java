@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.permguard.pep</groupId>
     <artifactId>permguard-java</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>Permguard-java</name>
     <packaging>jar</packaging>
     <properties>
@@ -47,11 +47,6 @@
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java-util</artifactId>
             <version>${google-protobuf-java.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.hubspot.jackson</groupId>
-            <artifactId>jackson-datatype-protobuf</artifactId>
-            <version>0.9.17</version>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>

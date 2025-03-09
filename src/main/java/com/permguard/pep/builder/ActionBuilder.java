@@ -1,7 +1,5 @@
 package com.permguard.pep.builder;
 
-import com.google.protobuf.Struct;
-import com.google.protobuf.Value;
 import com.permguard.pep.model.request.Action;
 
 import java.util.HashMap;
@@ -30,8 +28,8 @@ public class ActionBuilder {
      * @param value The property value.
      * @return The current builder instance.
      */
-    public ActionBuilder withProperty(String key, String value) {
-        properties.put(key, Value.newBuilder().setStringValue(value).build());
+    public ActionBuilder withProperty(String key, Object value) {
+        properties.put(key, value);
         return this;
     }
 
