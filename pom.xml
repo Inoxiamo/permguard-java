@@ -10,7 +10,7 @@
         <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <grpc.version>1.70.0</grpc.version>
+        <grpc.version>1.71.0</grpc.version>
         <protobuf.version>3.23.4</protobuf.version>
         <mokito.version>5.15.2</mokito.version>
         <junit.version>5.10.0</junit.version>
@@ -42,6 +42,16 @@
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
             <version>${google-protobuf-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java-util</artifactId>
+            <version>${google-protobuf-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hubspot.jackson</groupId>
+            <artifactId>jackson-datatype-protobuf</artifactId>
+            <version>0.9.17</version>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
