@@ -1,9 +1,9 @@
 {
   "authorization_model": {
-    "zone_id": 611159836099,
+    "zone_id": 544318606270,
     "policy_store": {
-      "type": "ledger",
-      "id": "f96586c317c74aaaae4ff2ba2fef0459"
+      "kind": "ledger",
+      "id": "9f9c326d95644da5bba9deb4f10aad1a"
     },
     "principal": {
       "type": "user",
@@ -28,8 +28,8 @@
   },
   "request_id": "abc1",
   "subject": {
-    "type": "user",
-    "id": "amy.smith@acmecorp.com",
+    "type": "role-actor",
+    "id": "platform-creator",
     "source": "keycloak",
     "properties": {
       "isSuperUser": true

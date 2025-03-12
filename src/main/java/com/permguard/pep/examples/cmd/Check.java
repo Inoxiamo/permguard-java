@@ -36,11 +36,12 @@ import java.util.Map;
 public class Check {
 
     private static final String JSON_FILE_PATH = "requests/ok_onlyone1.json";
-    public static final long ZONE_ID = 611159836099L;
-    public static final String POLICY_STORE_ID = "f96586c317c74aaaae4ff2ba2fef0459";
+    public static final long ZONE_ID = 544318606270L;
+    public static final String POLICY_STORE_ID = "9f9c326d95644da5bba9deb4f10aad1a";
     public static final String EMAIL = "amy.smith@acmecorp.com";
     public static final String USER = "user";
     public static final String KEYCLOAK = "keycloak";
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public static void main(String[] args) {
         AZConfig config = new AZConfig("localhost", 9094, true);
@@ -68,7 +69,6 @@ public class Check {
      * @param client The AZClient instance to send the request.
      */
     public static void checkJsonRequest(AZClient client) {
-        ObjectMapper objectMapper = new ObjectMapper();
         try {
             // Load JSON as InputStream from resources folder
             InputStream inputStream = Check.class.getClassLoader().getResourceAsStream(JSON_FILE_PATH);
@@ -111,7 +111,7 @@ public class Check {
             AZRequest request = new AZAtomicRequestBuilder(
                     zoneId,
                     policyStoreId,
-                    EMAIL,  // Subject type from JSON
+                    "platform-creator",  // Subject id from JSON
                     "MagicFarmacia::Platform::Subscription",  // Resource type from JSON
                     "MagicFarmacia::Platform::Action::create"  // Action name from JSON
             )
@@ -146,8 +146,8 @@ public class Check {
             long zoneId = ZONE_ID;
             String policyStoreId = POLICY_STORE_ID;
             String requestId = "batch-eval-001";
-            String subjectId = EMAIL;
-            String subjectType = USER;
+            String subjectId = "platform-creator";
+            String subjectType = "role-actor";
             String resourceId = "e3a786fd07e24bfa95ba4341d3695ae8";
             String resourceType = "MagicFarmacia::Platform::Subscription";
 
