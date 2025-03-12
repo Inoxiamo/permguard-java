@@ -106,7 +106,7 @@ public class AZClient {
     private AuthorizationCheck.AuthorizationCheckRequest mapAuthorizationCheckRequest(AZRequest request) {
         AuthorizationCheck.AuthorizationCheckRequest.Builder requestBuilder = AuthorizationCheck.AuthorizationCheckRequest.newBuilder()
                 .setRequestID(request.getRequestId() != null ? request.getRequestId() : "")
-                .setAuthorizationmodel(mapAuthorizationModel(request.getAuthorizationModel()));
+                .setAuthorizationModel(mapAuthorizationModel(request.getAuthorizationModel()));
 
         if (request.getSubject() != null) {
             requestBuilder.setSubject(mapSubject(request.getSubject()));
@@ -146,8 +146,8 @@ public class AZClient {
 
     /** MAPPING HELPERS **/
 
-    private AuthorizationCheck.AuthorizationmodelRequest mapAuthorizationModel(AZModel model) {
-        return AuthorizationCheck.AuthorizationmodelRequest.newBuilder()
+    private AuthorizationCheck.AuthorizationModelRequest mapAuthorizationModel(AZModel model) {
+        return AuthorizationCheck.AuthorizationModelRequest.newBuilder()
                 .setZoneID(model.getZoneId())
                 .setPolicyStore(mapPolicyStore(model.getPolicyStore()))
                 .setPrincipal(mapPrincipal(model.getPrincipal()))
@@ -157,7 +157,7 @@ public class AZClient {
 
     private AuthorizationCheck.PolicyStore mapPolicyStore(PolicyStore store) {
         return AuthorizationCheck.PolicyStore.newBuilder()
-                .setType(store.getType())
+                .setKind(store.getKind())
                 .setID(store.getId())
                 .build();
     }

@@ -83,3 +83,62 @@ Before creating a pull request, please ensure that your changes are tested and t
 - Code cannot be reverted if you by mistake commit any sensitive information, so please make sure to not commit any sensitive information.
 - Do not add third-party content in-line without attribution. Use links where possible.
 - Make sure the development guidance is followed.
+
+---
+
+# Generating Java Code from Protocol Buffers
+
+To generate Java code from your `.proto` files, follow these steps:
+
+1. **Download the `protoc-gen-grpc-java` Plugin:**
+
+ The `protoc-gen-grpc-java` plugin is essential for generating gRPC Java interfaces from `.proto` files. To obtain the appropriate version for your operating system:
+
+   - **Maven Central Repository:** Visit the [Maven Central Repository](https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/) and navigate to the desired version. Within the version directory, locate and download the binary compatible with your operating system.
+
+   Ensure that the downloaded `protoc-gen-grpc-java` binary is executable and accessible in your system's `PATH`.
+
+2. **Add Java Options to Your `.proto` File:**
+
+   To specify the Java package and the outer class name for the generated code, include the following options in your `.proto` file:
+    
+    * `option java_package = "com.permguard.pep.internal.proto";`
+    * `option java_outer_classname = "AuthorizationCheck";`
+
+   ```proto
+    package policydecisionpoint;
+  
+    option go_package = "github.com/permguard/permguard/internal/hosts/api/pdp/v1";
+    
+    //HERE
+    option java_package = "com.permguard.pep.internal.proto";
+    option java_outer_classname = "AuthorizationCheck";
+   
+    // PolicyStore is the location where policies are maintained.
+    message PolicyStore {
+        string Kind = 1;
+        string ID = 2;
+    }```
+  
+  These options ensure that the generated Java classes are placed in the correct package and have the desired class names. 
+
+3. **Generate Java Code Using protoc**:
+
+    Use the `protoc` compiler along with the downloaded `protoc-gen-grpc-java` plugin to generate the Java code. Replace `/path/to/protoc-gen-grpc-java` with the actual path to the downloaded plugin:
+
+  ```shell
+  protoc \
+  --plugin=protoc-gen-grpc-java=/path/to/protoc-gen-grpc-java \
+  -I=src/main/proto \
+  --java_out=src/main/java \
+  --grpc-java_out=src/main/java \
+  src/main/proto/v1/authorization_check.proto
+  ```
+  
+  This command specifies:
+  * The plugin to use for generating gRPC Java code.
+  * The input directory containing your `.proto` files (`-I=src/main/proto`).
+  * The output directory for the generated Java code (`--java_out=src/main/java` and `--grpc-java_out=src/main/java`).
+  * The specific `.proto` file to process (`src/main/proto/v1/authorization_check.proto`).
+
+By following these steps, you can generate the necessary Java classes from your Protocol Buffers definitions.

@@ -1,4 +1,4 @@
-// Copyright 2024 Nitro Agility S.r.l.
+// Copyright 2025 Nitro Agility S.r.l.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,14 +20,14 @@ import "google/protobuf/struct.proto";
 
 package policydecisionpoint;
 
+option go_package = "github.com/permguard/permguard/internal/hosts/api/pdp/v1";
+
 option java_package = "com.permguard.pep.internal.proto";
 option java_outer_classname = "AuthorizationCheck";
 
-option go_package = "github.com/permguard/permguard/internal/hosts/api/pdp/v1";
-
 // PolicyStore is the location where policies are maintained.
 message PolicyStore {
-	string Type = 1;
+	string Kind = 1;
 	string ID = 2;
 }
 

@@ -23,7 +23,7 @@ package com.permguard.pep.model.request;
  * It includes the type of policy store and its identifier.
  */
 public class PolicyStore {
-    private String type;
+    private String kind;
     private String id;
 
     /**
@@ -35,11 +35,11 @@ public class PolicyStore {
     /**
      * ConMap<String, Object>or with parameters.
      *
-     * @param type The type of the policy store.
+     * @param kind The type of the policy store.
      * @param id   The identifier of the policy store.
      */
-    public PolicyStore(String type, String id) {
-        this.type = type;
+    public PolicyStore(String kind, String id) {
+        this.kind = kind;
         this.id = id;
     }
 
@@ -48,17 +48,17 @@ public class PolicyStore {
      *
      * @return The type of the policy store.
      */
-    public String getType() {
-        return type;
+    public String getKind() {
+        return kind;
     }
 
     /**
      * Sets the policy store type.
      *
-     * @param type The type of the policy store.
+     * @param kind The type of the policy store.
      */
-    public void setType(String type) {
-        this.type = type;
+    public void setKind(String kind) {
+        this.kind = kind;
     }
 
     /**
