@@ -16,7 +16,7 @@
  *  SPDX-License-Identifier: Apache-2.0
   */
 
-package com.permguard.pep.examples.cmd;
+package com.permguard.example;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.permguard.pep.builder.*;
@@ -44,13 +44,12 @@ public class Check {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public static void main(String[] args) {
+
+
         AZConfig config = new AZConfig("localhost", 9094, true);
         AZClient client = new AZClient(config);
 
-
-
-
-        System.out.println("🔹 Running checkJsonRequest()");
+        System.out.println("\n🔹 Running checkJsonRequest()");
         checkJsonRequest(client);
 
         System.out.println("\n🔹 Running checkAtomicRequest()");
@@ -70,9 +69,13 @@ public class Check {
      */
     public static void checkJsonRequest(AZClient client) {
         try {
-            // Load JSON as InputStream from resources folder
+            // Load JSON as InputStream from resources folder and print its content
             InputStream inputStream = Check.class.getClassLoader().getResourceAsStream(JSON_FILE_PATH);
             AZRequest request = objectMapper.readValue(inputStream, AZRequest.class);
+            System.out.println("Request Content:");
+            System.out.println(objectMapper.writeValueAsString(request));
+            inputStream.close();
+
             long requestStartTime = System.currentTimeMillis();
             AZResponse response = client.check(request);
             long requestEndTime = System.currentTimeMillis();
@@ -80,6 +83,7 @@ public class Check {
             System.out.println("Request execution time: " + (requestEndTime - requestStartTime) + " ms");
             printAuthorizationResult(response);
         } catch (IOException e) {
+            e.printStackTrace();
             System.err.println("❌ Error loading JSON request: " + e.getMessage());
         }
     }

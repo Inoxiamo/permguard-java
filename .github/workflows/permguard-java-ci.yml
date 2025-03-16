@@ -42,6 +42,7 @@ jobs:
       - name: Set version
         run: mvn versions:set -DnewVersion=${GITHUB_REF#refs/tags/v}
       - name: Publish package
+        working-directory: sdk
         run: mvn -P release --batch-mode deploy -DskipTests
         env:
           MAVEN_USERNAME: ${{ secrets.CENTRAL_TOKEN_USERNAME }}
