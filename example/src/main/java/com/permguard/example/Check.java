@@ -36,8 +36,8 @@ import java.util.Map;
 public class Check {
 
     private static final String JSON_FILE_PATH = "requests/ok_onlyone1.json";
-    public static final long ZONE_ID = 544318606270L;
-    public static final String POLICY_STORE_ID = "9f9c326d95644da5bba9deb4f10aad1a";
+    public static final long ZONE_ID = 646309364259L;
+    public static final String POLICY_STORE_ID = "917e468442634c5486319ca6f09475e8";
     public static final String EMAIL = "amy.smith@acmecorp.com";
     public static final String USER = "user";
     public static final String KEYCLOAK = "keycloak";
