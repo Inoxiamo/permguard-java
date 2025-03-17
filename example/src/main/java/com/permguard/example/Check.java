@@ -72,8 +72,6 @@ public class Check {
             // Load JSON as InputStream from resources folder and print its content
             InputStream inputStream = Check.class.getClassLoader().getResourceAsStream(JSON_FILE_PATH);
             AZRequest request = objectMapper.readValue(inputStream, AZRequest.class);
-            System.out.println("Request Content:");
-            System.out.println(objectMapper.writeValueAsString(request));
             inputStream.close();
 
             long requestStartTime = System.currentTimeMillis();
@@ -262,6 +260,8 @@ public class Check {
                     if (eval.getContext() != null && eval.getContext().getReasonUser() != null) {
                         System.out.println("-> Evaluation RequestID " + eval.getRequestId()
                                 + ": Reason User: " + eval.getContext().getReasonUser().getMessage());
+                    } else if(eval.isDecision()){
+                        System.out.println("-> Evaluation RequestID " + eval.getRequestId() + ": Single Authorization Permitted");
                     }
                 }
             }
