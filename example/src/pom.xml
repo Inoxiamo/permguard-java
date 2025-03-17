@@ -5,7 +5,7 @@
 
     <groupId>com.permguard.example</groupId>
     <artifactId>permguard-check-example</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <name>Permguard Check Example</name>
@@ -15,7 +15,7 @@
         <dependency>
             <groupId>com.permguard.pep</groupId>
             <artifactId>permguard</artifactId>
-            <version>0.0.2-alpha</version>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
 
